@@ -33,3 +33,9 @@ next-env.d.ts
 
 # Wrangler
 .wrangler/
+
+# Claude Code settings
+.claude/
+
+# Canva reference assets (not for version control)
+/public/canva/
