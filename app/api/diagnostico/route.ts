@@ -1,5 +1,3 @@
-export const runtime = 'edge'
-
 import { z } from 'zod'
 import { rateLimit } from '@/lib/rate-limit'
 

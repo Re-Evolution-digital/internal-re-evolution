@@ -1,5 +1,3 @@
-export const runtime = 'edge'
-
 import { rateLimit } from '@/lib/rate-limit'
 
 function getIP(req: Request): string {
