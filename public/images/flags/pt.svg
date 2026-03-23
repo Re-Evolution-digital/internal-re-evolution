@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <!-- Red -->
+  <rect width="60" height="40" fill="#D22730"/>
+  <!-- Green left band (2/5) -->
+  <rect width="24" height="40" fill="#006600"/>
+  <!-- Armillary sphere outline (yellow circle) -->
+  <circle cx="24" cy="20" r="9" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <!-- Shield (blue) -->
+  <rect x="19.5" y="13" width="9" height="11" fill="#003893" rx="1"/>
+  <!-- Five small white dots (quinas) — simplified -->
+  <circle cx="22" cy="16" r="1.1" fill="white"/>
+  <circle cx="26" cy="16" r="1.1" fill="white"/>
+  <circle cx="24" cy="18.5" r="1.1" fill="white"/>
+  <circle cx="22" cy="21" r="1.1" fill="white"/>
+  <circle cx="26" cy="21" r="1.1" fill="white"/>
+  <!-- Red border band on shield bottom -->
+  <rect x="19.5" y="21" width="9" height="3" fill="#D22730" rx="1"/>
+  <!-- Castle dots on red band -->
+  <circle cx="22" cy="22.5" r="0.7" fill="#FFD700"/>
+  <circle cx="24" cy="22.5" r="0.7" fill="#FFD700"/>
+  <circle cx="26" cy="22.5" r="0.7" fill="#FFD700"/>
+</svg>

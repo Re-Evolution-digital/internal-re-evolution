@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-yellow: #ffc700;
+  --color-brand-dark: #011b54;
+  --color-brand-dark-deep: #010e30;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --brand-yellow: #ffc700;
+    --brand-dark: #011b54;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased text-gray-900 bg-white;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-yellow;
+  }
+}
+
+@layer utilities {
+  .text-brand-yellow {
+    color: var(--color-brand-yellow);
+  }
+  .bg-brand-yellow {
+    background-color: var(--color-brand-yellow);
+  }
+  .text-brand-dark {
+    color: var(--color-brand-dark);
+  }
+  .bg-brand-dark {
+    background-color: var(--color-brand-dark);
+  }
+  .border-brand-yellow {
+    border-color: var(--color-brand-yellow);
+  }
+}

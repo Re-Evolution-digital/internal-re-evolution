@@ -1,0 +1,335 @@
+{
+  "meta": {
+    "title": "Re-Evolution — Agencia Digital para PYMEs en Portugal",
+    "description": "Creamos sitios web profesionales, automatizaciones inteligentes y chatbots de IA para pequeñas y medianas empresas en Portugal. Diagnóstico gratuito, entrega en 1–3 semanas."
+  },
+  "nav": {
+    "services": "Servicios",
+    "howItWorks": "Cómo Funciona",
+    "pricing": "Precios",
+    "cases": "Casos de Éxito",
+    "blog": "Blog",
+    "cta": "Diagnóstico Gratuito"
+  },
+  "hero": {
+    "badge": "⚡ Entrega en 1 a 3 semanas",
+    "title": "Su negocio merece estar en digital. Nosotros nos encargamos de todo.",
+    "subtitle": "Creamos su sitio web, automatizamos sus tareas repetitivas y posicionamos su negocio en Google — sin necesidad de saber nada de tecnología.",
+    "ctaPrimary": "Quiero mi diagnóstico gratuito",
+    "ctaSecondary": "Ver cómo funciona"
+  },
+  "problem": {
+    "title": "Mientras lee esto, sus competidores están ganando clientes online.",
+    "cards": [
+      {
+        "title": "No aparece en Google",
+        "solution": "Optimizamos su perfil y sitio para que sus clientes le encuentren primero."
+      },
+      {
+        "title": "Pierde reservas ante la competencia",
+        "solution": "Automatizamos el proceso de reservas para que nunca pierda un cliente."
+      },
+      {
+        "title": "Tareas manuales que roban horas",
+        "solution": "Creamos flujos automáticos que hacen el trabajo repetitivo por usted."
+      },
+      {
+        "title": "Sitio desactualizado o inexistente",
+        "solution": "Creamos o renovamos su sitio para impresionar desde el primer clic."
+      }
+    ]
+  },
+  "services": {
+    "title": "Lo que hacemos por usted",
+    "pillars": [
+      {
+        "title": "Presencia Digital Profesional",
+        "description": "Su sitio web, creado pensando en sus clientes. Rápido, bonito y que aparece en Google.",
+        "features": ["Landing page profesional", "SEO local optimizado", "Google Business Profile", "Mobile-first"]
+      },
+      {
+        "title": "Automatizaciones Inteligentes",
+        "description": "Basta de tareas repetitivas. Formularios, notificaciones, reservas y follow-ups — todo automático.",
+        "features": ["Notificaciones WhatsApp/Telegram", "Integración Google Sheets", "Respuestas automáticas", "Sin código"]
+      },
+      {
+        "title": "Asistente de IA 24/7",
+        "description": "Un asistente siempre disponible en su sitio, que responde, califica y dirige a sus clientes — incluso mientras duerme.",
+        "features": ["Chatbot personalizado", "Calificación de leads", "Multilingüe", "Integrado en su sitio"]
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "Simple, rápido y sin sorpresas",
+    "subtitle": "De la primera conversación al sitio en vivo en 1 a 3 semanas.",
+    "steps": [
+      {
+        "emoji": "🔍",
+        "title": "Diagnóstico Gratuito",
+        "description": "Hablamos sobre su negocio y lo que necesita"
+      },
+      {
+        "emoji": "📋",
+        "title": "Propuesta Clara",
+        "description": "Recibe una propuesta detallada sin letra pequeña"
+      },
+      {
+        "emoji": "🚀",
+        "title": "Entrega Rápida",
+        "description": "Desarrollamos y entregamos en 1 a 3 semanas"
+      },
+      {
+        "emoji": "🤝",
+        "title": "Soporte Continuo",
+        "description": "No desaparecemos tras la entrega. Siempre estamos aquí."
+      }
+    ]
+  },
+  "automations": {
+    "title": "Vea cómo funciona en la práctica",
+    "subtitle": "Elija su tipo de negocio y vea lo que se automatizaría.",
+    "tabs": ["🍽️ Restaurante", "⚖️ Abogado", "🏥 Clínica", "🏠 Inmobiliario"],
+    "cta": "Quiero esto para mi negocio",
+    "flows": {
+      "restaurant": [
+        { "label": "Cliente rellena reserva online" },
+        { "label": "Notificación inmediata en WhatsApp" },
+        { "label": "Datos guardados automáticamente" },
+        { "label": "Email de confirmación al cliente" }
+      ],
+      "lawyer": [
+        { "label": "Cliente solicita consulta en el sitio" },
+        { "label": "Calificación automática del caso" },
+        { "label": "Agenda enviada por email" },
+        { "label": "Recordatorio 24h antes de la consulta" }
+      ],
+      "clinic": [
+        { "label": "Solicitud de cita online" },
+        { "label": "Confirmación automática al paciente" },
+        { "label": "Registro en Google Sheets" },
+        { "label": "Recordatorio por SMS/WhatsApp" }
+      ],
+      "realestate": [
+        { "label": "Lead entra por el sitio" },
+        { "label": "Calificación por chatbot" },
+        { "label": "Datos enviados al agente" },
+        { "label": "Follow-up automático en 24h" }
+      ]
+    }
+  },
+  "pricing": {
+    "title": "Precios claros, sin sorpresas",
+    "subtitle": "Sabemos el coste antes de empezar. Siempre.",
+    "note": "WhatsApp Business API, Informes Avanzados e integraciones específicas disponibles como add-on. Contáctenos para un presupuesto personalizado.",
+    "footer": "Precios sin IVA. Sin contratos de permanencia.",
+    "packages": [
+      {
+        "id": "essencial",
+        "name": "Sitio Web Esencial",
+        "badge": "Más popular",
+        "price": "€500",
+        "priceSuffix": "pago único",
+        "features": [
+          "Landing page profesional",
+          "SEO básico",
+          "Google Business Profile",
+          "1 mes de soporte incluido",
+          "Mobile-first",
+          "Entrega en 1–3 semanas"
+        ],
+        "cta": "Quiero este paquete"
+      },
+      {
+        "id": "managed",
+        "name": "Automatización Managed",
+        "badge": "Resultados continuos",
+        "price": "€800",
+        "priceMonthly": "+ €140/mes",
+        "priceSuffix": "configuración inicial",
+        "features": [
+          "Todo lo del Esencial",
+          "Automatizaciones personalizadas",
+          "Chatbot IA",
+          "Reunión mensual de análisis",
+          "Soporte prioritario",
+          "Informes mensuales"
+        ],
+        "cta": "Hablar con el equipo"
+      }
+    ]
+  },
+  "cases": {
+    "title": "Negocios reales. Resultados reales.",
+    "testimonials": [
+      {
+        "quote": "Re-Evolution transformó la forma en que recibimos reservas. El sitio quedó exactamente como queríamos y en menos de tres semanas ya estaba en vivo. Ahora tenemos un proceso automático que nos ahorra horas cada semana.",
+        "author": "Arcadas do Fado",
+        "location": "Almancil, Algarve",
+        "tags": ["Restauración", "Automatizaciones", "Sitio Web"]
+      }
+    ],
+    "comingSoon": "Próximamente — "
+  },
+  "blog": {
+    "title": "Consejos y novedades para su negocio digital",
+    "readMore": "Leer más",
+    "viewAll": "Ver todos los artículos",
+    "articles": [
+      {
+        "category": "SEO",
+        "title": "Cómo aparecer en Google Maps en 2026 (guía para PYMEs)",
+        "date": "15 de enero, 2026"
+      },
+      {
+        "category": "Automatizaciones",
+        "title": "5 tareas que puede automatizar hoy sin saber tecnología",
+        "date": "8 de enero, 2026"
+      },
+      {
+        "category": "Rendimiento",
+        "title": "Por qué su sitio web necesita ser rápido en el móvil",
+        "date": "2 de enero, 2026"
+      }
+    ]
+  },
+  "diagnostic": {
+    "title": "¿Listo para transformar su negocio?",
+    "subtitle": "El diagnóstico es gratuito, sin compromiso y tarda 2 minutos.",
+    "form": {
+      "name": "Nombre completo",
+      "namePlaceholder": "Su nombre",
+      "contact": "Email o Teléfono",
+      "contactPlaceholder": "email@ejemplo.com o +351 9XX XXX XXX",
+      "businessType": "Tipo de negocio",
+      "businessTypePlaceholder": "Seleccione su sector",
+      "businessTypes": [
+        "Restaurante",
+        "Clínica/Salud",
+        "Abogado/Jurídico",
+        "Inmobiliario",
+        "Otro"
+      ],
+      "mainProblem": "Principal problema (opcional)",
+      "mainProblemPlaceholder": "Describa brevemente lo que quiere mejorar en su negocio...",
+      "gdpr": "Acepto la",
+      "gdprLink": "Política de Privacidad",
+      "submit": "Quiero mi diagnóstico gratuito",
+      "success": "¡Gracias! Nos pondremos en contacto pronto.",
+      "successSub": "Revise su email para confirmación.",
+      "errors": {
+        "nameRequired": "El nombre es obligatorio",
+        "contactRequired": "Email o teléfono es obligatorio",
+        "contactInvalid": "Introduzca un email o teléfono válido",
+        "businessTypeRequired": "Seleccione el tipo de negocio",
+        "gdprRequired": "Debe aceptar la Política de Privacidad",
+        "mainProblemMax": "Máximo 300 caracteres"
+      }
+    }
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Necesito saber tecnología para trabajar con ustedes?",
+        "answer": "No, nos encargamos de todo. Solo díganos lo que necesita y nosotros hacemos el resto."
+      },
+      {
+        "question": "¿Cuánto tiempo tarda en tener el sitio en vivo?",
+        "answer": "Entre 1 y 3 semanas tras la aprobación de la propuesta."
+      },
+      {
+        "question": "¿Qué pasa después de la entrega?",
+        "answer": "El paquete Esencial incluye 1 mes de soporte. El Managed incluye acompañamiento continuo con reuniones mensuales."
+      },
+      {
+        "question": "¿Puedo actualizar el sitio después?",
+        "answer": "Sí, puede hacerlo usted mismo o a través de nosotros. Siempre entregamos el acceso total al sitio."
+      },
+      {
+        "question": "¿Los precios incluyen IVA?",
+        "answer": "No, todos los precios mostrados son sin IVA."
+      },
+      {
+        "question": "¿Hay contratos de permanencia?",
+        "answer": "No en el paquete Esencial — es pago único. El Managed es mensual y puede cancelar cuando quiera."
+      },
+      {
+        "question": "¿Trabajan fuera de Lisboa?",
+        "answer": "Sí, trabajamos 100% de forma remota y atendemos clientes en todo Portugal."
+      },
+      {
+        "question": "¿El chatbot habla español?",
+        "answer": "Sí, detecta automáticamente el idioma del visitante y responde en portugués, inglés o español."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Transformación digital para su negocio local.",
+    "columns": {
+      "services": {
+        "title": "Servicios",
+        "links": ["Presencia Digital", "Automatizaciones", "Chatbot IA", "SEO Local"]
+      },
+      "company": {
+        "title": "Empresa",
+        "links": ["Sobre nosotros", "Casos de Éxito", "Blog", "Diagnóstico Gratuito"]
+      },
+      "legal": {
+        "title": "Legal",
+        "links": ["Política de Privacidad", "Términos de Servicio", "Política de Cookies", "Configuración de Cookies"]
+      },
+      "contact": {
+        "title": "Contacto"
+      }
+    },
+    "copyright": "© 2026 Re-Evolution, Serviços Digitais. Todos los derechos reservados.",
+    "madeBy": "Desarrollado con ❤️ por Re-Evolution"
+  },
+  "cookies": {
+    "banner": {
+      "title": "Utilizamos cookies",
+      "description": "Usamos cookies para mejorar su experiencia, analizar el tráfico y personalizar contenido. Puede gestionar sus preferencias en cualquier momento.",
+      "acceptAll": "Aceptar todos",
+      "acceptNecessary": "Solo necesarios",
+      "manage": "Gestionar preferencias",
+      "learnMore": "Saber más"
+    },
+    "modal": {
+      "title": "Preferencias de Cookies",
+      "save": "Guardar preferencias",
+      "categories": {
+        "necessary": {
+          "name": "Necesarios",
+          "description": "Esenciales para el funcionamiento del sitio. No pueden desactivarse."
+        },
+        "functional": {
+          "name": "Funcionales",
+          "description": "Permiten funcionalidades avanzadas como preferencias de idioma."
+        },
+        "analytics": {
+          "name": "Analíticos",
+          "description": "Nos ayudan a entender cómo usa el sitio para mejorarlo (Google Analytics)."
+        },
+        "marketing": {
+          "name": "Marketing",
+          "description": "Permiten mostrar anuncios relevantes en otras plataformas."
+        }
+      }
+    }
+  },
+  "chat": {
+    "title": "Evo — Asistente Re-Evolution",
+    "placeholder": "Escriba su mensaje...",
+    "send": "Enviar",
+    "typing": "Evo está escribiendo...",
+    "welcome": "¡Hola! Soy Evo, el asistente virtual de Re-Evolution. ¿Cómo puedo ayudarle hoy?"
+  },
+  "accessibility": {
+    "skipToContent": "Saltar al contenido principal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "openChat": "Abrir chat",
+    "closeChat": "Cerrar chat",
+    "whatsapp": "Contactar por WhatsApp"
+  }
+}

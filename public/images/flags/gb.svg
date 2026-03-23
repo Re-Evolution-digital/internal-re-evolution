@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30">
+  <!-- Blue background -->
+  <rect width="60" height="30" fill="#012169"/>
+  <!-- St Andrew white diagonals -->
+  <line x1="0" y1="0" x2="60" y2="30" stroke="white" stroke-width="7"/>
+  <line x1="60" y1="0" x2="0" y2="30" stroke="white" stroke-width="7"/>
+  <!-- St Patrick red diagonals (counter-charged, simplified) -->
+  <line x1="0" y1="0" x2="60" y2="30" stroke="#C8102E" stroke-width="4"/>
+  <line x1="60" y1="0" x2="0" y2="30" stroke="#C8102E" stroke-width="4"/>
+  <!-- St George white cross -->
+  <rect x="24" y="0" width="12" height="30" fill="white"/>
+  <rect x="0" y="9" width="60" height="12" fill="white"/>
+  <!-- St George red cross -->
+  <rect x="26.5" y="0" width="7" height="30" fill="#C8102E"/>
+  <rect x="0" y="11.5" width="60" height="7" fill="#C8102E"/>
+</svg>
