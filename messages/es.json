@@ -16,7 +16,15 @@
     "title": "Su negocio merece estar en digital. Nosotros nos encargamos de todo.",
     "subtitle": "Creamos su sitio web, automatizamos sus tareas repetitivas y posicionamos su negocio en Google — sin necesidad de saber nada de tecnología.",
     "ctaPrimary": "Quiero mi diagnóstico gratuito",
-    "ctaSecondary": "Ver cómo funciona"
+    "ctaSecondary": "Ver cómo funciona",
+    "yellowStripe": "Transformación Digital · Negocios Locales · Re-Evolution",
+    "phone": {
+      "topBadge": "✅ Sitio en 2 semanas",
+      "notification": "🔔 Nueva reserva",
+      "customer": "Juan García — Mesa 4, 20h",
+      "bookingsLabel": "Reservas hoy",
+      "bottomBadge": "🚀 Google Página 1"
+    }
   },
   "problem": {
     "title": "Mientras lee esto, sus competidores están ganando clientes online.",
@@ -62,6 +70,8 @@
   "howItWorks": {
     "title": "Simple, rápido y sin sorpresas",
     "subtitle": "De la primera conversación al sitio en vivo en 1 a 3 semanas.",
+    "yellowStripe": "Proceso · Simple y Transparente",
+    "step": "Paso",
     "steps": [
       {
         "emoji": "🔍",
@@ -87,6 +97,7 @@
   },
   "automations": {
     "title": "Vea cómo funciona en la práctica",
+    "yellowStripe": "Automatización · Trabaja Mientras Descansas",
     "subtitle": "Elija su tipo de negocio y vea lo que se automatizaría.",
     "tabs": ["🍽️ Restaurante", "⚖️ Abogado", "🏥 Clínica", "🏠 Inmobiliario"],
     "cta": "Quiero esto para mi negocio",
@@ -195,11 +206,14 @@
   "diagnostic": {
     "title": "¿Listo para transformar su negocio?",
     "subtitle": "El diagnóstico es gratuito, sin compromiso y tarda 2 minutos.",
+    "yellowStripe": "Diagnóstico Gratuito · Sin Compromiso",
     "form": {
       "name": "Nombre completo",
       "namePlaceholder": "Su nombre",
-      "contact": "Email o Teléfono",
-      "contactPlaceholder": "email@ejemplo.com o +351 9XX XXX XXX",
+      "email": "Email",
+      "emailPlaceholder": "email@ejemplo.com",
+      "phone": "Teléfono",
+      "phonePlaceholder": "+351 9XX XXX XXX",
       "businessType": "Tipo de negocio",
       "businessTypePlaceholder": "Seleccione su sector",
       "businessTypes": [
@@ -216,10 +230,14 @@
       "submit": "Quiero mi diagnóstico gratuito",
       "success": "¡Gracias! Nos pondremos en contacto pronto.",
       "successSub": "Revise su email para confirmación.",
+      "serverError": "Error al enviar. Por favor inténtelo de nuevo.",
+      "loading": "Enviando...",
       "errors": {
         "nameRequired": "El nombre es obligatorio",
-        "contactRequired": "Email o teléfono es obligatorio",
-        "contactInvalid": "Introduzca un email o teléfono válido",
+        "emailRequired": "El email es obligatorio",
+        "emailInvalid": "Introduzca una dirección de email válida",
+        "phoneRequired": "El teléfono es obligatorio",
+        "phoneInvalid": "Introduzca un número de teléfono válido",
         "businessTypeRequired": "Seleccione el tipo de negocio",
         "gdprRequired": "Debe aceptar la Política de Privacidad",
         "mainProblemMax": "Máximo 300 caracteres"
@@ -297,6 +315,7 @@
     "modal": {
       "title": "Preferencias de Cookies",
       "save": "Guardar preferencias",
+      "cancel": "Cancelar",
       "categories": {
         "necessary": {
           "name": "Necesarios",
@@ -318,11 +337,15 @@
     }
   },
   "chat": {
-    "title": "Evo — Asistente Re-Evolution",
+    "title": "Reevo — Asistente Re-Evolution",
     "placeholder": "Escriba su mensaje...",
     "send": "Enviar",
-    "typing": "Evo está escribiendo...",
-    "welcome": "¡Hola! Soy Evo, el asistente virtual de Re-Evolution. ¿Cómo puedo ayudarle hoy?"
+    "typing": "Reevo está escribiendo...",
+    "welcome": "¡Hola! Soy Reevo, el asistente virtual de Re-Evolution. ¿Cómo puedo ayudarle hoy?",
+    "greeting": "¡Hola! Soy Reevo. 👋",
+    "greetingSub": "¿Puedo ayudarle?",
+    "status": "Online",
+    "error": "Lo sentimos, ocurrió un error. Por favor inténtelo de nuevo."
   },
   "accessibility": {
     "skipToContent": "Saltar al contenido principal",

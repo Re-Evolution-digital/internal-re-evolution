@@ -173,7 +173,7 @@ export default function CookieBanner() {
                   onClick={() => setShowModal(false)}
                   className="flex-1 py-2 border border-gray-300 rounded-xl text-sm hover:border-brand-dark transition-colors"
                 >
-                  Cancelar
+                  {t('modal.cancel')}
                 </button>
                 <button
                   onClick={savePreferences}

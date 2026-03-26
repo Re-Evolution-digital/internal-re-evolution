@@ -32,7 +32,7 @@ export default function HowItWorks() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
           <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
-            Processo · Simples e Transparente
+            {t('yellowStripe')}
           </span>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function HowItWorks() {
                   {step.emoji}
                 </div>
                 <span className="text-brand-yellow/60 text-xs font-bold tracking-widest uppercase mb-1">
-                  Passo {i + 1}
+                  {t('step')} {i + 1}
                 </span>
                 <h3 className="text-white font-bold text-base mb-2">{step.title}</h3>
                 <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
@@ -106,7 +106,7 @@ export default function HowItWorks() {
               </div>
               <div className="pb-8">
                 <span className="text-brand-yellow/60 text-xs font-bold tracking-widest uppercase">
-                  Passo {i + 1}
+                  {t('step')} {i + 1}
                 </span>
                 <h3 className="text-white font-bold text-base mt-1 mb-1">{step.title}</h3>
                 <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>

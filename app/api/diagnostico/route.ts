@@ -1,21 +1,21 @@
 import { z } from 'zod'
 import { rateLimit } from '@/lib/rate-limit'
+import { sendEmail, buildClientEmailHtml, buildInternalDiagnosticoEmail, formatPTDate } from '@/lib/email'
+import { sendTelegram, telegramDiagnosticoLead } from '@/lib/telegram'
 
 const schema = z.object({
   name: z.string().min(2).max(100),
-  contact: z.string().min(5).max(200),
+  email: z.string().email().max(200),
+  phone: z.string().min(5).max(50),
   business_type: z.string().min(1).max(100),
   main_problem: z.string().max(300).optional(),
+  language: z.string().max(10).optional(),
   gdpr_consent: z.literal(true),
-  honeypot: z.string().max(0).optional(), // must be empty
+  honeypot: z.string().max(0).optional(),
 })
 
 function getIP(req: Request): string {
   return req.headers.get('cf-connecting-ip') ?? req.headers.get('x-forwarded-for') ?? 'unknown'
-}
-
-function formatPTDate(date: Date): string {
-  return date.toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' })
 }
 
 export async function POST(req: Request) {
@@ -36,62 +36,48 @@ export async function POST(req: Request) {
     return Response.json({ error: 'Dados inválidos.', details: parsed.error.flatten() }, { status: 422 })
   }
 
-  const { name, contact, business_type, main_problem } = parsed.data
-
-  // Honeypot check
-  const data = body as Record<string, unknown>
-  if (data.honeypot && String(data.honeypot).length > 0) {
-    return Response.json({ ok: true }) // silent ignore bots
+  // Honeypot — ignorar bots silenciosamente
+  const raw = body as Record<string, unknown>
+  if (raw.honeypot && String(raw.honeypot).length > 0) {
+    return Response.json({ ok: true })
   }
 
+  const { name, email, phone, business_type, main_problem, language = 'pt' } = parsed.data
   const timestamp = formatPTDate(new Date())
-  const isoTimestamp = new Date().toISOString()
+  const reevoEmail = process.env.REEVO_EMAIL ?? 'geral@re-evolution.pt'
+  const firstName = name.split(' ')[0] ?? name
 
-  const env = process.env
+  // Telegram — notificação imediata
+  await sendTelegram(telegramDiagnosticoLead({
+    name,
+    email,
+    phone,
+    language,
+    business_type,
+    main_problem: main_problem ?? 'Não indicado',
+    timestamp,
+  }))
 
-  // Action 1 — Telegram notification
-  const telegramToken = env.TELEGRAM_BOT_TOKEN
-  const telegramChatId = env.TELEGRAM_CHAT_ID
-  if (telegramToken && telegramToken !== 'placeholder' && telegramChatId) {
-    const message = [
-      '🔔 *Novo Diagnóstico Re-Evolution*',
-      '',
-      `👤 Nome: ${name}`,
-      `📞 Contacto: ${contact}`,
-      `🏢 Negócio: ${business_type}`,
-      `💬 Problema: ${main_problem ?? 'Não indicado'}`,
-      `📅 Data: ${timestamp}`,
-      `🌐 Fonte: formulário-site`,
-    ].join('\n')
+  // Email interno — equipa Re-Evolution (sempre enviado)
+  await sendEmail({
+    to: reevoEmail,
+    subject: `📋 Novo Diagnóstico — ${name} | ${business_type}`,
+    html: buildInternalDiagnosticoEmail({ name, email, phone, business_type, main_problem: main_problem ?? '—', timestamp }),
+  })
 
-    await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: telegramChatId,
-        text: message,
-        parse_mode: 'Markdown',
-      }),
-    }).catch(() => { /* non-critical */ })
+  // Email para o cliente — sempre enviado (email é campo obrigatório)
+  const subjects: Record<string, string> = {
+    pt: `${firstName}, o seu diagnóstico gratuito está a caminho ✨`,
+    en: `${firstName}, your free diagnosis is on its way ✨`,
+    es: `${firstName}, tu diagnóstico gratuito está en camino ✨`,
   }
-
-  // Action 2 & 3 — Make webhook (email confirmation + CRM)
-  const makeWebhook = env.MAKE_DIAGNOSTICO_WEBHOOK
-  if (makeWebhook && makeWebhook !== 'placeholder') {
-    await fetch(makeWebhook, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        contact,
-        business_type,
-        main_problem: main_problem ?? '',
-        gdpr_consent: true,
-        timestamp: isoTimestamp,
-        source: 'diagnostico-form',
-      }),
-    }).catch(() => { /* non-critical */ })
-  }
+  const subject = subjects[language.slice(0, 2)] ?? subjects.en
+  await sendEmail({
+    to: email,
+    bcc: reevoEmail,
+    subject,
+    html: buildClientEmailHtml({ name: firstName, source: 'diagnostico', language }),
+  })
 
   return Response.json({ ok: true })
 }

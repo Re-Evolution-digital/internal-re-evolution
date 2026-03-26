@@ -1,77 +1,14 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
+import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
 
 function getLocale(path: string) { return path.split('/')[1] ?? 'pt' }
-
-function ParticlesBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let animationId: number
-    const particles: { x: number; y: number; vx: number; vy: number; r: number; alpha: number }[] = []
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width * 0.55, // só lado esquerdo
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.4 + 0.1,
-      })
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      for (const p of particles) {
-        p.x += p.vx
-        p.y += p.vy
-        if (p.x < 0) p.x = canvas.width * 0.55
-        if (p.x > canvas.width * 0.55) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
-
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 199, 0, ${p.alpha})`
-        ctx.fill()
-      }
-      animationId = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(animationId)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      aria-hidden="true"
-    />
-  )
-}
 
 export default function Hero() {
   const t = useTranslations('hero')
@@ -90,7 +27,7 @@ export default function Hero() {
           src="/images/hero/hero-background.png"
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-[50%_50%]"
           priority
         />
         {/* Gradient quilha: zona escura larga na base, estreita no topo (slide 1) */}
@@ -112,19 +49,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Dot clusters — lado esquerdo (Canva style) */}
-      <svg className="absolute top-10 left-8 opacity-[0.18] pointer-events-none" width="66" height="66" viewBox="0 0 66 66" fill="none" aria-hidden="true">
-        {[4,26,48].flatMap(x => [4,26,48].map(y => (
-          <circle key={`${x}-${y}`} cx={x} cy={y} r="2.5" fill="#ffc700"/>
-        )))}
-      </svg>
-      <svg className="absolute bottom-20 left-12 opacity-[0.15] pointer-events-none" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-        {[4,22,40].flatMap(x => [4,22,40].map(y => (
-          <circle key={`${x}-${y}`} cx={x} cy={y} r="2" fill="#ffc700"/>
-        )))}
-      </svg>
-
-      <ParticlesBackground />
+      <GalaxyBackground />
 
       {/* Conteúdo */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-28 md:pt-32">
@@ -197,7 +122,7 @@ export default function Hero() {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute top-0 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-xl px-3 py-1.5 text-xs font-semibold text-brand-dark whitespace-nowrap border border-gray-100 z-10"
               >
-                ✅ Site em 2 semanas
+                {t('phone.topBadge')}
               </motion.div>
 
               {/* Phone frame */}
@@ -212,11 +137,11 @@ export default function Hero() {
                   </div>
                   <div className="p-3 space-y-2.5 bg-gray-50">
                     <div className="bg-brand-yellow/20 border border-brand-yellow/40 rounded-xl p-2.5">
-                      <p className="text-brand-dark text-xs font-semibold mb-0.5">🔔 Nova reserva</p>
-                      <p className="text-gray-600 text-xs">João Silva — Mesa 4, 20h</p>
+                      <p className="text-brand-dark text-xs font-semibold mb-0.5">{t('phone.notification')}</p>
+                      <p className="text-gray-600 text-xs">{t('phone.customer')}</p>
                     </div>
                     <div className="bg-white rounded-xl p-2.5 shadow-sm border border-gray-100">
-                      <p className="text-gray-400 text-xs mb-1">Reservas hoje</p>
+                      <p className="text-gray-400 text-xs mb-1">{t('phone.bookingsLabel')}</p>
                       <div className="flex justify-between items-end">
                         <span className="text-xl font-bold text-brand-dark">12</span>
                         <span className="text-green-500 text-xs font-semibold">↑ +3</span>
@@ -251,7 +176,7 @@ export default function Hero() {
                 transition={{ duration: 3.5, repeat: Infinity }}
                 className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-brand-yellow rounded-xl shadow-xl px-3 py-1.5 text-xs font-semibold text-brand-dark whitespace-nowrap z-10"
               >
-                🚀 Google Page 1
+                {t('phone.bottomBadge')}
               </motion.div>
             </div>
           </motion.div>
@@ -269,7 +194,7 @@ export default function Hero() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
           <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
-            Transformação Digital · Negócios Locais · Re-Evolution
+            {t('yellowStripe')}
           </span>
         </motion.div>
       </div>

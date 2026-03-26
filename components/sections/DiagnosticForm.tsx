@@ -16,12 +16,16 @@ function getLocale(path: string) { return path.split('/')[1] ?? 'pt' }
 function buildSchema(errors: Record<string, string>) {
   return z.object({
     name: z.string().min(2, errors.nameRequired),
-    contact: z
+    email: z
       .string()
-      .min(5, errors.contactRequired)
+      .min(1, errors.emailRequired)
+      .email(errors.emailInvalid),
+    phone: z
+      .string()
+      .min(1, errors.phoneRequired)
       .refine(
-        (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || /^\+?[0-9\s\-]{8,20}$/.test(v),
-        errors.contactInvalid
+        (v) => /^\+?[\d\s\-\(\)\.]{7,25}$/.test(v) && v.replace(/\D/g, '').length >= 7,
+        errors.phoneInvalid
       ),
     business_type: z.string().min(1, errors.businessTypeRequired),
     main_problem: z.string().max(300, errors.mainProblemMax).optional(),
@@ -34,7 +38,8 @@ function buildSchema(errors: Record<string, string>) {
 
 type FormData = {
   name: string
-  contact: string
+  email: string
+  phone: string
   business_type: string
   main_problem?: string
   gdpr_consent: boolean
@@ -52,8 +57,10 @@ export default function DiagnosticForm() {
 
   const errors = {
     nameRequired: tForm('errors.nameRequired'),
-    contactRequired: tForm('errors.contactRequired'),
-    contactInvalid: tForm('errors.contactInvalid'),
+    emailRequired: tForm('errors.emailRequired'),
+    emailInvalid: tForm('errors.emailInvalid'),
+    phoneRequired: tForm('errors.phoneRequired'),
+    phoneInvalid: tForm('errors.phoneInvalid'),
     businessTypeRequired: tForm('errors.businessTypeRequired'),
     gdprRequired: tForm('errors.gdprRequired'),
     mainProblemMax: tForm('errors.mainProblemMax'),
@@ -83,13 +90,13 @@ export default function DiagnosticForm() {
       const res = await fetch('/api/diagnostico', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, gdpr_consent: true }),
+        body: JSON.stringify({ ...data, gdpr_consent: true, language: locale, phone: data.phone.trim() }),
       })
       if (!res.ok) throw new Error()
       trackEvent(GA_EVENTS.FORM_SUCCESS, { form_name: 'diagnostico' })
       setSubmitted(true)
     } catch {
-      setServerError('Erro ao enviar. Por favor tente novamente.')
+      setServerError(tForm('serverError'))
     } finally {
       setLoading(false)
     }
@@ -132,7 +139,7 @@ export default function DiagnosticForm() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
           <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
-            Diagnóstico Gratuito · Sem Compromisso
+            {t('yellowStripe')}
           </span>
         </div>
       </div>
@@ -157,11 +164,19 @@ export default function DiagnosticForm() {
               key="success"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white/10 rounded-3xl p-10 text-center"
+              className="bg-white/10 border border-white/20 rounded-3xl py-20 px-8 text-center flex flex-col items-center"
             >
-              <div className="text-5xl mb-4">🎉</div>
-              <h3 className="text-2xl font-bold text-white mb-2">{tForm('success')}</h3>
-              <p className="text-white/70">{tForm('successSub')}</p>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.15, type: 'spring', stiffness: 200 }}
+                className="text-7xl mb-6"
+              >
+                🎉
+              </motion.div>
+              <h3 className="text-3xl font-extrabold text-white mb-3">{tForm('success')}</h3>
+              <div className="h-1 w-12 bg-brand-yellow rounded-full mb-4" aria-hidden="true" />
+              <p className="text-white/70 text-lg max-w-sm">{tForm('successSub')}</p>
             </motion.div>
           ) : (
             <motion.form
@@ -206,28 +221,53 @@ export default function DiagnosticForm() {
                 )}
               </div>
 
-              {/* Contact */}
-              <div>
-                <label htmlFor="diag-contact" className="block text-white/80 text-sm font-semibold mb-1.5">
-                  {tForm('contact')} *
-                </label>
-                <input
-                  id="diag-contact"
-                  type="text"
-                  autoComplete="email tel"
-                  placeholder={tForm('contactPlaceholder')}
-                  {...register('contact')}
-                  aria-invalid={!!formErrors.contact}
-                  aria-describedby={formErrors.contact ? 'diag-contact-error' : undefined}
-                  className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-all ${
-                    formErrors.contact ? 'border-red-400' : 'border-white/20 focus:border-brand-yellow'
-                  }`}
-                />
-                {formErrors.contact && (
-                  <p id="diag-contact-error" role="alert" className="text-red-400 text-xs mt-1">
-                    {formErrors.contact.message}
-                  </p>
-                )}
+              {/* Email + Phone — two columns on sm+ */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="diag-email" className="block text-white/80 text-sm font-semibold mb-1.5">
+                    {tForm('email')} *
+                  </label>
+                  <input
+                    id="diag-email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder={tForm('emailPlaceholder')}
+                    {...register('email')}
+                    aria-invalid={!!formErrors.email}
+                    aria-describedby={formErrors.email ? 'diag-email-error' : undefined}
+                    className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-all ${
+                      formErrors.email ? 'border-red-400' : 'border-white/20 focus:border-brand-yellow'
+                    }`}
+                  />
+                  {formErrors.email && (
+                    <p id="diag-email-error" role="alert" className="text-red-400 text-xs mt-1">
+                      {formErrors.email.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="diag-phone" className="block text-white/80 text-sm font-semibold mb-1.5">
+                    {tForm('phone')} *
+                  </label>
+                  <input
+                    id="diag-phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder={tForm('phonePlaceholder')}
+                    {...register('phone')}
+                    aria-invalid={!!formErrors.phone}
+                    aria-describedby={formErrors.phone ? 'diag-phone-error' : undefined}
+                    className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-all ${
+                      formErrors.phone ? 'border-red-400' : 'border-white/20 focus:border-brand-yellow'
+                    }`}
+                  />
+                  {formErrors.phone && (
+                    <p id="diag-phone-error" role="alert" className="text-red-400 text-xs mt-1">
+                      {formErrors.phone.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
               {/* Business type */}
@@ -312,7 +352,7 @@ export default function DiagnosticForm() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    A enviar...
+                    {tForm('loading')}
                   </>
                 ) : tForm('submit')}
               </button>

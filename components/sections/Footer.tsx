@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { clientData } from '@/data/client-info'
 import CookieSettingsLink from '@/components/ui/CookieSettingsLink'
 
@@ -32,13 +32,14 @@ const SocialIcons = {
 
 export default async function Footer() {
   // Footer is a Server Component for SEO — no interactivity needed
-  const locale = 'pt' // default; the locale is available via header or layout context
+  const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: 'footer' })
 
+  const legalLinksLabels = t.raw('columns.legal.links') as string[]
   const legalLinks = [
-    { label: 'Política de Privacidade', href: `/${locale}/privacy-policy` },
-    { label: 'Termos de Serviço', href: `/${locale}/terms-of-service` },
-    { label: 'Política de Cookies', href: `/${locale}/cookie-policy` },
+    { label: legalLinksLabels[0], href: `/${locale}/privacy-policy` },
+    { label: legalLinksLabels[1], href: `/${locale}/terms-of-service` },
+    { label: legalLinksLabels[2], href: `/${locale}/cookie-policy` },
   ]
 
   return (
@@ -83,7 +84,7 @@ export default async function Footer() {
               {t('columns.services.title')}
             </h3>
             <ul className="space-y-2.5">
-              {['Presença Digital', 'Automações', 'Chatbot IA', 'SEO Local'].map((item) => (
+              {(t.raw('columns.services.links') as string[]).map((item) => (
                 <li key={item}>
                   <a href={`/${locale}/#servicos`} className="text-white/60 text-sm hover:text-white transition-colors">
                     {item}
@@ -99,9 +100,9 @@ export default async function Footer() {
               {t('columns.company.title')}
             </h3>
             <ul className="space-y-2.5">
-              <li><a href={`/${locale}/#casos`} className="text-white/60 text-sm hover:text-white transition-colors">Casos de Sucesso</a></li>
-              <li><a href={`/${locale}/#blog`} className="text-white/60 text-sm hover:text-white transition-colors">Blog</a></li>
-              <li><a href={`/${locale}/#diagnostico`} className="text-white/60 text-sm hover:text-white transition-colors">Diagnóstico Gratuito</a></li>
+              <li><a href={`/${locale}/#casos`} className="text-white/60 text-sm hover:text-white transition-colors">{(t.raw('columns.company.links') as string[])[1]}</a></li>
+              <li><a href={`/${locale}/#blog`} className="text-white/60 text-sm hover:text-white transition-colors">{(t.raw('columns.company.links') as string[])[2]}</a></li>
+              <li><a href={`/${locale}/#diagnostico`} className="text-white/60 text-sm hover:text-white transition-colors">{(t.raw('columns.company.links') as string[])[3]}</a></li>
             </ul>
           </div>
 
@@ -136,7 +137,7 @@ export default async function Footer() {
                 {link.label}
               </Link>
             ))}
-            <CookieSettingsLink label="Definições de Cookies" />
+            <CookieSettingsLink label={legalLinksLabels[3]} />
           </div>
           <p className="text-white/30 text-xs text-center">{t('copyright')}</p>
         </div>

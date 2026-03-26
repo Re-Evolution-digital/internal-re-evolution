@@ -11,8 +11,6 @@ type Message = {
   content: string
 }
 
-const SESSION_KEY = 'reevo_chat_history'
-
 export default function ChatWidget() {
   const t = useTranslations('chat')
   const tA11y = useTranslations('accessibility')
@@ -23,17 +21,8 @@ export default function ChatWidget() {
   const [hidden, setHidden] = useState(false)
   const [closed, setClosed] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  // Restore session history
-  useEffect(() => {
-    const stored = sessionStorage.getItem(SESSION_KEY)
-    if (stored) {
-      try {
-        setMessages(JSON.parse(stored) as Message[])
-      } catch { /* ignore */ }
-    }
-  }, [])
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+  const leadNotifiedRef = useRef(false)
 
   // Keyboard visibility
   useEffect(() => {
@@ -51,19 +40,24 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Focus input on open
+  // Focus input on open e após cada resposta (quando loading passa a false)
   useEffect(() => {
-    if (open) inputRef.current?.focus()
-  }, [open])
+    if (open && !loading) inputRef.current?.focus()
+  }, [open, loading])
+
+  // Auto-resize textarea
+  useEffect(() => {
+    const el = inputRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${Math.min(el.scrollHeight, 120)}px`
+  }, [input])
 
   function toggleOpen() {
     if (!open) {
       trackEvent(GA_EVENTS.CHATBOT_OPEN)
-      if (messages.length === 0) {
-        const welcome: Message = { role: 'assistant', content: t('welcome') }
-        setMessages([welcome])
-        sessionStorage.setItem(SESSION_KEY, JSON.stringify([welcome]))
-      }
+      const welcome: Message = { role: 'assistant', content: t('welcome') }
+      setMessages([welcome])
     }
     setOpen((v) => !v)
   }
@@ -74,7 +68,6 @@ export default function ChatWidget() {
 
     const newMessages: Message[] = [...messages, { role: 'user', content: text }]
     setMessages(newMessages)
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify(newMessages))
     setInput('')
     setLoading(true)
 
@@ -82,28 +75,23 @@ export default function ChatWidget() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({ messages: newMessages, leadNotified: leadNotifiedRef.current }),
       })
       const data = await res.json() as { message?: string; leadReady?: boolean; goodbye?: boolean }
 
       if (data.message) {
         const updated: Message[] = [...newMessages, { role: 'assistant', content: data.message }]
         setMessages(updated)
-        sessionStorage.setItem(SESSION_KEY, JSON.stringify(updated))
 
-        if (data.leadReady) {
+        if (data.leadReady && !leadNotifiedRef.current) {
+          leadNotifiedRef.current = true
           trackEvent(GA_EVENTS.CHATBOT_LEAD_READY)
         }
 
-        if (data.goodbye) {
-          setTimeout(() => {
-            setOpen(false)
-            setClosed(true)
-          }, 3000)
-        }
+        // goodbye: não fechar o widget — o cliente pode querer continuar
       }
     } catch {
-      const errMsg: Message = { role: 'assistant', content: 'Desculpe, ocorreu um erro. Tente novamente.' }
+      const errMsg: Message = { role: 'assistant', content: t('error') }
       setMessages((m) => [...m, errMsg])
     } finally {
       setLoading(false)
@@ -131,8 +119,8 @@ export default function ChatWidget() {
                 transition={{ delay: 0.4 }}
                 className="mb-2 mr-8 bg-white text-brand-dark text-sm font-semibold px-4 py-2.5 rounded-2xl rounded-br-none shadow-lg max-w-[140px] sm:max-w-[180px] leading-snug border border-gray-100"
               >
-                Olá! Sou o Reevo. 👋<br />
-                <span className="font-normal text-gray-600 text-xs">Posso ajudar?</span>
+                {t('greeting')}<br />
+                <span className="font-normal text-gray-600 text-xs">{t('greetingSub')}</span>
               </motion.div>
 
               {/* GIF button */}
@@ -170,12 +158,12 @@ export default function ChatWidget() {
               {/* Header */}
               <div className="bg-brand-dark px-4 py-3 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-brand-yellow rounded-full flex items-center justify-center text-brand-dark font-bold text-sm">
-                    E
+                  <div className="w-8 h-8 bg-brand-dark rounded-full flex items-center justify-center border border-white/20 shrink-0 overflow-hidden">
+                    <Image src="/images/logo/logo.svg" alt="Reevo" width={22} height={22} className="object-contain" />
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm">{t('title')}</p>
-                    <p className="text-white/50 text-xs">Online</p>
+                    <p className="text-white/50 text-xs">{t('status')}</p>
                   </div>
                 </div>
                 <button
@@ -230,16 +218,22 @@ export default function ChatWidget() {
               {/* Input */}
               <form
                 onSubmit={(e) => { e.preventDefault(); sendMessage() }}
-                className="p-3 border-t border-gray-100 flex gap-2 shrink-0"
+                className="p-3 border-t border-gray-100 flex gap-2 items-end shrink-0"
               >
-                <input
+                <textarea
                   ref={inputRef}
-                  type="text"
+                  rows={1}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      sendMessage()
+                    }
+                  }}
                   placeholder={t('placeholder')}
                   disabled={loading}
-                  className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent"
+                  className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent resize-none overflow-y-auto leading-relaxed"
                 />
                 <button
                   type="submit"

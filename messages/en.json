@@ -16,7 +16,15 @@
     "title": "Your business deserves to be online. We handle everything.",
     "subtitle": "We build your website, automate your repetitive tasks and get your business showing up on Google — without you needing to know anything about technology.",
     "ctaPrimary": "Get my free diagnosis",
-    "ctaSecondary": "See how it works"
+    "ctaSecondary": "See how it works",
+    "yellowStripe": "Digital Transformation · Local Business · Re-Evolution",
+    "phone": {
+      "topBadge": "✅ Site in 2 weeks",
+      "notification": "🔔 New booking",
+      "customer": "John Smith — Table 4, 8pm",
+      "bookingsLabel": "Today's bookings",
+      "bottomBadge": "🚀 Google Page 1"
+    }
   },
   "problem": {
     "title": "While you read this, your competitors are winning customers online.",
@@ -62,6 +70,8 @@
   "howItWorks": {
     "title": "Simple, fast and no surprises",
     "subtitle": "From the first conversation to your site live in 1 to 3 weeks.",
+    "yellowStripe": "Process · Simple and Transparent",
+    "step": "Step",
     "steps": [
       {
         "emoji": "🔍",
@@ -87,6 +97,7 @@
   },
   "automations": {
     "title": "See how it works in practice",
+    "yellowStripe": "Automation · Works While You Rest",
     "subtitle": "Choose your type of business and see what would be automated.",
     "tabs": ["🍽️ Restaurant", "⚖️ Lawyer", "🏥 Clinic", "🏠 Real Estate"],
     "cta": "I want this for my business",
@@ -195,11 +206,14 @@
   "diagnostic": {
     "title": "Ready to transform your business?",
     "subtitle": "The diagnosis is free, no commitment and takes 2 minutes.",
+    "yellowStripe": "Free Diagnosis · No Commitment",
     "form": {
       "name": "Full name",
       "namePlaceholder": "Your name",
-      "contact": "Email or Phone",
-      "contactPlaceholder": "email@example.com or +351 9XX XXX XXX",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+351 9XX XXX XXX",
       "businessType": "Business type",
       "businessTypePlaceholder": "Select your sector",
       "businessTypes": [
@@ -216,10 +230,14 @@
       "submit": "Get my free diagnosis",
       "success": "Thank you! We'll be in touch shortly.",
       "successSub": "Check your email for confirmation.",
+      "serverError": "Error sending. Please try again.",
+      "loading": "Sending...",
       "errors": {
         "nameRequired": "Name is required",
-        "contactRequired": "Email or phone is required",
-        "contactInvalid": "Please enter a valid email or phone number",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone is required",
+        "phoneInvalid": "Please enter a valid phone number",
         "businessTypeRequired": "Please select a business type",
         "gdprRequired": "You must accept the Privacy Policy",
         "mainProblemMax": "Maximum 300 characters"
@@ -297,6 +315,7 @@
     "modal": {
       "title": "Cookie Preferences",
       "save": "Save preferences",
+      "cancel": "Cancel",
       "categories": {
         "necessary": {
           "name": "Necessary",
@@ -318,11 +337,15 @@
     }
   },
   "chat": {
-    "title": "Evo — Re-Evolution Assistant",
+    "title": "Reevo — Re-Evolution Assistant",
     "placeholder": "Type your message...",
     "send": "Send",
-    "typing": "Evo is typing...",
-    "welcome": "Hi! I'm Evo, Re-Evolution's virtual assistant. How can I help you today?"
+    "typing": "Reevo is typing...",
+    "welcome": "Hi! I'm Reevo, Re-Evolution's virtual assistant. How can I help you today?",
+    "greeting": "Hi! I'm Reevo. 👋",
+    "greetingSub": "Can I help?",
+    "status": "Online",
+    "error": "Sorry, an error occurred. Please try again."
   },
   "accessibility": {
     "skipToContent": "Skip to main content",

@@ -16,7 +16,15 @@
     "title": "O seu negócio merece estar no digital. Nós tratamos de tudo.",
     "subtitle": "Criamos o seu site, automatizamos as suas tarefas repetitivas e colocamos o seu negócio a aparecer no Google — sem que precise de saber tecnologia.",
     "ctaPrimary": "Quero o meu diagnóstico gratuito",
-    "ctaSecondary": "Ver como funciona"
+    "ctaSecondary": "Ver como funciona",
+    "yellowStripe": "Transformação Digital · Negócios Locais · Re-Evolution",
+    "phone": {
+      "topBadge": "✅ Site em 2 semanas",
+      "notification": "🔔 Nova reserva",
+      "customer": "João Silva — Mesa 4, 20h",
+      "bookingsLabel": "Reservas hoje",
+      "bottomBadge": "🚀 Google Página 1"
+    }
   },
   "problem": {
     "title": "Enquanto lê isto, os seus concorrentes estão a ganhar clientes online.",
@@ -62,6 +70,8 @@
   "howItWorks": {
     "title": "Simples, rápido e sem surpresas",
     "subtitle": "Da primeira conversa ao site no ar em 1 a 3 semanas.",
+    "yellowStripe": "Processo · Simples e Transparente",
+    "step": "Passo",
     "steps": [
       {
         "emoji": "🔍",
@@ -87,6 +97,7 @@
   },
   "automations": {
     "title": "Veja como funciona na prática",
+    "yellowStripe": "Automação · Trabalha Enquanto Descansas",
     "subtitle": "Escolha o seu tipo de negócio e veja o que seria automatizado.",
     "tabs": ["🍽️ Restaurante", "⚖️ Advogado", "🏥 Clínica", "🏠 Imobiliário"],
     "cta": "Quero isto para o meu negócio",
@@ -195,11 +206,14 @@
   "diagnostic": {
     "title": "Pronto para transformar o seu negócio?",
     "subtitle": "O diagnóstico é gratuito, sem compromisso e demora 2 minutos.",
+    "yellowStripe": "Diagnóstico Gratuito · Sem Compromisso",
     "form": {
       "name": "Nome completo",
       "namePlaceholder": "O seu nome",
-      "contact": "Email ou Telefone",
-      "contactPlaceholder": "email@exemplo.com ou +351 9XX XXX XXX",
+      "email": "Email",
+      "emailPlaceholder": "email@exemplo.com",
+      "phone": "Telefone",
+      "phonePlaceholder": "+351 9XX XXX XXX",
       "businessType": "Tipo de negócio",
       "businessTypePlaceholder": "Selecione o seu setor",
       "businessTypes": [
@@ -216,10 +230,14 @@
       "submit": "Quero o meu diagnóstico gratuito",
       "success": "Obrigado! Entraremos em contacto brevemente.",
       "successSub": "Verifique o seu email para confirmação.",
+      "serverError": "Erro ao enviar. Por favor tente novamente.",
+      "loading": "A enviar...",
       "errors": {
         "nameRequired": "Nome é obrigatório",
-        "contactRequired": "Email ou telefone é obrigatório",
-        "contactInvalid": "Introduza um email ou telefone válido",
+        "emailRequired": "Email é obrigatório",
+        "emailInvalid": "Introduza um endereço de email válido",
+        "phoneRequired": "Telefone é obrigatório",
+        "phoneInvalid": "Introduza um número de telefone válido",
         "businessTypeRequired": "Selecione o tipo de negócio",
         "gdprRequired": "Deve aceitar a Política de Privacidade",
         "mainProblemMax": "Máximo 300 caracteres"
@@ -297,6 +315,7 @@
     "modal": {
       "title": "Preferências de Cookies",
       "save": "Guardar preferências",
+      "cancel": "Cancelar",
       "categories": {
         "necessary": {
           "name": "Necessários",
@@ -318,11 +337,15 @@
     }
   },
   "chat": {
-    "title": "Evo — Assistente Re-Evolution",
+    "title": "Reevo — Assistente Re-Evolution",
     "placeholder": "Escreva a sua mensagem...",
     "send": "Enviar",
-    "typing": "Evo está a escrever...",
-    "welcome": "Olá! Sou o Evo, assistente virtual da Re-Evolution. Como posso ajudá-lo hoje?"
+    "typing": "Reevo está a escrever...",
+    "welcome": "Olá! Sou o Reevo, assistente virtual da Re-Evolution. Como posso ajudá-lo hoje?",
+    "greeting": "Olá! Sou o Reevo. 👋",
+    "greetingSub": "Posso ajudar?",
+    "status": "Online",
+    "error": "Desculpe, ocorreu um erro. Tente novamente."
   },
   "accessibility": {
     "skipToContent": "Saltar para conteúdo principal",

@@ -50,7 +50,7 @@ export default function AutomationsDemo() {
           style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
         >
           <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
-            Automação · Trabalha Enquanto Descansas
+            {t('yellowStripe')}
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
         </div>

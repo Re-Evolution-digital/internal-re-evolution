@@ -8,6 +8,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
 import { clientData } from '@/data/client-info'
+import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
 
 const locales = [
   { code: 'pt', label: 'PT', flag: '/images/flags/pt.svg' },
@@ -21,6 +22,7 @@ function getLocaleFromPath(path: string): string {
 
 export default function Header() {
   const t = useTranslations('nav')
+  const tA11y = useTranslations('accessibility')
   const pathname = usePathname()
   const router = useRouter()
   const locale = getLocaleFromPath(pathname)
@@ -59,7 +61,15 @@ export default function Header() {
           : 'bg-gradient-to-b from-brand-dark/70 to-transparent backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* overflow-hidden apenas no canvas — não afeta dropdowns */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <GalaxyBackground
+          zoneRatio={1}
+          starCount={200}
+          className={`transition-opacity duration-700 ${scrolled ? 'opacity-100' : 'opacity-0'}`}
+        />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-2 shrink-0">
@@ -141,7 +151,7 @@ export default function Header() {
             className="md:hidden text-white p-2 rounded-lg"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-label={menuOpen ? tA11y('closeMenu') : tA11y('openMenu')}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               {menuOpen ? (
