@@ -6,12 +6,6 @@ compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
-[vars]
-INTENT_ALERTS_ENABLED = "false"
-
-# Secrets (add via Cloudflare dashboard or: wrangler secret put SECRET_NAME):
-# GROQ_API_KEY
-# TELEGRAM_BOT_TOKEN
-# TELEGRAM_CHAT_ID
-# MAKE_DIAGNOSTICO_WEBHOOK
-# GA_MEASUREMENT_ID
+# Todas as variáveis de ambiente são geridas via GitHub Secrets e sincronizadas
+# automaticamente para o Cloudflare em cada deploy (ver .github/workflows/deploy.yml).
+# Para desenvolvimento local, usa .env.local (ver .env.local.example).

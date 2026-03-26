@@ -31,17 +31,13 @@ export function initPricingIntent() {
       alerted = true
       trackEvent(GA_EVENTS.PRICING_INTENT, { section: 'pricing', duration: 30 })
 
-      // TODO: desativar quando tráfego crescer
-      const intentEnabled = process.env.NEXT_PUBLIC_INTENT_ALERTS_ENABLED === 'true'
-      if (intentEnabled) {
-        fetch('/api/intent', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ timestamp: new Date().toISOString() }),
-        }).catch(() => {
-          // silent fail — non-critical
-        })
-      }
+      fetch('/api/intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ timestamp: new Date().toISOString() }),
+      }).catch(() => {
+        // silent fail — non-critical
+      })
 
       clearInterval(interval)
     }

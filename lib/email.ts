@@ -24,7 +24,10 @@ interface SendEmailParams {
 export async function sendEmail({ to, subject, html, bcc }: SendEmailParams): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.RESEND_FROM_EMAIL ?? 'noreply@re-evolution.pt'
-  if (!apiKey || apiKey === 'placeholder') return
+  if (!apiKey || apiKey === 'placeholder') {
+    console.warn('[Resend] RESEND_API_KEY não configurada — email não enviado para:', to)
+    return
+  }
 
   const body: Record<string, unknown> = { from, to, subject, html }
   if (bcc) body.bcc = bcc
