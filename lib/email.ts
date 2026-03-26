@@ -8,25 +8,9 @@
  * Fontes suportadas: chatbot | diagnostico
  */
 
-import fs from 'fs'
-import path from 'path'
-
-// ─── Logo embutido em Base64 (não depende de pedidos externos) ────────────────
-// Os clientes de email (Gmail, Outlook, Apple Mail) bloqueiam imagens externas
-// por omissão; Base64 inline garante que o logo aparece sempre.
-
-function loadLogoDataUri(): string {
-  try {
-    const logoPath = path.join(process.cwd(), 'public', 'images', 'logo', 'logo.png')
-    const data = fs.readFileSync(logoPath)
-    return `data:image/png;base64,${data.toString('base64')}`
-  } catch {
-    // Fallback para URL pública se o ficheiro não existir (ex.: build edge)
-    return 'https://re-evolution.pt/images/logo/logo.png'
-  }
-}
-
-const LOGO_DATA_URI = loadLogoDataUri()
+// ─── Logo embutido em Base64 (gerado em build-time, sem acesso ao fs em runtime)
+// Cloudflare Workers não têm fs; o Base64 é injetado estaticamente via prebuild.
+import { LOGO_DATA_URI } from './logo-b64.generated'
 
 // ─── Envio via Resend ─────────────────────────────────────────────────────────
 
