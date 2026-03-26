@@ -20,12 +20,17 @@ jobs:
         run: npm ci
 
       - name: Build for Cloudflare
-        # NEXT_PUBLIC_* têm de estar presentes em build-time (Next.js embute-as no bundle)
-        env:
-          NEXT_PUBLIC_INTENT_ALERTS_ENABLED: ${{ secrets.INTENT_ALERTS_ENABLED }}
         run: npm run build:cf
 
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
       - name: Sync all secrets to Cloudflare Workers
+        # Corre após deploy para evitar conflito entre [vars] antigos e secrets novos
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -39,10 +44,3 @@ jobs:
           echo "${{ secrets.INTENT_ALERTS_ENABLED }}"    | npx wrangler secret put INTENT_ALERTS_ENABLED
           echo "${{ secrets.MAKE_DIAGNOSTICO_WEBHOOK }}" | npx wrangler secret put MAKE_DIAGNOSTICO_WEBHOOK
           echo "${{ secrets.GA_MEASUREMENT_ID }}"        | npx wrangler secret put GA_MEASUREMENT_ID
-
-      - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy

@@ -8,9 +8,10 @@
  * Fontes suportadas: chatbot | diagnostico
  */
 
-// ─── Logo embutido em Base64 (gerado em build-time, sem acesso ao fs em runtime)
-// Cloudflare Workers não têm fs; o Base64 é injetado estaticamente via prebuild.
-import { LOGO_DATA_URI } from './logo-b64.generated'
+// ─── URL do logo (externo) ────────────────────────────────────────────────────
+// Base64 inline excede o limite de 102KB do Gmail e o email é cortado.
+// URL externo funciona: o Gmail usa proxy próprio e carrega a imagem automaticamente.
+const LOGO_URL = 'https://re-evolution.pt/images/logo/logo.png'
 
 // ─── Envio via Resend ─────────────────────────────────────────────────────────
 
@@ -74,7 +75,7 @@ function emailWrapper(bodyContent: string): string {
       <!-- Header -->
       <tr>
         <td style="background:#011b54;padding:32px 40px 28px;text-align:center;">
-          <img src="${LOGO_DATA_URI}" alt="Re-Evolution" width="160" style="display:block;margin:0 auto;height:auto;"/>
+          <img src="${LOGO_URL}" alt="Re-Evolution" width="80" style="display:block;margin:0 auto;height:auto;"/>
         </td>
       </tr>
 
@@ -97,7 +98,7 @@ function emailWrapper(bodyContent: string): string {
                 <p style="margin:0;font-size:13px;color:#4a5568;">📍 Carnaxide, Lisboa · Portugal</p>
               </td>
               <td style="vertical-align:middle;text-align:right;width:110px;">
-                <img src="${LOGO_DATA_URI}" alt="Re-Evolution" width="90" style="display:block;margin-left:auto;opacity:0.65;"/>
+                <img src="${LOGO_URL}" alt="Re-Evolution" width="90" style="display:block;margin-left:auto;opacity:0.65;"/>
               </td>
             </tr>
           </table>

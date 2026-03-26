@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-logo-b64.js && next dev",
-    "build": "node scripts/generate-logo-b64.js && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:cf": "node scripts/generate-logo-b64.js && opennextjs-cloudflare build",
+    "build:cf": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare preview"
   },
   "dependencies": {
