@@ -78,7 +78,6 @@ export default function DiagnosticForm() {
     defaultValues: { gdpr_consent: false },
   })
 
-  const businessTypes = tForm.raw('businessTypes') as string[]
   const mainProblemValue = watch('main_problem') ?? ''
 
   const onSubmit = async (data: FormData) => {
@@ -275,21 +274,19 @@ export default function DiagnosticForm() {
                 <label htmlFor="diag-business" className="block text-white/80 text-sm font-semibold mb-1.5">
                   {tForm('businessType')} *
                 </label>
-                <select
+                <input
                   id="diag-business"
+                  type="text"
+                  placeholder={tForm('businessTypePlaceholder')}
                   {...register('business_type')}
                   aria-invalid={!!formErrors.business_type}
-                  className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-all appearance-none ${
+                  aria-describedby={formErrors.business_type ? 'diag-business-error' : undefined}
+                  className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-all ${
                     formErrors.business_type ? 'border-red-400' : 'border-white/20 focus:border-brand-yellow'
                   }`}
-                >
-                  <option value="" className="text-gray-900">{tForm('businessTypePlaceholder')}</option>
-                  {businessTypes.map((bt) => (
-                    <option key={bt} value={bt} className="text-gray-900">{bt}</option>
-                  ))}
-                </select>
+                />
                 {formErrors.business_type && (
-                  <p role="alert" className="text-red-400 text-xs mt-1">
+                  <p id="diag-business-error" role="alert" className="text-red-400 text-xs mt-1">
                     {formErrors.business_type.message}
                   </p>
                 )}

@@ -215,14 +215,7 @@
       "phone": "Phone",
       "phonePlaceholder": "+351 9XX XXX XXX",
       "businessType": "Business type",
-      "businessTypePlaceholder": "Select your sector",
-      "businessTypes": [
-        "Restaurant",
-        "Clinic/Health",
-        "Lawyer/Legal",
-        "Real Estate",
-        "Other"
-      ],
+      "businessTypePlaceholder": "E.g. restaurant, clinic, online shop...",
       "mainProblem": "Main problem (optional)",
       "mainProblemPlaceholder": "Briefly describe what you want to improve in your business...",
       "gdpr": "I agree with the",
@@ -238,7 +231,7 @@
         "emailInvalid": "Please enter a valid email address",
         "phoneRequired": "Phone is required",
         "phoneInvalid": "Please enter a valid phone number",
-        "businessTypeRequired": "Please select a business type",
+        "businessTypeRequired": "Please describe your business type",
         "gdprRequired": "You must accept the Privacy Policy",
         "mainProblemMax": "Maximum 300 characters"
       }

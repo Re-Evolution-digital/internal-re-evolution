@@ -8,10 +8,10 @@
  * Fontes suportadas: chatbot | diagnostico
  */
 
-// ─── URL do logo (externo) ────────────────────────────────────────────────────
-// Base64 inline excede o limite de 102KB do Gmail e o email é cortado.
-// URL externo funciona: o Gmail usa proxy próprio e carrega a imagem automaticamente.
-const LOGO_URL = 'https://re-evolution.pt/images/logo/logo.png'
+// ─── Logo Base64 inline (gerado em build-time via scripts/generate-logo-b64.js)
+// Sharp comprime o PNG de 116KB para ~3.5KB antes de codificar — fica bem abaixo
+// do limite de 102KB do Gmail e funciona em todos os clientes sem pedidos externos.
+import { LOGO_DATA_URI as LOGO_URL } from './logo-b64.generated'
 
 // ─── Envio via Resend ─────────────────────────────────────────────────────────
 
