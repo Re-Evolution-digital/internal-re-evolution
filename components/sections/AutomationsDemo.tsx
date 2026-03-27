@@ -5,8 +5,9 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
+import { anchorClick } from '@/lib/scroll'
 
-const flowKeys = ['restaurant', 'lawyer', 'clinic', 'realestate'] as const
+const flowKeys = ['chatbot', 'scheduling', 'crm', 'reviews'] as const
 type FlowKey = typeof flowKeys[number]
 
 type FNode = { icon: string; label: string; sub?: string }
@@ -15,84 +16,84 @@ type FStep =
   | { t: 'fork'; branches: FNode[][] }
 
 const FLOWS: Record<FlowKey, { color: string; steps: FStep[]; milestones: string[]; journeyStart: string; journeyEnd: string }> = {
-  restaurant: {
-    color: '#25d366',
-    milestones: ['Reserva recebida', 'Equipa notificada', 'Cliente confirmado'],
-    journeyStart: 'Primeira reserva',
-    journeyEnd: 'Mesa garantida',
+  chatbot: {
+    color: '#4f46e5',
+    milestones: ['Lead captada', 'Qualificada', 'Agente alertado', 'Lead ativa'],
+    journeyStart: 'Visita ao site',
+    journeyEnd: 'Lead convertida',
     steps: [
-      { t: 'node', node: { icon: '📱', label: 'Reserva online' } },
+      { t: 'node', node: { icon: '🌐', label: 'Visita ao site' } },
+      { t: 'node', node: { icon: '🤖', label: 'Chatbot qualifica' } },
       {
         t: 'fork', branches: [
           [
-            { icon: '💬', label: 'Notificação WhatsApp/Telegram' },
-            { icon: '✅', label: 'Confirmação ao cliente' },
+            { icon: '📧', label: 'Mail ao agente' },
+            { icon: '📱', label: 'Notificação Telegram' },
           ],
           [
-            { icon: '📊', label: 'Dados no Google Sheets' },
+            { icon: '📊', label: 'Lead no CRM' },
           ],
         ],
       },
     ],
   },
-  lawyer: {
-    color: '#4f46e5',
-    milestones: ['Pedido recebido', 'Lead qualificado', 'Consulta agendada', 'Lembrete enviado'],
-    journeyStart: 'Primeiro contacto',
-    journeyEnd: 'Caso em mãos',
+  scheduling: {
+    color: '#0ea5e9',
+    milestones: ['Pedido feito', 'Confirmado', 'Lembrete enviado'],
+    journeyStart: 'Pedido de marcação',
+    journeyEnd: 'Consulta garantida',
     steps: [
-      { t: 'node', node: { icon: '💻', label: 'Pedido de consulta' } },
-      { t: 'node', node: { icon: '🤖', label: 'Qualificação automática' } },
+      { t: 'node', node: { icon: '📋', label: 'Formulário no site' } },
       {
         t: 'fork', branches: [
           [
-            { icon: '📅', label: 'Agendamento por email' },
+            { icon: '📅', label: 'Marcação confirmada' },
             { icon: '🔔', label: 'Lembrete 24h antes' },
           ],
           [
-            { icon: '📁', label: 'Registo no CRM' },
+            { icon: '📆', label: 'Sincroniza calendário', sub: 'Google ou Outlook' },
           ],
         ],
       },
     ],
   },
-  clinic: {
-    color: '#0ea5e9',
-    milestones: ['Marcação feita', 'Paciente confirmado', 'Lembrete enviado'],
-    journeyStart: 'Novo paciente',
-    journeyEnd: 'Consulta garantida',
+  crm: {
+    color: '#10b981',
+    milestones: ['Lead recebida', 'Registada', 'Equipa notificada'],
+    journeyStart: 'Novo contacto',
+    journeyEnd: 'Lead organizada',
     steps: [
-      { t: 'node', node: { icon: '📋', label: 'Marcação online' } },
+      { t: 'node', node: { icon: '📝', label: 'Lead no formulário' } },
       {
         t: 'fork', branches: [
           [
-            { icon: '✅', label: 'Confirmação SMS/WhatsApp' },
-            { icon: '🔔', label: 'Lembrete dia anterior' },
+            { icon: '📊', label: 'Google Sheets' },
+            { icon: '💬', label: 'Notificação Telegram' },
           ],
           [
-            { icon: '📊', label: 'Registo no sistema' },
+            { icon: '🗂️', label: 'CRM atualizado', sub: 'quando API disponível' },
           ],
         ],
       },
     ],
   },
-  realestate: {
+  reviews: {
     color: '#f59e0b',
-    milestones: ['Lead captada', 'Lead qualificada', 'Consultor alertado', 'Follow-up activo'],
-    journeyStart: 'Visita ao site',
-    journeyEnd: 'Negócio fechado',
+    // 4 milestones to match 4 flow columns (2 seq + 2 fork)
+    milestones: ['Crítica recebida', 'Analisada', 'Resposta gerada', 'Publicada'],
+    journeyStart: 'Crítica recebida',
+    journeyEnd: 'Reputação gerida',
     steps: [
-      { t: 'node', node: { icon: '🌐', label: 'Lead entra pelo site' } },
-      { t: 'node', node: { icon: '🤖', label: 'Qualificação pelo ChatBot' } },
+      { t: 'node', node: { icon: '⭐', label: 'Nova crítica online' } },
+      { t: 'node', node: { icon: '🤖', label: 'IA analisa sentimento' } },
       {
         t: 'fork', branches: [
           [
-            { icon: '📱', label: 'Telegram do consultor' },
-            { icon: '👤', label: 'Follow-up do consultor' },
+            { icon: '✍️', label: 'Resposta personalizada' },
+            { icon: '✅', label: 'Publicada na plataforma' },
           ],
           [
-            { icon: '📊', label: 'Google Contacts / CRM' },
-            { icon: '🔄', label: 'Follow-up automático', sub: 'se não converteu · 2 meses' },
+            { icon: '🔔', label: 'Alerta interno', sub: 'se crítica negativa' },
           ],
         ],
       },
@@ -102,7 +103,7 @@ const FLOWS: Record<FlowKey, { color: string; steps: FStep[]; milestones: string
 
 function getLocale(path: string) { return path.split('/')[1] ?? 'pt' }
 
-// ─── Helper: reorganise steps into flat columns ────────────────────────────────
+// ─── Column helper ─────────────────────────────────────────────────────────────
 
 type FlowCol = { type: 'seq'; node: FNode } | { type: 'fork'; nodes: (FNode | null)[] }
 
@@ -119,25 +120,25 @@ function getFlowColumns(steps: FStep[]): FlowCol[] {
   return cols
 }
 
-// ─── Flow node (vertical layout — icon on top, label below) ──────────────────
+// ─── Flow node ────────────────────────────────────────────────────────────────
 
-function FlowNode({ node, color, delay }: { node: FNode; color: string; delay: number }) {
+function FlowNode({ node, color, delay, wide }: { node: FNode; color: string; delay: number; wide?: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -6 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay, duration: 0.3 }}
-      className="flex flex-col items-center gap-1.5 rounded-xl p-2.5 border shrink-0 w-24 text-center"
+      className={`flex flex-col items-center gap-1.5 rounded-xl p-2.5 border shrink-0 text-center ${wide ? 'w-32' : 'w-24'}`}
       style={{ borderColor: `${color}50`, backgroundColor: `${color}10` }}
     >
       <span className="text-lg leading-none">{node.icon}</span>
-      <p className="text-[11px] font-semibold text-gray-800 leading-tight">{node.label}</p>
-      {node.sub && <p className="text-[10px] text-gray-400 leading-tight">{node.sub}</p>}
+      <p className="text-[11px] font-semibold text-gray-800 leading-tight break-words">{node.label}</p>
+      {node.sub && <p className="text-[10px] text-gray-400 leading-tight break-words">{node.sub}</p>}
     </motion.div>
   )
 }
 
-// ─── Horizontal arrow ─────────────────────────────────────────────────────────
+// ─── Arrows ───────────────────────────────────────────────────────────────────
 
 function RightArrow({ color, delay }: { color: string; delay: number }) {
   return (
@@ -157,7 +158,19 @@ function RightArrow({ color, delay }: { color: string; delay: number }) {
   )
 }
 
-// ─── Journey cursor (opções 2 + 4 + 5 combinadas) ────────────────────────────
+function DownArrow({ color }: { color: string }) {
+  return (
+    <div className="flex justify-center py-1.5" aria-hidden="true">
+      <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
+        <line x1="5" y1="0" x2="5" y2="11" stroke={color} strokeWidth="1.5" strokeOpacity="0.5" />
+        <path d="M1.5 8L5 13.5L8.5 8" stroke={color} strokeWidth="1.5" strokeOpacity="0.5" fill="none"
+          strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  )
+}
+
+// ─── Wave journey cursor ──────────────────────────────────────────────────────
 
 function WaveSegment({ color, state }: { color: string; state: 'future' | 'active' | 'past' }) {
   return (
@@ -172,10 +185,7 @@ function WaveSegment({ color, state }: { color: string; state: 'future' | 'activ
             opacity: [0.4, 1, 0.4, 1, 0.4],
           } : { opacity: state === 'past' ? 0.65 : 0.2 }}
           transition={state === 'active' ? {
-            duration: 0.75,
-            repeat: Infinity,
-            delay: i * 0.075,
-            ease: 'easeInOut',
+            duration: 0.75, repeat: Infinity, delay: i * 0.075, ease: 'easeInOut',
           } : {}}
         />
       ))}
@@ -196,7 +206,6 @@ function MilestoneDot({ lit, color, pulse }: { lit: boolean; color: string; puls
   )
 }
 
-// ─── Connector width shared between flow columns and cursor track ────────────
 const CONNECTOR_CLS = 'w-10 shrink-0'
 
 function JourneyCursor({ color, stages, journeyStart, journeyEnd }: {
@@ -210,12 +219,9 @@ function JourneyCursor({ color, stages, journeyStart, journeyEnd }: {
     let step = 0
     setStageIndex(0)
     setPrevStage(0)
-
-    const STEP_MS = 1400     // tempo entre marcos
-    const END_PAUSE_MS = 2000 // pausa no último marco
-
+    const STEP_MS = 1400
+    const END_PAUSE_MS = 2000
     let tid: ReturnType<typeof setTimeout>
-
     function advance() {
       const prev = step
       step = step < n - 1 ? step + 1 : 0
@@ -223,14 +229,12 @@ function JourneyCursor({ color, stages, journeyStart, journeyEnd }: {
       setStageIndex(step)
       tid = setTimeout(advance, step === 0 ? STEP_MS : step === n - 1 ? END_PAUSE_MS : STEP_MS)
     }
-
     tid = setTimeout(advance, STEP_MS)
     return () => clearTimeout(tid)
   }, [color, n])
 
   return (
     <div className="mt-5 select-none">
-      {/* Label row — flat: flex-1 per column, w-10 per gap (mirrors flow exactly) */}
       <div className="flex items-end h-10 mb-1">
         {stages.map((stage, i) => (
           <Fragment key={i}>
@@ -263,14 +267,12 @@ function JourneyCursor({ color, stages, journeyStart, journeyEnd }: {
         ))}
       </div>
 
-      {/* Milestone + wave track — flat: flex-1 per dot, w-10 per wave (mirrors flow exactly) */}
       <div className="flex items-center">
         {stages.map((_, i) => {
           const segState: 'future' | 'active' | 'past' =
             i >= n - 1 ? 'past'
               : stageIndex > i ? 'past'
-                : stageIndex === i ? 'active'
-                  : 'future'
+                : stageIndex === i ? 'active' : 'future'
           const isLit = stageIndex >= i
           const isPulse = stageIndex === i && prevStage < i
           return (
@@ -288,7 +290,6 @@ function JourneyCursor({ color, stages, journeyStart, journeyEnd }: {
         })}
       </div>
 
-      {/* Journey labels */}
       <div className="flex justify-between mt-1">
         <span className="text-[11px] font-semibold" style={{ color }}>{journeyStart}</span>
         <span className="text-[11px] font-semibold" style={{ color }}>{journeyEnd}</span>
@@ -297,19 +298,17 @@ function JourneyCursor({ color, stages, journeyStart, journeyEnd }: {
   )
 }
 
-// ─── Flow renderer — colunas de largura igual, ocupa toda a área ─────────────
+// ─── Desktop horizontal flow renderer ─────────────────────────────────────────
 
 function FlowRenderer({ steps, color, milestones, journeyStart, journeyEnd }: {
   steps: FStep[]; color: string; milestones: string[]; journeyStart: string; journeyEnd: string
 }) {
   const cols = getFlowColumns(steps)
   const n = cols.length
-
   let delay = 0
 
   return (
     <div>
-      {/* Full-width flow — flat: flex-1 per column, w-10 per connector (mirrors cursor) */}
       <div className="flex items-stretch w-full">
         {cols.map((col, ci) => {
           const d = delay; delay += col.type === 'seq' ? 0.15 : 0.12
@@ -317,24 +316,30 @@ function FlowRenderer({ steps, color, milestones, journeyStart, journeyEnd }: {
           const nextIsFork = hasConnector && cols[ci + 1].type === 'fork'
           const useSeparator = col.type === 'seq' && nextIsFork
 
+          // Count real nodes in this fork column
+          const realNodes = col.type === 'fork' ? col.nodes.filter(Boolean) : []
+          const isSingleNode = col.type === 'fork' && realNodes.length === 1
+
           return (
             <Fragment key={ci}>
-              {/* Column content — flex-1 so it lines up with the milestone dot below */}
               <div className="flex-1 flex flex-col items-center justify-center">
                 {col.type === 'seq' ? (
                   <FlowNode node={col.node} color={color} delay={d} />
+                ) : isSingleNode ? (
+                  // Single real node — render centered, no placeholder
+                  <FlowNode node={realNodes[0]!} color={color} delay={d} wide />
                 ) : (
+                  // Multiple nodes — stacked per branch
                   <div className="flex flex-col gap-3 items-center">
                     {col.nodes.map((node, bi) =>
                       node
-                        ? <FlowNode key={bi} node={node} color={color} delay={d + bi * 0.08} />
-                        : <div key={bi} className="h-[72px] w-24" />
+                        ? <FlowNode key={bi} node={node} color={color} delay={d + bi * 0.08} wide />
+                        : <div key={bi} className="h-[72px] w-32" />
                     )}
                   </div>
                 )}
               </div>
 
-              {/* Connector — same w-10 as wave segments below */}
               {hasConnector && (
                 <div className={`${CONNECTOR_CLS} flex items-center justify-center`}>
                   {useSeparator ? (
@@ -356,7 +361,53 @@ function FlowRenderer({ steps, color, milestones, journeyStart, journeyEnd }: {
         })}
       </div>
 
-      {/* Journey cursor — mesma estrutura de colunas para alinhamento perfeito */}
+      <JourneyCursor
+        color={color}
+        stages={milestones}
+        journeyStart={journeyStart}
+        journeyEnd={journeyEnd}
+      />
+    </div>
+  )
+}
+
+// ─── Mobile vertical flow renderer ────────────────────────────────────────────
+
+function FlowRendererMobile({ steps, color, milestones, journeyStart, journeyEnd }: {
+  steps: FStep[]; color: string; milestones: string[]; journeyStart: string; journeyEnd: string
+}) {
+  return (
+    <div>
+      {steps.map((step, si) => {
+        const isLast = si === steps.length - 1
+        if (step.t === 'node') {
+          return (
+            <div key={si} className="flex flex-col items-center">
+              <FlowNode node={step.node} color={color} delay={si * 0.1} />
+              {!isLast && <DownArrow color={color} />}
+            </div>
+          )
+        }
+        // Fork — shown as 2-column grid, branches stack vertically within each column
+        return (
+          <div key={si}>
+            <div className="grid grid-cols-2 gap-2 mt-0">
+              {step.branches.map((branch, bi) => (
+                <div key={bi} className="flex flex-col items-center gap-0">
+                  {branch.map((node, ni) => (
+                    <div key={ni} className="flex flex-col items-center">
+                      <FlowNode node={node} color={color} delay={(si + ni + bi) * 0.08} />
+                      {ni < branch.length - 1 && <DownArrow color={color} />}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      })}
+
+      {/* Milestone cursor — standalone horizontal bar below the vertical flow */}
       <JourneyCursor
         color={color}
         stages={milestones}
@@ -375,10 +426,13 @@ export default function AutomationsDemo() {
   const locale = getLocale(pathname)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const [active, setActive] = useState<FlowKey>('restaurant')
+  const [active, setActive] = useState<FlowKey>('chatbot')
 
   const tabs = t.raw('tabs') as string[]
+  const businessExamples = t.raw('businessExamples') as string[]
+  const automationsList = t.raw('automationsList') as string[]
   const flow = FLOWS[active]
+  const activeIndex = flowKeys.indexOf(active)
 
   return (
     <section id="automacoes" className="relative py-20 bg-gray-50" data-section="automations" aria-labelledby="auto-title">
@@ -405,7 +459,7 @@ export default function AutomationsDemo() {
         </motion.div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8" role="tablist">
+        <div className="flex flex-wrap justify-center gap-2 mb-6" role="tablist">
           {flowKeys.map((key, i) => (
             <button
               key={key}
@@ -425,9 +479,24 @@ export default function AutomationsDemo() {
         </div>
 
         {/* Flow panel */}
-        <div id={`panel-${active}`} role="tabpanel"
+        <div
+          id={`panel-${active}`}
+          role="tabpanel"
           className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8"
         >
+          {/* Business example badge — left-aligned, colour-accented */}
+          <div className="mb-5">
+            <span
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2 border"
+              style={{ borderColor: `${flow.color}35`, backgroundColor: `${flow.color}0d` }}
+            >
+              <span className="text-xs font-medium text-gray-400">{t('exampleLabel')}</span>
+              <span className="text-base font-bold" style={{ color: flow.color }}>
+                {businessExamples[activeIndex]}
+              </span>
+            </span>
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -436,27 +505,64 @@ export default function AutomationsDemo() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <FlowRenderer
-                steps={flow.steps}
-                color={flow.color}
-                milestones={flow.milestones}
-                journeyStart={flow.journeyStart}
-                journeyEnd={flow.journeyEnd}
-              />
+              {/* Desktop: horizontal flow */}
+              <div className="hidden md:block">
+                <FlowRenderer
+                  steps={flow.steps}
+                  color={flow.color}
+                  milestones={flow.milestones}
+                  journeyStart={flow.journeyStart}
+                  journeyEnd={flow.journeyEnd}
+                />
+              </div>
+
+              {/* Mobile: vertical flow */}
+              <div className="md:hidden">
+                <FlowRendererMobile
+                  steps={flow.steps}
+                  color={flow.color}
+                  milestones={flow.milestones}
+                  journeyStart={flow.journeyStart}
+                  journeyEnd={flow.journeyEnd}
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* All automations list */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.55 }}
+          className="mt-7"
+        >
+          <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+            {t('automationsListTitle')}
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 mb-3">
+            {automationsList.map((item, i) => (
+              <span
+                key={i}
+                className="text-xs bg-white border border-gray-200 text-gray-600 px-3 py-1.5 rounded-full font-medium"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <p className="text-center text-xs text-gray-400 italic">{t('automationsListNote')}</p>
+        </motion.div>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.6 }}
           className="text-center mt-8"
         >
           <a
             href={`/${locale}/#diagnostico`}
-            onClick={() => trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'automations_cta', section: 'automations', language: locale })}
+            onClick={(e) => { anchorClick('diagnostico', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'automations_cta', section: 'automations', language: locale }) }}
             className="inline-flex items-center gap-2 bg-brand-yellow text-brand-dark font-bold px-8 py-4 rounded-2xl hover:brightness-105 active:scale-95 transition-all shadow-md"
           >
             {t('cta')}

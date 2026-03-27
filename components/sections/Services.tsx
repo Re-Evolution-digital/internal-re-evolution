@@ -47,12 +47,12 @@ export default function Services() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="group bg-brand-dark rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              className="group bg-brand-dark rounded-tl-2xl rounded-bl-2xl rounded-br-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
-              {/* Faixa amarela diagonal — cabeçalho do card (slide 9) */}
+              {/* Faixa amarela — mesmo padrão das faixas de secção (dois cortes, paralelogramo) */}
               <div
-                className="bg-brand-yellow pl-14 pr-5 py-4 flex items-center gap-3"
-                style={{ clipPath: 'polygon(44px 0, 100% 0, 100% 100%, 0 100%)' }}
+                className="bg-brand-yellow pl-14 pr-14 py-4 flex items-center gap-3"
+                style={{ clipPath: 'polygon(44px 0, 100% 0, calc(100% - 44px) 100%, 0 100%)' }}
               >
                 <div className="w-10 h-10 bg-brand-dark/20 rounded-full flex items-center justify-center text-brand-dark shrink-0 group-hover:scale-110 transition-transform">
                   {serviceIcons[i]}

@@ -53,17 +53,32 @@
       {
         "title": "Professional Digital Presence",
         "description": "Your website, built with your customers in mind. Fast, beautiful and ranking on Google.",
-        "features": ["Professional landing page", "Local SEO optimised", "Google Business Profile", "Mobile-first"]
+        "features": [
+          "Professional landing page",
+          "Local SEO optimised",
+          "Google Business Profile",
+          "Mobile-first"
+        ]
       },
       {
         "title": "Intelligent Automations",
         "description": "No more repetitive tasks. Forms, notifications, bookings and follow-ups — all automatic.",
-        "features": ["WhatsApp/Telegram notifications", "Google Sheets integration", "Automatic replies", "No code needed"]
+        "features": [
+          "WhatsApp/Telegram notifications",
+          "Google Sheets integration",
+          "Automatic replies",
+          "No code needed"
+        ]
       },
       {
         "title": "24/7 AI Assistant",
         "description": "An always-available assistant on your site that answers, qualifies and directs your customers — even while you sleep.",
-        "features": ["Custom chatbot", "Lead qualification", "Multilingual", "Integrated in your site"]
+        "features": [
+          "Custom chatbot",
+          "Lead qualification",
+          "Multilingual",
+          "Integrated in your site"
+        ]
       }
     ]
   },
@@ -98,41 +113,37 @@
   "automations": {
     "title": "See how it works in practice",
     "yellowStripe": "Automation · Works While You Rest",
-    "subtitle": "Choose your type of business and see what would be automated.",
-    "tabs": ["🍽️ Restaurant", "⚖️ Lawyer", "🏥 Clinic", "🏠 Real Estate"],
-    "cta": "I want this for my business",
-    "flows": {
-      "restaurant": [
-        { "label": "Customer fills in online booking" },
-        { "label": "Immediate WhatsApp notification" },
-        { "label": "Data saved automatically" },
-        { "label": "Confirmation email sent to customer" }
-      ],
-      "lawyer": [
-        { "label": "Client requests consultation online" },
-        { "label": "Automatic case qualification" },
-        { "label": "Schedule sent by email" },
-        { "label": "Reminder 24h before consultation" }
-      ],
-      "clinic": [
-        { "label": "Online appointment request" },
-        { "label": "Automatic confirmation to patient" },
-        { "label": "Record in Google Sheets" },
-        { "label": "SMS/WhatsApp reminder" }
-      ],
-      "realestate": [
-        { "label": "Lead enters through website" },
-        { "label": "Qualification by chatbot" },
-        { "label": "Data sent to agent" },
-        { "label": "Automatic follow-up in 24h" }
-      ]
-    }
+    "subtitle": "Choose an automation and see how it works for your business.",
+    "exampleLabel": "e.g.:",
+    "tabs": [
+      "🤖 Chatbot",
+      "📅 Scheduling",
+      "📊 CRM / Sheets",
+      "⭐ Reputation"
+    ],
+    "businessExamples": [
+      "🏠 Real Estate",
+      "🏥 Clinic",
+      "⚖️ Lawyer",
+      "🍽️ Restaurant"
+    ],
+    "automationsListTitle": "Example automations — your business sets the limit",
+    "automationsList": [
+      "🤖 Qualification chatbot + email + Telegram",
+      "📅 Scheduling → Google Calendar / Outlook",
+      "📊 Log to CRM or Google Sheets",
+      "⭐ Auto-replies to reviews — Google Business Profile",
+      "⭐ Auto-replies to reviews — Facebook",
+      "⭐ Auto-replies to reviews — Instagram",
+      "✉️ Automatic follow-up to unconverted leads"
+    ],
+    "automationsListNote": "There are many more possibilities. Your use case defines what we automate — tell us your challenge.",
+    "cta": "I want this for my business"
   },
   "pricing": {
     "title": "Clear pricing, no surprises",
     "subtitle": "We know the cost before we start. Always.",
-    "note": "WhatsApp Business API, Advanced Reports and specific integrations available as add-ons. Contact us for a custom quote.",
-    "footer": "Prices exclude VAT. No fixed-term contracts.",
+    "footer": "All prices include VAT. No fixed-term contracts.",
     "packages": [
       {
         "id": "essencial",
@@ -141,13 +152,16 @@
         "price": "€500",
         "priceSuffix": "one-time payment",
         "features": [
-          "Professional landing page",
-          "Basic SEO",
-          "Google Business Profile",
-          "1 month support included",
-          "Mobile-first",
-          "Delivery in 1–3 weeks"
+          "Professional website (up to 10 sections)",
+          "Translations in up to 5 languages",
+          "Optimised SEO + Google Business Profile",
+          "Mobile-first · Quick shortcuts (WhatsApp, Call, Maps)",
+          "Up to 2 client capture forms",
+          "Legal pages included (Privacy, Terms, Cookies)",
+          "Delivery in 1–3 weeks",
+          "1 month support included"
         ],
+        "footnote": "* Domain included in year 1 · ** Hosting included in year 1",
         "cta": "I want this package"
       },
       {
@@ -155,31 +169,136 @@
         "name": "Managed Automation",
         "badge": "Continuous results",
         "price": "€800",
-        "priceMonthly": "+ €140/month",
-        "priceSuffix": "initial setup",
+        "priceMonthly": "+ from €30/month",
+        "priceSuffix": "setup + monthly fee",
         "features": [
-          "Everything in Essential",
-          "Custom automations",
-          "AI Chatbot",
+          "Everything in Essential Website",
+          "Up to 20 sections (more on request)",
+          "1 standard automation included (2,500 ops/month)",
           "Monthly analysis meeting",
-          "Priority support",
-          "Monthly reports"
+          "Continuous priority support",
+          "Monthly reports",
+          "Premium automations available"
         ],
+        "footnote": "* Domain included in year 1 · ** Hosting included in year 1",
         "cta": "Talk to the team"
+      },
+      {
+        "id": "marketing",
+        "name": "Organic Marketing",
+        "badge": "Coming soon",
+        "price": "Coming soon",
+        "priceSuffix": "prices to be announced",
+        "features": [
+          "Management of 2 social networks",
+          "AI-powered content calendar",
+          "Organic content production",
+          "Automatic scheduled publishing",
+          "Tailored to your business and sector",
+          "Optional paid campaigns (client pays Ads)"
+        ],
+        "cta": "Find out more soon",
+        "comingSoon": true
       }
-    ]
+    ],
+    "comparison": {
+      "title": "Detailed package comparison",
+      "showLabel": "View detailed comparison",
+      "hideLabel": "Close comparison",
+      "featureHeader": "Feature",
+      "categories": [
+        {
+          "name": "Website",
+          "rows": [
+            { "label": "Sections on site", "essencial": "Up to 10", "managed": "Up to 20 (more on request)", "marketing": "—" },
+            { "label": "Translations", "essencial": "Up to 5 languages", "managed": "Up to 5 languages", "marketing": "—" },
+            { "label": "Mobile-first", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Estimated delivery", "essencial": "1–3 weeks", "managed": "1–3 weeks", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "SEO & Visibility",
+          "rows": [
+            { "label": "Optimised SEO", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Optimised Google Business Profile", "essencial": "✓", "managed": "✓", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Website Features",
+          "rows": [
+            { "label": "Quick shortcuts (WhatsApp, Call, Maps)", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Client capture forms", "essencial": "Up to 2", "managed": "Up to 2", "marketing": "—" },
+            { "label": "Legal pages (Privacy, Terms, Cookies)", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Notification automations (email/Telegram on forms)", "essencial": "✓", "managed": "✓", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Support & Management",
+          "rows": [
+            { "label": "Support included", "essencial": "1 month", "managed": "Continuous priority", "marketing": "—" },
+            { "label": "Monthly analysis meeting", "essencial": "—", "managed": "✓", "marketing": "—" },
+            { "label": "Monthly reports", "essencial": "—", "managed": "✓", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Managed Automations",
+          "rows": [
+            { "label": "Standard automation included (2,500 ops/month)", "essencial": "—", "managed": "1 included", "marketing": "—" },
+            { "label": "Additional standard (Sheets, Calendar, Reviews, Follow-ups…)", "essencial": "—", "managed": "+€15/month each", "marketing": "—" },
+            { "label": "AI qualification chatbot (up to 1,000 conv/month)", "essencial": "—", "managed": "+€30/month", "marketing": "—" },
+            { "label": "Additional operations beyond 2,500/month", "essencial": "—", "managed": "€15/month", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Organic Marketing",
+          "rows": [
+            { "label": "Social networks managed", "essencial": "—", "managed": "—", "marketing": "2 included" },
+            { "label": "AI content calendar", "essencial": "—", "managed": "—", "marketing": "✓" },
+            { "label": "Organic content production", "essencial": "—", "managed": "—", "marketing": "✓" },
+            { "label": "Automatic scheduled publishing", "essencial": "—", "managed": "—", "marketing": "✓" },
+            { "label": "Paid campaign management (client pays Ads)", "essencial": "—", "managed": "—", "marketing": "+€30–50/month" },
+            { "label": "Additional social network", "essencial": "—", "managed": "—", "marketing": "+€50/month" }
+          ]
+        },
+        {
+          "name": "Infrastructure",
+          "rows": [
+            { "label": "Domain", "essencial": "Included year 1*", "managed": "Included year 1*", "marketing": "—" },
+            { "label": "Hosting", "essencial": "Included year 1**", "managed": "Included year 1**", "marketing": "—" }
+          ]
+        }
+      ],
+      "footnotes": [
+        "* Domain renewal: €10–20/year in subsequent years.",
+        "** Hosting included in year 1; €50/year thereafter.",
+        "All prices include VAT."
+      ]
+    }
   },
   "cases": {
     "title": "Real businesses. Real results.",
-    "testimonials": [
-      {
-        "quote": "Re-Evolution transformed the way we handle reservations. The website turned out exactly as we wanted and in less than three weeks it was live. We now have an automatic process that saves us hours every week.",
-        "author": "Arcadas do Fado",
-        "location": "Almancil, Algarve",
-        "tags": ["Restaurant", "Automations", "Website"]
-      }
-    ],
-    "comingSoon": "Coming soon — "
+    "story": {
+      "badge": "Real Case",
+      "location": "Almancil, Algarve",
+      "headline": "From an outdated website to the best traffic month ever",
+      "narrative": "Arcadas do Fado was already attracting customers through Google Business Profile — mainly foreigners discovering the restaurant through local searches. But the old website wasn't up to scratch: dated visuals, poor UX and no SEO work. With the new site and an optimised GBP, the first month saw the highest traffic ever — almost double the average of previous months.",
+      "stats": [
+        { "value": "2×", "label": "Visits in month 1 vs. previous average" },
+        { "value": "< 3 wks", "label": "From diagnosis to launch" },
+        { "value": "SEO + GBP", "label": "Optimised simultaneously" }
+      ],
+      "quote": "Re-Evolution transformed the way we handle reservations. The website turned out exactly as we wanted and in less than three weeks it was live. We now have an automatic process that saves us hours every week.",
+      "author": "Arcadas do Fado",
+      "tags": ["Restaurant", "Automations", "Website", "SEO", "GBP"],
+      "tabBefore": "⬅ Before",
+      "tabAfter": "After ✨",
+      "visitLabel": "Visit site",
+      "browserHint": "Click the tabs to compare the old and new website"
+    },
+    "placeholders": [
+      { "label": "Coming soon — next success story" },
+      { "label": "Coming soon — next success story" }
+    ]
   },
   "blog": {
     "title": "Tips and news for your digital business",
@@ -279,15 +398,30 @@
     "columns": {
       "services": {
         "title": "Services",
-        "links": ["Digital Presence", "Automations", "AI Chatbot", "Local SEO"]
+        "links": [
+          "Digital Presence",
+          "Automations",
+          "AI Chatbot",
+          "Local SEO"
+        ]
       },
       "company": {
         "title": "Company",
-        "links": ["About us", "Success Stories", "Blog", "Free Diagnosis"]
+        "links": [
+          "About us",
+          "Success Stories",
+          "Blog",
+          "Free Diagnosis"
+        ]
       },
       "legal": {
         "title": "Legal",
-        "links": ["Privacy Policy", "Terms of Service", "Cookie Policy", "Cookie Settings"]
+        "links": [
+          "Privacy Policy",
+          "Terms of Service",
+          "Cookie Policy",
+          "Cookie Settings"
+        ]
       },
       "contact": {
         "title": "Contact"

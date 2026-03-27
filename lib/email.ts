@@ -115,9 +115,13 @@ function emailWrapper(bodyContent: string): string {
             <span style="color:#ffffff30;font-size:12px;">·</span>
             <a href="https://facebook.com/reevolution.pt" style="color:#ffc700;text-decoration:none;font-size:12px;font-weight:600;margin:0 6px;">Facebook</a>
           </p>
-          <p style="margin:0;font-size:11px;color:#ffffff55;line-height:1.6;">
+          <p style="margin:0 0 10px;font-size:11px;color:#ffffff55;line-height:1.6;">
             © ${new Date().getFullYear()} Re-Evolution, Serviços Digitais · Carnaxide, Lisboa<br/>
             Recebeu este email porque nos contactou através do nosso site.
+          </p>
+          <p style="margin:0;font-size:10px;color:#ffffff33;line-height:1.6;">
+            Este é um endereço de envio automático — não monitorizado e sem caixa de entrada.<br/>
+            Não responda a este email. Para nos contactar: <a href="mailto:geral@re-evolution.pt" style="color:#ffffff44;text-decoration:underline;">geral@re-evolution.pt</a> · <a href="tel:+351969063633" style="color:#ffffff44;text-decoration:underline;">+351 969 063 633</a>
           </p>
         </td>
       </tr>

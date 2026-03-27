@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
+import { anchorClick } from '@/lib/scroll'
 import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
 
 function getLocale(path: string) { return path.split('/')[1] ?? 'pt' }
@@ -92,14 +93,14 @@ export default function Hero() {
             >
               <a
                 href={`/${locale}/#diagnostico`}
-                onClick={() => trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_primary', section: 'hero', language: locale })}
+                onClick={(e) => { anchorClick('diagnostico', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_primary', section: 'hero', language: locale }) }}
                 className="inline-flex items-center justify-center bg-brand-yellow text-brand-dark font-bold text-base px-8 py-4 rounded-2xl hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-brand-yellow/25"
               >
                 {t('ctaPrimary')}
               </a>
               <a
                 href={`/${locale}/#como-funciona`}
-                onClick={() => trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_secondary', section: 'hero', language: locale })}
+                onClick={(e) => { anchorClick('como-funciona', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_secondary', section: 'hero', language: locale }) }}
                 className="inline-flex items-center justify-center border-2 border-white/40 text-white font-semibold text-base px-8 py-4 rounded-2xl hover:border-white/80 hover:bg-white/10 active:scale-95 transition-all"
               >
                 {t('ctaSecondary')}

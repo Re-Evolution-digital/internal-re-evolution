@@ -19,7 +19,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https:",
       "connect-src 'self' https://api.groq.com https://api.telegram.org https://hook.eu1.make.com https://www.google-analytics.com",
-      "frame-src 'self' https://www.google.com",
+      "frame-src 'self' https://www.google.com https://www.arcadasdofado.com https://arcadasdofado.com",
       "object-src 'none'",
       "upgrade-insecure-requests",
     ].join('; '),

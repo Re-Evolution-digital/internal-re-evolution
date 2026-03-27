@@ -10,6 +10,6 @@ export const config = {
     // - /_next (Next.js internals)
     // - /_vercel (Vercel internals)
     // - /images, /icons, /favicon.ico (static files)
-    '/((?!api|_next|_vercel|images|icons|favicon|SECURITY|robots|sitemap).*)',
+    '/((?!api|_next|_vercel|images|icons|videos|favicon|SECURITY|robots|sitemap).*)',
   ],
 }

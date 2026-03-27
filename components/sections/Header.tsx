@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
+import { anchorClick } from '@/lib/scroll'
 import { clientData } from '@/data/client-info'
 import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
 
@@ -85,15 +86,19 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Navegação principal">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-white/80 hover:text-brand-yellow transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const anchorId = link.href.split('#')[1]
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => { if (anchorId) anchorClick(anchorId, e) }}
+                  className="text-sm font-medium text-white/80 hover:text-brand-yellow transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
+            })}
           </nav>
 
           {/* Right side: lang + CTA */}
@@ -139,7 +144,7 @@ export default function Header() {
             {/* CTA */}
             <a
               href={`/${locale}/#diagnostico`}
-              onClick={() => trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'header_cta', section: 'header', language: locale })}
+              onClick={(e) => { anchorClick('diagnostico', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'header_cta', section: 'header', language: locale }) }}
               className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2.5 rounded-xl hover:brightness-105 transition-all"
             >
               {t('cta')}
@@ -185,16 +190,19 @@ export default function Header() {
             className="md:hidden bg-brand-dark border-t border-white/10 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-2.5 text-white/80 hover:text-brand-yellow text-base font-medium transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const anchorId = link.href.split('#')[1]
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => { if (anchorId) anchorClick(anchorId, e); setMenuOpen(false) }}
+                    className="block py-2.5 text-white/80 hover:text-brand-yellow text-base font-medium transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                )
+              })}
               <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                 <div className="flex gap-2">
                   {locales.map((l) => (
@@ -210,7 +218,7 @@ export default function Header() {
                 </div>
                 <a
                   href={`/${locale}/#diagnostico`}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => { anchorClick('diagnostico', e); setMenuOpen(false) }}
                   className="bg-brand-yellow text-brand-dark text-sm font-bold px-4 py-2 rounded-xl"
                 >
                   {t('cta')}

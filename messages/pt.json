@@ -53,17 +53,32 @@
       {
         "title": "Presença Digital Profissional",
         "description": "O seu site, feito a pensar nos seus clientes. Rápido, bonito e que aparece no Google.",
-        "features": ["Landing page profissional", "SEO local otimizado", "Google Business Profile", "Mobile-first"]
+        "features": [
+          "Landing page profissional",
+          "SEO local otimizado",
+          "Google Business Profile",
+          "Mobile-first"
+        ]
       },
       {
         "title": "Automações Inteligentes",
         "description": "Chega de tarefas repetitivas. Formulários, notificações, reservas e follow-ups — tudo automático.",
-        "features": ["Notificações WhatsApp/Telegram", "Integração Google Sheets", "Respostas automáticas", "Sem código"]
+        "features": [
+          "Notificações WhatsApp/Telegram",
+          "Integração Google Sheets",
+          "Respostas automáticas",
+          "Sem código"
+        ]
       },
       {
         "title": "Assistente de IA 24/7",
         "description": "Um assistente sempre disponível no seu site, que responde, qualifica e encaminha os seus clientes — mesmo quando está a dormir.",
-        "features": ["Chatbot personalizado", "Qualificação de leads", "Multilingue", "Integrado no seu site"]
+        "features": [
+          "Chatbot personalizado",
+          "Qualificação de leads",
+          "Multilingue",
+          "Integrado no seu site"
+        ]
       }
     ]
   },
@@ -98,41 +113,37 @@
   "automations": {
     "title": "Veja como funciona na prática",
     "yellowStripe": "Automação · Trabalha Enquanto Descansas",
-    "subtitle": "Escolha o seu tipo de negócio e veja o que seria automatizado.",
-    "tabs": ["🍽️ Restaurante", "⚖️ Advogado", "🏥 Clínica", "🏠 Imobiliário"],
-    "cta": "Quero isto para o meu negócio",
-    "flows": {
-      "restaurant": [
-        { "label": "Cliente preenche reserva online" },
-        { "label": "Notificação imediata no WhatsApp" },
-        { "label": "Dados guardados automaticamente" },
-        { "label": "Email de confirmação ao cliente" }
-      ],
-      "lawyer": [
-        { "label": "Cliente solicita consulta no site" },
-        { "label": "Qualificação automática do caso" },
-        { "label": "Agendamento enviado por email" },
-        { "label": "Lembrete 24h antes da consulta" }
-      ],
-      "clinic": [
-        { "label": "Pedido de marcação online" },
-        { "label": "Confirmação automática ao paciente" },
-        { "label": "Registo no Google Sheets" },
-        { "label": "Lembrete por SMS/WhatsApp" }
-      ],
-      "realestate": [
-        { "label": "Lead entra pelo site" },
-        { "label": "Qualificação pelo chatbot" },
-        { "label": "Dados enviados ao agente" },
-        { "label": "Follow-up automático em 24h" }
-      ]
-    }
+    "subtitle": "Escolha uma automação e veja como funciona no seu negócio.",
+    "exampleLabel": "ex:",
+    "tabs": [
+      "🤖 Chatbot",
+      "📅 Agendamento",
+      "📊 CRM / Sheets",
+      "⭐ Reputação"
+    ],
+    "businessExamples": [
+      "🏠 Imobiliária",
+      "🏥 Clínica",
+      "⚖️ Advogado",
+      "🍽️ Restaurante"
+    ],
+    "automationsListTitle": "Automações exemplo — o limite é o seu negócio",
+    "automationsList": [
+      "🤖 Chatbot de qualificação + mail + Telegram",
+      "📅 Agendamento → Google Calendar / Outlook",
+      "📊 Registo em CRM ou Google Sheets",
+      "⭐ Respostas a críticas — Google Business Profile",
+      "⭐ Respostas a críticas — Facebook",
+      "⭐ Respostas a críticas — Instagram",
+      "✉️ Follow-up automático a leads não convertidas"
+    ],
+    "automationsListNote": "Há muito mais possibilidades. É o seu caso de uso que define o que automatizamos — diga-nos o seu desafio.",
+    "cta": "Quero isto para o meu negócio"
   },
   "pricing": {
     "title": "Preços claros, sem surpresas",
     "subtitle": "Sabemos o que custa antes de começar. Sempre.",
-    "note": "WhatsApp Business API, Relatórios Avançados e integrações específicas disponíveis como add-on. Fale connosco para um orçamento personalizado.",
-    "footer": "Valores sem IVA. Sem contratos de permanência.",
+    "footer": "Todos os valores incluem IVA. Sem contratos de permanência.",
     "packages": [
       {
         "id": "essencial",
@@ -141,45 +152,153 @@
         "price": "€500",
         "priceSuffix": "pagamento único",
         "features": [
-          "Landing page profissional",
-          "SEO básico",
-          "Google Business Profile",
-          "1 mês suporte incluído",
-          "Mobile-first",
-          "Entrega em 1–3 semanas"
+          "Página web profissional (até 10 secções)",
+          "Traduções até 5 línguas",
+          "SEO otimizado + Google Business Profile",
+          "Mobile-first · Atalhos rápidos (WhatsApp, Chamada, Maps)",
+          "Até 2 formulários de captação de clientes",
+          "Páginas legais incluídas (Privacidade, Serviço, Cookies)",
+          "Entrega em 1–3 semanas",
+          "1 mês de suporte incluído"
         ],
+        "footnote": "* Domínio incluído no 1.º ano · ** Hosting incluído no 1.º ano",
         "cta": "Quero este pacote"
       },
       {
         "id": "managed",
-        "name": "Automação Managed",
+        "name": "Automação Gerida",
         "badge": "Resultados contínuos",
         "price": "€800",
-        "priceMonthly": "+ €140/mês",
-        "priceSuffix": "setup inicial",
+        "priceMonthly": "+ a partir de 30€/mês",
+        "priceSuffix": "setup + mensalidade",
         "features": [
-          "Tudo do Essencial",
-          "Automações personalizadas",
-          "Chatbot IA",
+          "Tudo do Website Essencial",
+          "Até 20 secções (mais sob consulta)",
+          "1 automação standard incluída (2.500 op/mês)",
           "Reunião mensal de análise",
-          "Suporte prioritário",
-          "Relatórios mensais"
+          "Suporte prioritário contínuo",
+          "Relatórios mensais",
+          "Automações premium disponíveis"
         ],
+        "footnote": "* Domínio incluído no 1.º ano · ** Hosting incluído no 1.º ano",
         "cta": "Falar com a equipa"
+      },
+      {
+        "id": "marketing",
+        "name": "Marketing Orgânico",
+        "badge": "Em breve",
+        "price": "Em breve",
+        "priceSuffix": "valores a anunciar",
+        "features": [
+          "Gestão de 2 redes sociais",
+          "Calendário de conteúdos com IA",
+          "Produção de conteúdo orgânico",
+          "Publicações agendadas automaticamente",
+          "Adaptado ao seu negócio e setor",
+          "Campanhas pagas opcionais (Ads do cliente)"
+        ],
+        "cta": "Saber mais em breve",
+        "comingSoon": true
       }
-    ]
+    ],
+    "comparison": {
+      "title": "Comparativo detalhado de pacotes",
+      "showLabel": "Ver comparativo detalhado",
+      "hideLabel": "Fechar comparativo",
+      "featureHeader": "Funcionalidade",
+      "categories": [
+        {
+          "name": "Website",
+          "rows": [
+            { "label": "Secções no site", "essencial": "Até 10", "managed": "Até 20 (mais sob consulta)", "marketing": "—" },
+            { "label": "Traduções", "essencial": "Até 5 línguas", "managed": "Até 5 línguas", "marketing": "—" },
+            { "label": "Mobile-first", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Entrega estimada", "essencial": "1–3 semanas", "managed": "1–3 semanas", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "SEO & Visibilidade",
+          "rows": [
+            { "label": "SEO otimizado", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Google Business Profile otimizado", "essencial": "✓", "managed": "✓", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Funcionalidades do Site",
+          "rows": [
+            { "label": "Atalhos rápidos (WhatsApp, Chamada, Maps)", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Formulários de captação de clientes", "essencial": "Até 2", "managed": "Até 2", "marketing": "—" },
+            { "label": "Páginas legais (Privacidade, Serviço, Cookies)", "essencial": "✓", "managed": "✓", "marketing": "—" },
+            { "label": "Automações de notificação (mail/Telegram nos formulários)", "essencial": "✓", "managed": "✓", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Suporte & Gestão",
+          "rows": [
+            { "label": "Suporte incluído", "essencial": "1 mês", "managed": "Prioritário contínuo", "marketing": "—" },
+            { "label": "Reunião mensal de análise", "essencial": "—", "managed": "✓", "marketing": "—" },
+            { "label": "Relatórios mensais", "essencial": "—", "managed": "✓", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Automações Geridas",
+          "rows": [
+            { "label": "Automação standard incluída (2.500 op/mês)", "essencial": "—", "managed": "1 incluída", "marketing": "—" },
+            { "label": "Standard adicionais (Sheets, Calendário, Reviews, Follow-ups…)", "essencial": "—", "managed": "+15€/mês cada", "marketing": "—" },
+            { "label": "Chatbot de qualificação IA (até 1.000 conv/mês)", "essencial": "—", "managed": "+30€/mês", "marketing": "—" },
+            { "label": "Operações adicionais além de 2.500/mês", "essencial": "—", "managed": "15€/mês", "marketing": "—" }
+          ]
+        },
+        {
+          "name": "Marketing Orgânico",
+          "rows": [
+            { "label": "Redes sociais geridas", "essencial": "—", "managed": "—", "marketing": "2 incluídas" },
+            { "label": "Calendário de conteúdos com IA", "essencial": "—", "managed": "—", "marketing": "✓" },
+            { "label": "Produção de conteúdo orgânico", "essencial": "—", "managed": "—", "marketing": "✓" },
+            { "label": "Agendamento automático de publicações", "essencial": "—", "managed": "—", "marketing": "✓" },
+            { "label": "Gestão de campanhas pagas (cliente paga os Ads)", "essencial": "—", "managed": "—", "marketing": "+30–50€/mês" },
+            { "label": "Rede social adicional", "essencial": "—", "managed": "—", "marketing": "+50€/mês" }
+          ]
+        },
+        {
+          "name": "Infraestrutura",
+          "rows": [
+            { "label": "Domínio", "essencial": "Incluído 1.º ano*", "managed": "Incluído 1.º ano*", "marketing": "—" },
+            { "label": "Hosting", "essencial": "Incluído 1.º ano**", "managed": "Incluído 1.º ano**", "marketing": "—" }
+          ]
+        }
+      ],
+      "footnotes": [
+        "* Renovação do domínio: 10€–20€/ano nos anos seguintes.",
+        "** Hosting incluído no 1.º ano; 50€/ano nos anos seguintes.",
+        "Todos os valores incluem IVA."
+      ]
+    }
   },
   "cases": {
     "title": "Negócios reais. Resultados reais.",
-    "testimonials": [
-      {
-        "quote": "A Re-Evolution transformou a forma como recebemos reservas. O site ficou exatamente como queríamos e em menos de três semanas já estava no ar. Agora temos um processo automático que nos poupa horas todas as semanas.",
-        "author": "Arcadas do Fado",
-        "location": "Almancil, Algarve",
-        "tags": ["Restauração", "Automações", "Website"]
-      }
-    ],
-    "comingSoon": "Em breve — "
+    "story": {
+      "badge": "Caso Real",
+      "location": "Almancil, Algarve",
+      "headline": "De um site desatualizado para o melhor mês de visitas de sempre",
+      "narrative": "As Arcadas do Fado já traziam clientes pelo Google Business Profile — sobretudo estrangeiros que descobriam o restaurante nas pesquisas locais. Mas o site antigo não estava à altura: visual datado, UX fraca e sem trabalho de SEO. Com o novo site e o GBP otimizado, o primeiro mês foi o de maior tráfego de sempre — quase o dobro da média dos meses anteriores.",
+      "stats": [
+        { "value": "2×", "label": "Visitas no 1.º mês vs. média anterior" },
+        { "value": "< 3 sem", "label": "Do diagnóstico ao lançamento" },
+        { "value": "SEO + GBP", "label": "Optimizados em simultâneo" }
+      ],
+      "quote": "A Re-Evolution transformou a forma como recebemos reservas. O site ficou exatamente como queríamos e em menos de três semanas já estava no ar. Agora temos um processo automático que nos poupa horas todas as semanas.",
+      "author": "Arcadas do Fado",
+      "tags": ["Restauração", "Automações", "Website", "SEO", "GBP"],
+      "tabBefore": "⬅ Antes",
+      "tabAfter": "Depois ✨",
+      "visitLabel": "Visitar site",
+      "browserHint": "Clique nos separadores para comparar o site antigo com o novo"
+    },
+    "placeholders": [
+      { "label": "Em breve — próximo caso de sucesso" },
+      { "label": "Em breve — próximo caso de sucesso" }
+    ]
   },
   "blog": {
     "title": "Dicas e novidades para o seu negócio digital",
@@ -279,15 +398,30 @@
     "columns": {
       "services": {
         "title": "Serviços",
-        "links": ["Presença Digital", "Automações", "Chatbot IA", "SEO Local"]
+        "links": [
+          "Presença Digital",
+          "Automações",
+          "Chatbot IA",
+          "SEO Local"
+        ]
       },
       "company": {
         "title": "Empresa",
-        "links": ["Sobre nós", "Casos de Sucesso", "Blog", "Diagnóstico Gratuito"]
+        "links": [
+          "Sobre nós",
+          "Casos de Sucesso",
+          "Blog",
+          "Diagnóstico Gratuito"
+        ]
       },
       "legal": {
         "title": "Legal",
-        "links": ["Política de Privacidade", "Termos de Serviço", "Política de Cookies", "Definições de Cookies"]
+        "links": [
+          "Política de Privacidade",
+          "Termos de Serviço",
+          "Política de Cookies",
+          "Definições de Cookies"
+        ]
       },
       "contact": {
         "title": "Contacto"
