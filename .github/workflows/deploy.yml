@@ -23,7 +23,9 @@ jobs:
         run: npm run build:cf
 
       - name: Populate static assets cache (ISR pages → Assets)
-        run: cp -r .open-next/cache .open-next/assets/cdn-cgi/_next_cache
+        run: |
+          mkdir -p .open-next/assets/cdn-cgi/_next_cache
+          cp -r .open-next/cache/. .open-next/assets/cdn-cgi/_next_cache
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
