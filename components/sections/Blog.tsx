@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 // TODO: ligar a CMS (Contentful/Sanity) em fase 2
 
@@ -25,7 +26,7 @@ export default function Blog() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
-  const articles = t.raw('articles') as Array<{ category: string; title: string; date: string }>
+  const articles = t.raw('articles') as Array<{ slug?: string; category: string; title: string; date: string }>
 
   return (
     <section id="blog" className="py-20 bg-white" data-section="blog" aria-labelledby="blog-title">
@@ -50,36 +51,69 @@ export default function Blog() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article, i) => (
-            <motion.article
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1 }}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
-            >
-              {/* Placeholder image */}
-              <div className="h-48 bg-gradient-to-br from-brand-dark to-[#1a3a8f] flex items-center justify-center">
-                <div className="text-5xl opacity-20">
-                  {i === 0 ? '🔍' : i === 1 ? '⚡' : '📱'}
-                </div>
-              </div>
-              <div className="p-6">
-                <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full mb-3 ${categoryColors[article.category] ?? 'bg-gray-100 text-gray-600'}`}>
-                  {article.category}
-                </span>
-                <h3 className="font-bold text-brand-dark leading-snug mb-3 group-hover:text-brand-dark/80 transition-colors">
-                  {article.title}
-                </h3>
-                <div className="flex items-center justify-between">
-                  <time className="text-gray-400 text-xs">{article.date}</time>
-                  <span className="text-brand-dark font-semibold text-sm group-hover:text-brand-yellow transition-colors">
-                    {t('readMore')} →
+          {articles.map((article, i) => {
+            const href = article.slug ? `/${locale}/blog/${article.slug}` : null
+            const cardContent = (
+              <>
+                {/* Cover image */}
+                {i === 0 ? (
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src="/images/blog/como-aparecer-no-google-maps-2026-pmes-card.jpg"
+                      alt="Como aparecer no Google Maps em 2026"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                      onError={(e) => {
+                        // fallback para a imagem principal se o card não existir ainda
+                        ;(e.currentTarget as HTMLImageElement).src =
+                          '/images/blog/como-aparecer-no-google-maps-2026-pmes.jpg'
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-gradient-to-br from-brand-dark to-[#1a3a8f] flex items-center justify-center">
+                    <div className="text-5xl opacity-20">
+                      {i === 1 ? '⚡' : '📱'}
+                    </div>
+                  </div>
+                )}
+                <div className="p-6">
+                  <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full mb-3 ${categoryColors[article.category] ?? 'bg-gray-100 text-gray-600'}`}>
+                    {article.category}
                   </span>
+                  <h3 className="font-bold text-brand-dark leading-snug mb-3 group-hover:text-brand-dark/80 transition-colors">
+                    {article.title}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <time className="text-gray-400 text-xs">{article.date}</time>
+                    <span className="text-brand-dark font-semibold text-sm group-hover:text-brand-yellow transition-colors">
+                      {t('readMore')} →
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+              </>
+            )
+
+            return (
+              <motion.article
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.1 }}
+                className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+              >
+                {href ? (
+                  <a href={href} className="block" aria-label={article.title}>
+                    {cardContent}
+                  </a>
+                ) : (
+                  cardContent
+                )}
+              </motion.article>
+            )
+          })}
         </div>
       </div>
     </section>

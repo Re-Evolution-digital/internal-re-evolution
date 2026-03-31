@@ -44,7 +44,6 @@ export default function Cases() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   const stats = t.raw('story.stats') as Array<{ value: string; label: string }>
-  const placeholders = t.raw('placeholders') as Array<{ label: string }>
 
   return (
     <section id="casos" className="py-20 bg-gray-50" data-section="cases" aria-labelledby="cases-title">
@@ -165,21 +164,6 @@ export default function Cases() {
           </div>
         </motion.div>
 
-        {/* Placeholder slots */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {placeholders.map((p, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + i * 0.1 }}
-              className="bg-white rounded-3xl p-8 border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-center min-h-[160px]"
-            >
-              <div className="text-3xl mb-3 opacity-20">🏢</div>
-              <p className="text-gray-400 font-medium text-sm">{p.label}</p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   )

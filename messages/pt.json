@@ -306,6 +306,7 @@
     "viewAll": "Ver todos os artigos",
     "articles": [
       {
+        "slug": "como-aparecer-no-google-maps-2026-pmes",
         "category": "SEO",
         "title": "Como aparecer no Google Maps em 2026 (guia para PMEs)",
         "date": "15 de Janeiro, 2026"
@@ -320,7 +321,34 @@
         "title": "Porque é que o seu site precisa de ser rápido no telemóvel",
         "date": "2 de Janeiro, 2026"
       }
-    ]
+    ],
+    "hero": {
+      "title": "Blog",
+      "subtitle": "Dicas práticas de presença digital para o teu negócio"
+    },
+    "card": {
+      "readMore": "Ler mais →",
+      "readingTime": "{{count}} min de leitura"
+    },
+    "post": {
+      "backToBlog": "← Voltar ao Blog",
+      "relatedPosts": "Artigos relacionados",
+      "publishedOn": "Publicado a",
+      "updatedOn": "Atualizado a",
+      "by": "por"
+    },
+    "cta": {
+      "title": "Precisas de ajuda com a presença digital do teu negócio?",
+      "button": "Fala Connosco"
+    },
+    "pagination": {
+      "previous": "← Anterior",
+      "next": "Seguinte →",
+      "page": "Página {{current}} de {{total}}"
+    },
+    "readingProgress": {
+      "ariaLabel": "Progresso de leitura do artigo"
+    }
   },
   "diagnostic": {
     "title": "Pronto para transformar o seu negócio?",

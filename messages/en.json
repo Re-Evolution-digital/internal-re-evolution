@@ -306,6 +306,7 @@
     "viewAll": "View all articles",
     "articles": [
       {
+        "slug": "como-aparecer-no-google-maps-2026-pmes",
         "category": "SEO",
         "title": "How to appear on Google Maps in 2026 (guide for SMEs)",
         "date": "January 15, 2026"
@@ -320,7 +321,34 @@
         "title": "Why your website needs to be fast on mobile",
         "date": "January 2, 2026"
       }
-    ]
+    ],
+    "hero": {
+      "title": "Blog",
+      "subtitle": "Practical tips on digital presence for your business"
+    },
+    "card": {
+      "readMore": "Read more →",
+      "readingTime": "{{count}} min read"
+    },
+    "post": {
+      "backToBlog": "← Back to Blog",
+      "relatedPosts": "Related articles",
+      "publishedOn": "Published on",
+      "updatedOn": "Updated on",
+      "by": "by"
+    },
+    "cta": {
+      "title": "Need help with your business's digital presence?",
+      "button": "Talk to Us"
+    },
+    "pagination": {
+      "previous": "← Previous",
+      "next": "Next →",
+      "page": "Page {{current}} of {{total}}"
+    },
+    "readingProgress": {
+      "ariaLabel": "Article reading progress"
+    }
   },
   "diagnostic": {
     "title": "Ready to transform your business?",
