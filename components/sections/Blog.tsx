@@ -26,7 +26,7 @@ export default function Blog() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
-  const articles = t.raw('articles') as Array<{ slug?: string; category: string; title: string; date: string }>
+  const articles = t.raw('articles') as Array<{ slug?: string; category: string; title: string; date: string; cardImage?: string }>
 
   return (
     <section id="blog" className="py-20 bg-white" data-section="blog" aria-labelledby="blog-title">
@@ -56,27 +56,20 @@ export default function Blog() {
             const cardContent = (
               <>
                 {/* Cover image */}
-                {i === 0 ? (
+                {article.slug ? (
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src="/images/blog/como-aparecer-no-google-maps-2026-pmes-card.jpg"
-                      alt="Como aparecer no Google Maps em 2026"
+                      src={article.cardImage ?? `/images/blog/${article.slug}-card.jpg`}
+                      alt={article.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       loading="lazy"
-                      onError={(e) => {
-                        // fallback para a imagem principal se o card não existir ainda
-                        ;(e.currentTarget as HTMLImageElement).src =
-                          '/images/blog/como-aparecer-no-google-maps-2026-pmes.jpg'
-                      }}
                     />
                   </div>
                 ) : (
                   <div className="h-48 bg-gradient-to-br from-brand-dark to-[#1a3a8f] flex items-center justify-center">
-                    <div className="text-5xl opacity-20">
-                      {i === 1 ? '⚡' : '📱'}
-                    </div>
+                    <div className="text-5xl opacity-20">📝</div>
                   </div>
                 )}
                 <div className="p-6">
