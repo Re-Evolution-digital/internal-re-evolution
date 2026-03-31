@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
+import { getTranslations } from 'next-intl/server'
 import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
 import BlogHero from '@/components/blog/BlogHero'
@@ -59,14 +60,8 @@ const blogSchema = {
 
 export default async function BlogListPage({ params }: Props) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'blog.hero' })
   const posts = getAllPosts(locale)
-
-  const heroSubtitles: Record<string, string> = {
-    pt: 'Dicas práticas de presença digital para o teu negócio',
-    en: 'Practical tips on digital presence for your business',
-    es: 'Consejos prácticos de presencia digital para tu negocio',
-  }
-  const heroSubtitle = heroSubtitles[locale] ?? heroSubtitles.pt
 
   return (
     <>
@@ -85,7 +80,13 @@ export default async function BlogListPage({ params }: Props) {
 
       <Header />
 
-      <BlogHero subtitle={heroSubtitle} />
+      <BlogHero
+        locale={locale}
+        headline1={t('headline1')}
+        headline2={t('headline2')}
+        subtitle={t('subtitle')}
+        tags={t.raw('tags') as string[]}
+      />
 
       <main id="blog-content" className="bg-gray-50 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

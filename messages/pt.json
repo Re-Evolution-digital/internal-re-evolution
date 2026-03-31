@@ -456,14 +456,16 @@
         "date": "15 de Janeiro, 2026"
       },
       {
+        "slug": "5-tarefas-automatizar-negocio",
         "category": "Automações",
-        "title": "5 tarefas que pode automatizar hoje sem saber tecnologia",
-        "date": "8 de Janeiro, 2026"
+        "title": "5 tarefas que a sua empresa faz manualmente (e que podiam estar a funcionar sozinhas)",
+        "date": "28 de Março, 2026"
       },
       {
+        "slug": "site-rapido-no-telemovel",
         "category": "Performance",
         "title": "Porque é que o seu site precisa de ser rápido no telemóvel",
-        "date": "2 de Janeiro, 2026"
+        "date": "26 de Março, 2026"
       }
     ],
     "hero": {

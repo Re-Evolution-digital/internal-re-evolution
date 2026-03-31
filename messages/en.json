@@ -456,14 +456,16 @@
         "date": "January 15, 2026"
       },
       {
+        "slug": "5-tarefas-automatizar-negocio",
         "category": "Automations",
-        "title": "5 tasks you can automate today without knowing technology",
-        "date": "January 8, 2026"
+        "title": "5 Tasks Your Business Does Manually (That Could Be Running on Their Own)",
+        "date": "March 28, 2026"
       },
       {
+        "slug": "site-rapido-no-telemovel",
         "category": "Performance",
-        "title": "Why your website needs to be fast on mobile",
-        "date": "January 2, 2026"
+        "title": "Why Your Website Needs to Be Fast on Mobile",
+        "date": "March 26, 2026"
       }
     ],
     "hero": {

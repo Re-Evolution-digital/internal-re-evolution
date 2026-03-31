@@ -184,7 +184,7 @@ export default async function BlogPostPage({ params }: Props) {
               {t('cta.title')}
             </p>
             <Link
-              href={`/${locale}#contacto`}
+              href={`/${locale}#diagnostico`}
               className="inline-block bg-brand-yellow text-brand-dark font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
             >
               {t('cta.button')}

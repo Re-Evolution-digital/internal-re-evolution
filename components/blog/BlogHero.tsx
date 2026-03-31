@@ -1,16 +1,31 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
 import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
 
 interface BlogHeroProps {
+  headline1: string
+  headline2: string
   subtitle: string
+  tags: string[]
+  locale: string
+}
+
+// ── Card label translations ───────────────────────────────────────────────────
+
+const CARD_LABELS: Record<string, {
+  searches: string; clicks: string; directions: string
+  visits: string; lastMonth: string
+  automation: string; form: string; opsMonth: string
+}> = {
+  pt: { searches: 'Pesquisas', clicks: 'Cliques', directions: 'Direções', visits: 'Visitas', lastMonth: 'último mês', automation: 'Automação ativa', form: 'Formulário', opsMonth: 'op/mês ativas' },
+  en: { searches: 'Searches', clicks: 'Clicks', directions: 'Directions', visits: 'Visits', lastMonth: 'last month', automation: 'Active automation', form: 'Form', opsMonth: 'ops/month active' },
+  es: { searches: 'Búsquedas', clicks: 'Clics', directions: 'Rutas', visits: 'Visitas', lastMonth: 'último mes', automation: 'Automatización activa', form: 'Formulario', opsMonth: 'op/mes activas' },
 }
 
 // ── Floating card mockups ────────────────────────────────────────────────────
 
-function GbpCard() {
+function GbpCard({ l }: { l: typeof CARD_LABELS['pt'] }) {
   return (
     <div className="w-52 rounded-xl border border-brand-yellow/30 bg-[#010e30]/80 p-4 backdrop-blur-sm shadow-[0_0_24px_rgba(255,199,0,0.06)]">
       <div className="flex items-center gap-2 mb-3">
@@ -34,25 +49,25 @@ function GbpCard() {
       <div className="space-y-1.5">
         <div className="flex items-center gap-2">
           <div className="h-1.5 rounded-full bg-brand-yellow/60" style={{ width: '72%' }} />
-          <span className="text-[9px] text-white/40">Pesquisas</span>
+          <span className="text-[9px] text-white/40">{l.searches}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="h-1.5 rounded-full bg-white/25" style={{ width: '48%' }} />
-          <span className="text-[9px] text-white/40">Cliques</span>
+          <span className="text-[9px] text-white/40">{l.clicks}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="h-1.5 rounded-full bg-brand-yellow/30" style={{ width: '85%' }} />
-          <span className="text-[9px] text-white/40">Direções</span>
+          <span className="text-[9px] text-white/40">{l.directions}</span>
         </div>
       </div>
     </div>
   )
 }
 
-function StatsCard() {
+function StatsCard({ l }: { l: typeof CARD_LABELS['pt'] }) {
   return (
     <div className="w-44 rounded-xl border border-white/10 bg-[#010e30]/70 p-4 backdrop-blur-sm shadow-[0_0_24px_rgba(255,199,0,0.04)]">
-      <p className="text-[10px] font-semibold text-white/40 uppercase tracking-wider mb-1">Visitas</p>
+      <p className="text-[10px] font-semibold text-white/40 uppercase tracking-wider mb-1">{l.visits}</p>
       <p className="text-2xl font-bold text-brand-yellow leading-none mb-3">+247%</p>
       {/* Mini bar chart */}
       <div className="flex items-end gap-1 h-10">
@@ -67,16 +82,16 @@ function StatsCard() {
           />
         ))}
       </div>
-      <p className="text-[9px] text-white/30 mt-2">último mês</p>
+      <p className="text-[9px] text-white/30 mt-2">{l.lastMonth}</p>
     </div>
   )
 }
 
-function AutomationCard() {
-  const steps = ['Formulário', 'CRM', 'WhatsApp']
+function AutomationCard({ l }: { l: typeof CARD_LABELS['pt'] }) {
+  const steps = [l.form, 'CRM', 'WhatsApp']
   return (
     <div className="w-52 rounded-xl border border-brand-yellow/20 bg-[#010e30]/75 p-4 backdrop-blur-sm shadow-[0_0_24px_rgba(255,199,0,0.05)]">
-      <p className="text-[10px] font-semibold text-white/40 uppercase tracking-wider mb-3">Automação ativa</p>
+      <p className="text-[10px] font-semibold text-white/40 uppercase tracking-wider mb-3">{l.automation}</p>
       <div className="flex items-center gap-1">
         {steps.map((step, i) => (
           <div key={step} className="flex items-center gap-1 flex-1">
@@ -94,7 +109,7 @@ function AutomationCard() {
       </div>
       <div className="mt-3 flex items-center gap-2">
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-        <span className="text-[9px] text-white/40">2.500 op/mês ativas</span>
+        <span className="text-[9px] text-white/40">2.500 {l.opsMonth}</span>
       </div>
     </div>
   )
@@ -102,8 +117,8 @@ function AutomationCard() {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export default function BlogHero({ subtitle }: BlogHeroProps) {
-  const t = useTranslations('blog.hero')
+export default function BlogHero({ headline1, headline2, subtitle, tags, locale }: BlogHeroProps) {
+  const l = CARD_LABELS[locale] ?? CARD_LABELS['pt']
   return (
     <section
       className="relative w-full overflow-hidden bg-brand-dark"
@@ -169,10 +184,10 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               className="font-bold leading-[1.1] mb-1"
             >
               <span className="block text-white text-4xl sm:text-5xl lg:text-[3.5rem]">
-                {t('headline1')}
+                {headline1}
               </span>
               <span className="block text-brand-yellow text-3xl sm:text-4xl lg:text-[3rem]">
-                {t('headline2')}
+                {headline2}
               </span>
             </motion.h1>
 
@@ -193,7 +208,7 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               transition={{ duration: 0.5, delay: 0.65 }}
               className="flex flex-wrap gap-2 mt-6"
             >
-              {(t.raw('tags') as string[]).map((tag) => (
+              {tags.map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 text-xs font-medium text-white/80 rounded-full border border-white/10"
@@ -228,7 +243,7 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0 }}
             >
-              <GbpCard />
+              <GbpCard l={l} />
             </motion.div>
           </motion.div>
 
@@ -243,7 +258,7 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
             >
-              <StatsCard />
+              <StatsCard l={l} />
             </motion.div>
           </motion.div>
 
@@ -258,7 +273,7 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.3 }}
             >
-              <AutomationCard />
+              <AutomationCard l={l} />
             </motion.div>
           </motion.div>
         </div>
