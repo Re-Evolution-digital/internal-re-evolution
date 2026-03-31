@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
 
 interface BlogHeroProps {
@@ -101,9 +102,8 @@ function AutomationCard() {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-const TAGS = ['SEO Local', 'Google Maps', 'Automações']
-
 export default function BlogHero({ subtitle }: BlogHeroProps) {
+  const t = useTranslations('blog.hero')
   return (
     <section
       className="relative w-full overflow-hidden bg-brand-dark"
@@ -169,10 +169,10 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               className="font-bold leading-[1.1] mb-1"
             >
               <span className="block text-white text-4xl sm:text-5xl lg:text-[3.5rem]">
-                Presença Digital
+                {t('headline1')}
               </span>
               <span className="block text-brand-yellow text-3xl sm:text-4xl lg:text-[3rem]">
-                para o teu negócio.
+                {t('headline2')}
               </span>
             </motion.h1>
 
@@ -193,7 +193,7 @@ export default function BlogHero({ subtitle }: BlogHeroProps) {
               transition={{ duration: 0.5, delay: 0.65 }}
               className="flex flex-wrap gap-2 mt-6"
             >
-              {TAGS.map((tag) => (
+              {(t.raw('tags') as string[]).map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 text-xs font-medium text-white/80 rounded-full border border-white/10"

@@ -210,61 +210,186 @@
         {
           "name": "Website",
           "rows": [
-            { "label": "Secções no site", "essencial": "Até 10", "managed": "Até 20 (mais sob consulta)", "marketing": "—" },
-            { "label": "Traduções", "essencial": "Até 5 línguas", "managed": "Até 5 línguas", "marketing": "—" },
-            { "label": "Mobile-first", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Entrega estimada", "essencial": "1–3 semanas", "managed": "1–3 semanas", "marketing": "—" }
+            {
+              "label": "Secções no site",
+              "essencial": "Até 10",
+              "managed": "Até 20 (mais sob consulta)",
+              "marketing": "—"
+            },
+            {
+              "label": "Traduções",
+              "essencial": "Até 5 línguas",
+              "managed": "Até 5 línguas",
+              "marketing": "—"
+            },
+            {
+              "label": "Mobile-first",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Entrega estimada",
+              "essencial": "1–3 semanas",
+              "managed": "1–3 semanas",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "SEO & Visibilidade",
           "rows": [
-            { "label": "SEO otimizado", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Google Business Profile otimizado", "essencial": "✓", "managed": "✓", "marketing": "—" }
+            {
+              "label": "SEO otimizado",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Google Business Profile otimizado",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Funcionalidades do Site",
           "rows": [
-            { "label": "Atalhos rápidos (WhatsApp, Chamada, Maps)", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Formulários de captação de clientes", "essencial": "Até 2", "managed": "Até 2", "marketing": "—" },
-            { "label": "Páginas legais (Privacidade, Serviço, Cookies)", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Automações de notificação (mail/Telegram nos formulários)", "essencial": "✓", "managed": "✓", "marketing": "—" }
+            {
+              "label": "Atalhos rápidos (WhatsApp, Chamada, Maps)",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Formulários de captação de clientes",
+              "essencial": "Até 2",
+              "managed": "Até 2",
+              "marketing": "—"
+            },
+            {
+              "label": "Páginas legais (Privacidade, Serviço, Cookies)",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Automações de notificação (mail/Telegram nos formulários)",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Suporte & Gestão",
           "rows": [
-            { "label": "Suporte incluído", "essencial": "1 mês", "managed": "Prioritário contínuo", "marketing": "—" },
-            { "label": "Reunião mensal de análise", "essencial": "—", "managed": "✓", "marketing": "—" },
-            { "label": "Relatórios mensais", "essencial": "—", "managed": "✓", "marketing": "—" }
+            {
+              "label": "Suporte incluído",
+              "essencial": "1 mês",
+              "managed": "Prioritário contínuo",
+              "marketing": "—"
+            },
+            {
+              "label": "Reunião mensal de análise",
+              "essencial": "—",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Relatórios mensais",
+              "essencial": "—",
+              "managed": "✓",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Automações Geridas",
           "rows": [
-            { "label": "Automação standard incluída (2.500 op/mês)", "essencial": "—", "managed": "1 incluída", "marketing": "—" },
-            { "label": "Standard adicionais (Sheets, Calendário, Reviews, Follow-ups…)", "essencial": "—", "managed": "+15€/mês cada", "marketing": "—" },
-            { "label": "Chatbot de qualificação IA (até 1.000 conv/mês)", "essencial": "—", "managed": "+30€/mês", "marketing": "—" },
-            { "label": "Operações adicionais além de 2.500/mês", "essencial": "—", "managed": "15€/mês", "marketing": "—" }
+            {
+              "label": "Automação standard incluída (2.500 op/mês)",
+              "essencial": "—",
+              "managed": "1 incluída",
+              "marketing": "—"
+            },
+            {
+              "label": "Standard adicionais (Sheets, Calendário, Reviews, Follow-ups…)",
+              "essencial": "—",
+              "managed": "+15€/mês cada",
+              "marketing": "—"
+            },
+            {
+              "label": "Chatbot de qualificação IA (até 1.000 conv/mês)",
+              "essencial": "—",
+              "managed": "+30€/mês",
+              "marketing": "—"
+            },
+            {
+              "label": "Operações adicionais além de 2.500/mês",
+              "essencial": "—",
+              "managed": "15€/mês",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Marketing Orgânico",
           "rows": [
-            { "label": "Redes sociais geridas", "essencial": "—", "managed": "—", "marketing": "2 incluídas" },
-            { "label": "Calendário de conteúdos com IA", "essencial": "—", "managed": "—", "marketing": "✓" },
-            { "label": "Produção de conteúdo orgânico", "essencial": "—", "managed": "—", "marketing": "✓" },
-            { "label": "Agendamento automático de publicações", "essencial": "—", "managed": "—", "marketing": "✓" },
-            { "label": "Gestão de campanhas pagas (cliente paga os Ads)", "essencial": "—", "managed": "—", "marketing": "+30–50€/mês" },
-            { "label": "Rede social adicional", "essencial": "—", "managed": "—", "marketing": "+50€/mês" }
+            {
+              "label": "Redes sociais geridas",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "2 incluídas"
+            },
+            {
+              "label": "Calendário de conteúdos com IA",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "✓"
+            },
+            {
+              "label": "Produção de conteúdo orgânico",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "✓"
+            },
+            {
+              "label": "Agendamento automático de publicações",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "✓"
+            },
+            {
+              "label": "Gestão de campanhas pagas (cliente paga os Ads)",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "+30–50€/mês"
+            },
+            {
+              "label": "Rede social adicional",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "+50€/mês"
+            }
           ]
         },
         {
           "name": "Infraestrutura",
           "rows": [
-            { "label": "Domínio", "essencial": "Incluído 1.º ano*", "managed": "Incluído 1.º ano*", "marketing": "—" },
-            { "label": "Hosting", "essencial": "Incluído 1.º ano**", "managed": "Incluído 1.º ano**", "marketing": "—" }
+            {
+              "label": "Domínio",
+              "essencial": "Incluído 1.º ano*",
+              "managed": "Incluído 1.º ano*",
+              "marketing": "—"
+            },
+            {
+              "label": "Hosting",
+              "essencial": "Incluído 1.º ano**",
+              "managed": "Incluído 1.º ano**",
+              "marketing": "—"
+            }
           ]
         }
       ],
@@ -283,21 +408,40 @@
       "headline": "De um site desatualizado para o melhor mês de visitas de sempre",
       "narrative": "As Arcadas do Fado já traziam clientes pelo Google Business Profile — sobretudo estrangeiros que descobriam o restaurante nas pesquisas locais. Mas o site antigo não estava à altura: visual datado, UX fraca e sem trabalho de SEO. Com o novo site e o GBP otimizado, o primeiro mês foi o de maior tráfego de sempre — quase o dobro da média dos meses anteriores.",
       "stats": [
-        { "value": "2×", "label": "Visitas no 1.º mês vs. média anterior" },
-        { "value": "< 3 sem", "label": "Do diagnóstico ao lançamento" },
-        { "value": "SEO + GBP", "label": "Optimizados em simultâneo" }
+        {
+          "value": "2×",
+          "label": "Visitas no 1.º mês vs. média anterior"
+        },
+        {
+          "value": "< 3 sem",
+          "label": "Do diagnóstico ao lançamento"
+        },
+        {
+          "value": "SEO + GBP",
+          "label": "Optimizados em simultâneo"
+        }
       ],
       "quote": "A Re-Evolution transformou a forma como recebemos reservas. O site ficou exatamente como queríamos e em menos de três semanas já estava no ar. Agora temos um processo automático que nos poupa horas todas as semanas.",
       "author": "Arcadas do Fado",
-      "tags": ["Restauração", "Automações", "Website", "SEO", "GBP"],
+      "tags": [
+        "Restauração",
+        "Automações",
+        "Website",
+        "SEO",
+        "GBP"
+      ],
       "tabBefore": "⬅ Antes",
       "tabAfter": "Depois ✨",
       "visitLabel": "Visitar site",
       "browserHint": "Clique nos separadores para comparar o site antigo com o novo"
     },
     "placeholders": [
-      { "label": "Em breve — próximo caso de sucesso" },
-      { "label": "Em breve — próximo caso de sucesso" }
+      {
+        "label": "Em breve — próximo caso de sucesso"
+      },
+      {
+        "label": "Em breve — próximo caso de sucesso"
+      }
     ]
   },
   "blog": {
@@ -324,7 +468,14 @@
     ],
     "hero": {
       "title": "Blog",
-      "subtitle": "Dicas práticas de presença digital para o teu negócio"
+      "subtitle": "Dicas práticas de presença digital para o teu negócio",
+      "headline1": "Presença Digital",
+      "headline2": "para o teu negócio.",
+      "tags": [
+        "SEO Local",
+        "Google Maps",
+        "Automações"
+      ]
     },
     "card": {
       "readMore": "Ler mais →",

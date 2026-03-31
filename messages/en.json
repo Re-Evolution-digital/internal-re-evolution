@@ -210,61 +210,186 @@
         {
           "name": "Website",
           "rows": [
-            { "label": "Sections on site", "essencial": "Up to 10", "managed": "Up to 20 (more on request)", "marketing": "—" },
-            { "label": "Translations", "essencial": "Up to 5 languages", "managed": "Up to 5 languages", "marketing": "—" },
-            { "label": "Mobile-first", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Estimated delivery", "essencial": "1–3 weeks", "managed": "1–3 weeks", "marketing": "—" }
+            {
+              "label": "Sections on site",
+              "essencial": "Up to 10",
+              "managed": "Up to 20 (more on request)",
+              "marketing": "—"
+            },
+            {
+              "label": "Translations",
+              "essencial": "Up to 5 languages",
+              "managed": "Up to 5 languages",
+              "marketing": "—"
+            },
+            {
+              "label": "Mobile-first",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Estimated delivery",
+              "essencial": "1–3 weeks",
+              "managed": "1–3 weeks",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "SEO & Visibility",
           "rows": [
-            { "label": "Optimised SEO", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Optimised Google Business Profile", "essencial": "✓", "managed": "✓", "marketing": "—" }
+            {
+              "label": "Optimised SEO",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Optimised Google Business Profile",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Website Features",
           "rows": [
-            { "label": "Quick shortcuts (WhatsApp, Call, Maps)", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Client capture forms", "essencial": "Up to 2", "managed": "Up to 2", "marketing": "—" },
-            { "label": "Legal pages (Privacy, Terms, Cookies)", "essencial": "✓", "managed": "✓", "marketing": "—" },
-            { "label": "Notification automations (email/Telegram on forms)", "essencial": "✓", "managed": "✓", "marketing": "—" }
+            {
+              "label": "Quick shortcuts (WhatsApp, Call, Maps)",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Client capture forms",
+              "essencial": "Up to 2",
+              "managed": "Up to 2",
+              "marketing": "—"
+            },
+            {
+              "label": "Legal pages (Privacy, Terms, Cookies)",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Notification automations (email/Telegram on forms)",
+              "essencial": "✓",
+              "managed": "✓",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Support & Management",
           "rows": [
-            { "label": "Support included", "essencial": "1 month", "managed": "Continuous priority", "marketing": "—" },
-            { "label": "Monthly analysis meeting", "essencial": "—", "managed": "✓", "marketing": "—" },
-            { "label": "Monthly reports", "essencial": "—", "managed": "✓", "marketing": "—" }
+            {
+              "label": "Support included",
+              "essencial": "1 month",
+              "managed": "Continuous priority",
+              "marketing": "—"
+            },
+            {
+              "label": "Monthly analysis meeting",
+              "essencial": "—",
+              "managed": "✓",
+              "marketing": "—"
+            },
+            {
+              "label": "Monthly reports",
+              "essencial": "—",
+              "managed": "✓",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Managed Automations",
           "rows": [
-            { "label": "Standard automation included (2,500 ops/month)", "essencial": "—", "managed": "1 included", "marketing": "—" },
-            { "label": "Additional standard (Sheets, Calendar, Reviews, Follow-ups…)", "essencial": "—", "managed": "+€15/month each", "marketing": "—" },
-            { "label": "AI qualification chatbot (up to 1,000 conv/month)", "essencial": "—", "managed": "+€30/month", "marketing": "—" },
-            { "label": "Additional operations beyond 2,500/month", "essencial": "—", "managed": "€15/month", "marketing": "—" }
+            {
+              "label": "Standard automation included (2,500 ops/month)",
+              "essencial": "—",
+              "managed": "1 included",
+              "marketing": "—"
+            },
+            {
+              "label": "Additional standard (Sheets, Calendar, Reviews, Follow-ups…)",
+              "essencial": "—",
+              "managed": "+€15/month each",
+              "marketing": "—"
+            },
+            {
+              "label": "AI qualification chatbot (up to 1,000 conv/month)",
+              "essencial": "—",
+              "managed": "+€30/month",
+              "marketing": "—"
+            },
+            {
+              "label": "Additional operations beyond 2,500/month",
+              "essencial": "—",
+              "managed": "€15/month",
+              "marketing": "—"
+            }
           ]
         },
         {
           "name": "Organic Marketing",
           "rows": [
-            { "label": "Social networks managed", "essencial": "—", "managed": "—", "marketing": "2 included" },
-            { "label": "AI content calendar", "essencial": "—", "managed": "—", "marketing": "✓" },
-            { "label": "Organic content production", "essencial": "—", "managed": "—", "marketing": "✓" },
-            { "label": "Automatic scheduled publishing", "essencial": "—", "managed": "—", "marketing": "✓" },
-            { "label": "Paid campaign management (client pays Ads)", "essencial": "—", "managed": "—", "marketing": "+€30–50/month" },
-            { "label": "Additional social network", "essencial": "—", "managed": "—", "marketing": "+€50/month" }
+            {
+              "label": "Social networks managed",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "2 included"
+            },
+            {
+              "label": "AI content calendar",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "✓"
+            },
+            {
+              "label": "Organic content production",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "✓"
+            },
+            {
+              "label": "Automatic scheduled publishing",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "✓"
+            },
+            {
+              "label": "Paid campaign management (client pays Ads)",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "+€30–50/month"
+            },
+            {
+              "label": "Additional social network",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "+€50/month"
+            }
           ]
         },
         {
           "name": "Infrastructure",
           "rows": [
-            { "label": "Domain", "essencial": "Included year 1*", "managed": "Included year 1*", "marketing": "—" },
-            { "label": "Hosting", "essencial": "Included year 1**", "managed": "Included year 1**", "marketing": "—" }
+            {
+              "label": "Domain",
+              "essencial": "Included year 1*",
+              "managed": "Included year 1*",
+              "marketing": "—"
+            },
+            {
+              "label": "Hosting",
+              "essencial": "Included year 1**",
+              "managed": "Included year 1**",
+              "marketing": "—"
+            }
           ]
         }
       ],
@@ -283,21 +408,40 @@
       "headline": "From an outdated website to the best traffic month ever",
       "narrative": "Arcadas do Fado was already attracting customers through Google Business Profile — mainly foreigners discovering the restaurant through local searches. But the old website wasn't up to scratch: dated visuals, poor UX and no SEO work. With the new site and an optimised GBP, the first month saw the highest traffic ever — almost double the average of previous months.",
       "stats": [
-        { "value": "2×", "label": "Visits in month 1 vs. previous average" },
-        { "value": "< 3 wks", "label": "From diagnosis to launch" },
-        { "value": "SEO + GBP", "label": "Optimised simultaneously" }
+        {
+          "value": "2×",
+          "label": "Visits in month 1 vs. previous average"
+        },
+        {
+          "value": "< 3 wks",
+          "label": "From diagnosis to launch"
+        },
+        {
+          "value": "SEO + GBP",
+          "label": "Optimised simultaneously"
+        }
       ],
       "quote": "Re-Evolution transformed the way we handle reservations. The website turned out exactly as we wanted and in less than three weeks it was live. We now have an automatic process that saves us hours every week.",
       "author": "Arcadas do Fado",
-      "tags": ["Restaurant", "Automations", "Website", "SEO", "GBP"],
+      "tags": [
+        "Restaurant",
+        "Automations",
+        "Website",
+        "SEO",
+        "GBP"
+      ],
       "tabBefore": "⬅ Before",
       "tabAfter": "After ✨",
       "visitLabel": "Visit site",
       "browserHint": "Click the tabs to compare the old and new website"
     },
     "placeholders": [
-      { "label": "Coming soon — next success story" },
-      { "label": "Coming soon — next success story" }
+      {
+        "label": "Coming soon — next success story"
+      },
+      {
+        "label": "Coming soon — next success story"
+      }
     ]
   },
   "blog": {
@@ -324,7 +468,14 @@
     ],
     "hero": {
       "title": "Blog",
-      "subtitle": "Practical tips on digital presence for your business"
+      "subtitle": "Practical tips on digital presence for your business",
+      "headline1": "Digital Presence",
+      "headline2": "for your business.",
+      "tags": [
+        "Local SEO",
+        "Google Maps",
+        "Automations"
+      ]
     },
     "card": {
       "readMore": "Read more →",

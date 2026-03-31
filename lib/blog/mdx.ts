@@ -10,8 +10,16 @@ function calculateReadingTime(content: string): number {
   return Math.ceil(words / 200)
 }
 
+function getMdxPath(slug: string, locale?: string): string {
+  if (locale && locale !== 'pt') {
+    const localePath = path.join(BLOG_DIR, slug, `${locale}.mdx`)
+    if (fs.existsSync(localePath)) return localePath
+  }
+  return path.join(BLOG_DIR, slug, 'index.mdx')
+}
+
 // Retorna todos os posts publicados, ordenados por data DESC
-export function getAllPosts(_locale?: string): BlogMeta[] {
+export function getAllPosts(locale?: string): BlogMeta[] {
   if (!fs.existsSync(BLOG_DIR)) return []
 
   const slugs = fs.readdirSync(BLOG_DIR).filter((name) => {
@@ -21,7 +29,7 @@ export function getAllPosts(_locale?: string): BlogMeta[] {
 
   const posts = slugs
     .map((slug) => {
-      const filePath = path.join(BLOG_DIR, slug, 'index.mdx')
+      const filePath = getMdxPath(slug, locale)
       const fileContent = fs.readFileSync(filePath, 'utf-8')
       const { data, content } = matter(fileContent)
 
@@ -44,8 +52,8 @@ export function getAllPosts(_locale?: string): BlogMeta[] {
 }
 
 // Retorna um post completo com conteúdo MDX
-export function getPostBySlug(slug: string): BlogPost {
-  const filePath = path.join(BLOG_DIR, slug, 'index.mdx')
+export function getPostBySlug(slug: string, locale?: string): BlogPost {
+  const filePath = getMdxPath(slug, locale)
   const fileContent = fs.readFileSync(filePath, 'utf-8')
   const { data, content } = matter(fileContent)
 

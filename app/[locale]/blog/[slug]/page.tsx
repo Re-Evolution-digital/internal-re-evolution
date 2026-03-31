@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
 import ReadingProgress from '@/components/blog/ReadingProgress'
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   let post
   try {
-    post = getPostBySlug(slug)
+    post = getPostBySlug(slug, locale)
   } catch {
     return {}
   }
@@ -63,10 +64,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params
+  const t = await getTranslations({ locale, namespace: 'blog' })
 
   let post
   try {
-    post = getPostBySlug(slug)
+    post = getPostBySlug(slug, locale)
   } catch {
     notFound()
   }
@@ -179,13 +181,13 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="max-w-[720px] mx-auto px-4 sm:px-6 mb-12">
           <div className="rounded-2xl bg-brand-dark px-8 py-8 text-center">
             <p className="text-white font-semibold text-lg mb-4">
-              Precisas de ajuda com a presença digital do teu negócio?
+              {t('cta.title')}
             </p>
             <Link
-              href="/#contacto"
+              href={`/${locale}#contacto`}
               className="inline-block bg-brand-yellow text-brand-dark font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
             >
-              Fala Connosco
+              {t('cta.button')}
             </Link>
           </div>
         </div>
