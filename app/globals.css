@@ -117,6 +117,12 @@
 
 /* ── End blog body typography ── */
 
+/* ── Blog content protection ── */
+.blog-body {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 @layer utilities {
   .text-brand-yellow {
     color: var(--color-brand-yellow);

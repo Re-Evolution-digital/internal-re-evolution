@@ -501,6 +501,23 @@
     },
     "readingProgress": {
       "ariaLabel": "Progreso de lectura del artículo"
+    },
+    "subscribe": {
+      "title": "Recibe los próximos artículos primero",
+      "subtitle": "Consejos prácticos sobre SEO local, automatizaciones y presencia digital — directamente en tu email.",
+      "placeholder": "Tu email",
+      "button": "Suscribirse",
+      "success": "¡Suscrito! Nos vemos en el próximo artículo.",
+      "error": "Algo salió mal. Inténtalo de nuevo.",
+      "privacy": "Sin spam. Solo contenido útil. Cancela cuando quieras."
+    },
+    "pdfRequest": {
+      "title": "Recibe este artículo en PDF",
+      "subtitle": "Introduce tu email y te enviamos el artículo completo para leerlo con calma.",
+      "placeholder": "Tu email",
+      "button": "Enviar PDF",
+      "success": "¡Solicitud recibida! Te enviaremos el PDF en breve.",
+      "error": "Algo salió mal. Inténtalo de nuevo."
     }
   },
   "diagnostic": {

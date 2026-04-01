@@ -48,6 +48,43 @@ export function telegramChatbotLead(data: {
   ].join('\n')
 }
 
+export function telegramBlogSubscribe(data: {
+  email: string
+  language: string
+  timestamp: string
+}): string {
+  return [
+    '📰 *Novo Subscritor — Blog Re-Evolution*',
+    '─────────────────────',
+    `📧 *Email:* ${data.email}`,
+    `🌐 *Idioma:* ${data.language.toUpperCase()}`,
+    `📋 *Conteúdo:* Todas as publicações`,
+    '─────────────────────',
+    `📅 ${data.timestamp}`,
+    `🌐 Fonte: blog-subscrição`,
+  ].join('\n')
+}
+
+export function telegramBlogPdfRequest(data: {
+  email: string
+  language: string
+  articleTitle: string
+  articleSlug: string
+  timestamp: string
+}): string {
+  return [
+    '📄 *Pedido de PDF — Blog Re-Evolution*',
+    '─────────────────────',
+    `📧 *Email:* ${data.email}`,
+    `🌐 *Idioma:* ${data.language.toUpperCase()}`,
+    `📰 *Artigo:* ${data.articleTitle}`,
+    `🔗 *Slug:* ${data.articleSlug}`,
+    '─────────────────────',
+    `📅 ${data.timestamp}`,
+    `🌐 Fonte: blog-pdf`,
+  ].join('\n')
+}
+
 export function telegramDiagnosticoLead(data: {
   name: string
   email: string

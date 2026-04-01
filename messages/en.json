@@ -501,6 +501,23 @@
     },
     "readingProgress": {
       "ariaLabel": "Article reading progress"
+    },
+    "subscribe": {
+      "title": "Get the next articles first",
+      "subtitle": "Practical tips on local SEO, automations and digital presence — straight to your email.",
+      "placeholder": "Your email",
+      "button": "Subscribe",
+      "success": "Subscribed! See you in the next article.",
+      "error": "Something went wrong. Please try again.",
+      "privacy": "No spam. Only useful content. Unsubscribe anytime."
+    },
+    "pdfRequest": {
+      "title": "Receive this article as a PDF",
+      "subtitle": "Enter your email and we'll send you the full article to read at your own pace.",
+      "placeholder": "Your email",
+      "button": "Send PDF",
+      "success": "Request received! We'll send the PDF shortly.",
+      "error": "Something went wrong. Please try again."
     }
   },
   "diagnostic": {

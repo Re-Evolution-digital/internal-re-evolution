@@ -63,7 +63,7 @@ interface BlogBodyProps {
 
 export default function BlogBody({ content }: BlogBodyProps) {
   return (
-    <div className="max-w-[720px] mx-auto px-4 sm:px-6 pb-12 blog-body">
+    <div className="max-w-[720px] mx-auto px-4 sm:px-6 pb-6 blog-body">
       <MDXRemote
         source={content}
         options={{
@@ -77,6 +77,11 @@ export default function BlogBody({ content }: BlogBodyProps) {
         }}
         components={components}
       />
+      {/* Copyright notice */}
+      <p className="mt-8 pt-4 border-t border-gray-100 text-xs text-gray-400 select-none">
+        © {new Date().getFullYear()} Re-Evolution. Conteúdo protegido por direitos de autor.
+        Para receber este artigo em PDF, usa a opção abaixo.
+      </p>
     </div>
   )
 }

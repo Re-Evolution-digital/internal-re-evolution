@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import BlogSubscribe from '@/components/blog/BlogSubscribe'
 
 // TODO: ligar a CMS (Contentful/Sanity) em fase 2
 
@@ -107,6 +108,11 @@ export default function Blog() {
               </motion.article>
             )
           })}
+        </div>
+
+        {/* Newsletter subscribe strip */}
+        <div className="mt-12 -mx-4 sm:-mx-6 lg:-mx-8">
+          <BlogSubscribe locale={locale} />
         </div>
       </div>
     </section>

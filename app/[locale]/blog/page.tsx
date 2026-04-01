@@ -5,6 +5,7 @@ import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
 import BlogHero from '@/components/blog/BlogHero'
 import BlogGrid from '@/components/blog/BlogGrid'
+import BlogSubscribe from '@/components/blog/BlogSubscribe'
 import { getAllPosts } from '@/lib/blog/mdx'
 import { routing } from '@/i18n/routing'
 
@@ -101,6 +102,9 @@ export default async function BlogListPage({ params }: Props) {
           )}
         </div>
       </main>
+
+      {/* Newsletter subscribe — rodapé do blog, antes do Footer */}
+      <BlogSubscribe locale={locale} />
 
       <Footer />
     </>

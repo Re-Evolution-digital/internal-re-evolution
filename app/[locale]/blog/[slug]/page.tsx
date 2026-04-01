@@ -7,6 +7,8 @@ import Footer from '@/components/sections/Footer'
 import ReadingProgress from '@/components/blog/ReadingProgress'
 import BlogHeader from '@/components/blog/BlogHeader'
 import BlogBody from '@/components/blog/BlogBody'
+import BlogPdfRequest from '@/components/blog/BlogPdfRequest'
+import BlogSubscribe from '@/components/blog/BlogSubscribe'
 import BlogNavigation from '@/components/blog/BlogNavigation'
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/blog/mdx'
 import { routing } from '@/i18n/routing'
@@ -177,7 +179,10 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Post body: MDX content */}
         <BlogBody content={post.content} />
 
-        {/* CTA */}
+        {/* PDF request — receber este artigo por email */}
+        <BlogPdfRequest locale={locale} articleSlug={post.slug} articleTitle={post.title} />
+
+        {/* CTA principal */}
         <div className="max-w-[720px] mx-auto px-4 sm:px-6 mb-12">
           <div className="rounded-2xl bg-brand-dark px-8 py-8 text-center">
             <p className="text-white font-semibold text-lg mb-4">
@@ -197,6 +202,9 @@ export default async function BlogPostPage({ params }: Props) {
       </main>
 
       </div>{/* end pt-20 md:pt-24 header offset */}
+
+      {/* Newsletter subscribe — rodapé do artigo */}
+      <BlogSubscribe locale={locale} />
 
       <Footer />
     </>
