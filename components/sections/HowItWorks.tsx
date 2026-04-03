@@ -41,7 +41,7 @@ export default function HowItWorks() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-14"
+          className="text-center mb-14 mt-6 sm:mt-0"
         >
           <h2 id="how-title" className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-2">
             {t('title')}

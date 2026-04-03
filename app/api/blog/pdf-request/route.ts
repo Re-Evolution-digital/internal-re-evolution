@@ -2,7 +2,8 @@ import { z } from 'zod'
 import { rateLimit } from '@/lib/rate-limit'
 import { appendToSheet } from '@/lib/google-sheets'
 import { sendTelegram, telegramBlogPdfRequest } from '@/lib/telegram'
-import { formatPTDate } from '@/lib/email'
+import { formatPTDate, sendEmail, buildBlogPdfRequestEmail } from '@/lib/email'
+import { generateUnsubscribeUrl } from '@/lib/unsubscribe'
 
 const schema = z.object({
   email: z.string().email().max(200),
@@ -48,6 +49,19 @@ export async function POST(req: Request) {
 
   // Telegram
   await sendTelegram(telegramBlogPdfRequest({ email, language, articleTitle, articleSlug, timestamp }))
+
+  // Email de confirmação ao utilizador
+  const unsubscribeUrl = await generateUnsubscribeUrl(email, language)
+  const subjectMap: Record<string, string> = {
+    pt: `PDF solicitado — ${articleTitle}`,
+    en: `PDF requested — ${articleTitle}`,
+    es: `PDF solicitado — ${articleTitle}`,
+  }
+  await sendEmail({
+    to: email,
+    subject: subjectMap[language] ?? subjectMap.en,
+    html: buildBlogPdfRequestEmail({ email, language, articleTitle, unsubscribeUrl }),
+  })
 
   return Response.json({ ok: true })
 }

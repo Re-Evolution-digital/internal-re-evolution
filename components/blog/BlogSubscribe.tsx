@@ -12,7 +12,7 @@ interface BlogSubscribeProps {
 export default function BlogSubscribe({ locale, variant = 'banner' }: BlogSubscribeProps) {
   const t = useTranslations('blog.subscribe')
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'already' | 'error'>('idle')
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -25,7 +25,9 @@ export default function BlogSubscribe({ locale, variant = 'banner' }: BlogSubscr
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, language: locale }),
       })
-      setStatus(res.ok ? 'success' : 'error')
+      if (!res.ok) { setStatus('error'); return }
+      const data = await res.json() as { ok?: boolean; already?: boolean }
+      setStatus(data.already ? 'already' : 'success')
     } catch {
       setStatus('error')
     }
@@ -51,6 +53,10 @@ export default function BlogSubscribe({ locale, variant = 'banner' }: BlogSubscr
         {status === 'success' ? (
           <p className="text-brand-yellow font-semibold text-sm py-3">
             ✓ {t('success')}
+          </p>
+        ) : status === 'already' ? (
+          <p className="text-[#8da4c8] font-semibold text-sm py-3">
+            ℹ️ {t('already')}
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
