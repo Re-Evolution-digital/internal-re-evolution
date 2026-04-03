@@ -85,6 +85,44 @@ export function telegramBlogPdfRequest(data: {
   ].join('\n')
 }
 
+export function telegramBlogUnsubscribe(data: {
+  email: string
+  timestamp: string
+}): string {
+  return [
+    '🚫 *Cancelamento de Subscrição — Blog Re-Evolution*',
+    '─────────────────────',
+    `📧 *Email:* ${data.email}`,
+    '─────────────────────',
+    `📅 ${data.timestamp}`,
+    `🌐 Fonte: blog-unsubscribe`,
+  ].join('\n')
+}
+
+export function telegramBookingLead(data: {
+  name: string
+  email: string
+  phone: string
+  language: string
+  business_type: string
+  slot_label: string
+  timestamp: string
+}): string {
+  return [
+    '📅 *Novo Agendamento — Site Re-Evolution*',
+    '─────────────────────',
+    `🗓 *Reunião:* ${data.slot_label}`,
+    `👤 *Nome:* ${data.name}`,
+    `📧 *Email:* ${data.email}`,
+    `📞 *Telefone:* ${data.phone}`,
+    `🌐 *Idioma:* ${data.language.toUpperCase()}`,
+    `🏢 *Negócio:* ${data.business_type}`,
+    '─────────────────────',
+    `📅 ${data.timestamp}`,
+    `🌐 Fonte: agendamento-site`,
+  ].join('\n')
+}
+
 export function telegramDiagnosticoLead(data: {
   name: string
   email: string

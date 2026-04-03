@@ -508,6 +508,7 @@
       "placeholder": "Your email",
       "button": "Subscribe",
       "success": "Subscribed! See you in the next article.",
+      "already": "This email is already subscribed. We've sent you a reminder.",
       "error": "Something went wrong. Please try again.",
       "privacy": "No spam. Only useful content. Unsubscribe anytime."
     },
@@ -522,8 +523,30 @@
   },
   "diagnostic": {
     "title": "Ready to transform your business?",
-    "subtitle": "The diagnosis is free, no commitment and takes 2 minutes.",
+    "subtitle": "Free diagnosis · No commitment · Response within 24h",
     "yellowStripe": "Free Diagnosis · No Commitment",
+    "optionCalendar": {
+      "badge": "Schedule a Meeting",
+      "description": "Pick a day and time — we'll call you"
+    },
+    "optionContact": {
+      "badge": "Quick Contact",
+      "description": "Leave your details — we'll be in touch soon"
+    },
+    "calendar": {
+      "loading": "Checking availability...",
+      "error": "Could not load available slots. Please use the contact form.",
+      "noAvailability": "No availability in the coming days. Please use the contact form.",
+      "noSlots": "No availability on this day.",
+      "selectDate": "Choose a date",
+      "selectTime": "Choose a time",
+      "book": "Confirm booking",
+      "booking": "Booking...",
+      "selectSlotHint": "Select a time slot above",
+      "selectSlotError": "Please select a time slot before confirming.",
+      "success": "Meeting booked!",
+      "successSub": "We've sent a confirmation to your email. We'll call you at the scheduled time."
+    },
     "form": {
       "name": "Full name",
       "namePlaceholder": "Your name",
@@ -537,7 +560,7 @@
       "mainProblemPlaceholder": "Briefly describe what you want to improve in your business...",
       "gdpr": "I agree with the",
       "gdprLink": "Privacy Policy",
-      "submit": "Get my free diagnosis",
+      "submit": "Contact me",
       "success": "Thank you! We'll be in touch shortly.",
       "successSub": "Check your email for confirmation.",
       "serverError": "Error sending. Please try again.",

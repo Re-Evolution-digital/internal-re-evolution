@@ -60,7 +60,12 @@ function formatPTDate(date: Date): string {
 
 // ─── Estrutura base do email (header + footer partilhados) ───────────────────
 
-function emailWrapper(bodyContent: string): string {
+function emailWrapper(bodyContent: string, unsubscribeUrl?: string): string {
+  const unsubscribeFooter = unsubscribeUrl
+    ? `<p style="margin:8px 0 0;font-size:10px;color:#ffffff22;">
+          <a href="${unsubscribeUrl}" style="color:#ffffff33;text-decoration:underline;">Cancelar subscrição</a>
+        </p>`
+    : ''
   return `<!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -123,6 +128,7 @@ function emailWrapper(bodyContent: string): string {
             Este é um endereço de envio automático — não monitorizado e sem caixa de entrada.<br/>
             Não responda a este email. Para nos contactar: <a href="mailto:geral@re-evolution.pt" style="color:#ffffff44;text-decoration:underline;">geral@re-evolution.pt</a> · <a href="tel:+351969063633" style="color:#ffffff44;text-decoration:underline;">+351 969 063 633</a>
           </p>
+          ${unsubscribeFooter}
         </td>
       </tr>
 
@@ -165,7 +171,7 @@ const CLIENT_COPY: Record<Lang, {
     nextStepsTitle: 'O que acontece a seguir',
     steps: [
       'A nossa equipa analisa o seu pedido e prepara uma abordagem personalizada.',
-      'Entramos em contacto por email ou telefone para agendar uma conversa sem compromisso.',
+      'Entraremos em contacto por email ou telefone para agendar uma conversa sem compromisso.',
       'Em 1 a 3 semanas, o seu projeto está online e a trabalhar para o seu negócio.',
     ],
     cta: 'Visitar o nosso site →',
@@ -233,6 +239,251 @@ export function buildClientEmailHtml(params: {
       </td></tr>`
 
   return emailWrapper(body)
+}
+
+// ─── Template: Email para SUBSCRITORES do Blog ───────────────────────────────
+
+const SUBSCRIBE_COPY: Record<Lang, {
+  greeting: string
+  intro: string
+  whatToExpect: string
+  items: [string, string, string]
+  cta: string
+  ctaUrl: string
+}> = {
+  pt: {
+    greeting: 'Obrigado pela subscrição! 🎉',
+    intro: 'Estás agora na lista de novidades da <strong>Re-Evolution</strong>. Sempre que publicarmos conteúdo novo, recebes primeiro.',
+    whatToExpect: 'O que podes esperar',
+    items: [
+      'Artigos práticos sobre SEO local, Google Business Profile e automações.',
+      'Exemplos reais de empresas portuguesas que melhoraram a sua presença digital.',
+      'Dicas rápidas que podes aplicar no teu negócio hoje mesmo.',
+    ],
+    cta: 'Ver os artigos do Blog →',
+    ctaUrl: 'https://re-evolution.pt/pt/blog',
+  },
+  en: {
+    greeting: 'Thanks for subscribing! 🎉',
+    intro: 'You\'re now on the <strong>Re-Evolution</strong> newsletter list. Whenever we publish new content, you\'ll be the first to know.',
+    whatToExpect: 'What to expect',
+    items: [
+      'Practical articles on local SEO, Google Business Profile, and automations.',
+      'Real examples from Portuguese businesses that improved their digital presence.',
+      'Quick tips you can apply to your business today.',
+    ],
+    cta: 'Read the Blog →',
+    ctaUrl: 'https://re-evolution.pt/en/blog',
+  },
+  es: {
+    greeting: '¡Gracias por suscribirte! 🎉',
+    intro: 'Ya estás en la lista de novedades de <strong>Re-Evolution</strong>. Cada vez que publiquemos contenido nuevo, serás el primero en saberlo.',
+    whatToExpect: 'Qué puedes esperar',
+    items: [
+      'Artículos prácticos sobre SEO local, Google Business Profile y automatizaciones.',
+      'Ejemplos reales de empresas portuguesas que mejoraron su presencia digital.',
+      'Consejos rápidos que puedes aplicar en tu negocio hoy mismo.',
+    ],
+    cta: 'Leer el Blog →',
+    ctaUrl: 'https://re-evolution.pt/es/blog',
+  },
+}
+
+export function buildBlogSubscribeEmail(params: {
+  email: string
+  language?: string
+  unsubscribeUrl?: string
+}): string {
+  const { language = 'en', unsubscribeUrl } = params
+  const lang = clientLang(language)
+  const copy = SUBSCRIBE_COPY[lang]
+
+  const body = `
+      <tr><td style="padding:36px 40px 28px;">
+        <p style="margin:0 0 6px;font-size:22px;font-weight:700;color:#011b54;">${copy.greeting}</p>
+        <p style="margin:0 0 28px;font-size:15px;color:#4a5568;line-height:1.7;">${copy.intro}</p>
+
+        <p style="margin:0 0 14px;font-size:14px;font-weight:700;color:#011b54;text-transform:uppercase;letter-spacing:0.8px;">${copy.whatToExpect}</p>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+          ${copy.items.map((item) => `
+          <tr>
+            <td style="vertical-align:top;padding:0 14px 14px 0;width:32px;">
+              <div style="width:28px;height:28px;background:#ffc700;border-radius:50%;text-align:center;line-height:28px;font-size:16px;">📝</div>
+            </td>
+            <td style="padding-bottom:14px;font-size:14px;color:#4a5568;line-height:1.6;vertical-align:top;padding-top:4px;">${item}</td>
+          </tr>`).join('')}
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr><td align="center">
+            <a href="${copy.ctaUrl}" style="display:inline-block;background:#ffc700;color:#011b54;font-size:14px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:12px;">
+              ${copy.cta}
+            </a>
+          </td></tr>
+        </table>
+      </td></tr>`
+
+  return emailWrapper(body, unsubscribeUrl)
+}
+
+// ─── Template: Email para SUBSCRITOR JÁ EXISTENTE ────────────────────────────
+
+const ALREADY_SUBSCRIBED_COPY: Record<Lang, {
+  greeting: string
+  message: string
+  note: string
+  cta: string
+  ctaUrl: string
+}> = {
+  pt: {
+    greeting: 'Já estás connosco! 🙌',
+    message: 'O endereço <strong>{{email}}</strong> já se encontra subscrito nas novidades da <strong>Re-Evolution</strong>. Não fizemos qualquer alteração.',
+    note: 'Continuarás a receber os nossos artigos, dicas e novidades assim que os publicarmos.',
+    cta: 'Ver os artigos do Blog →',
+    ctaUrl: 'https://re-evolution.pt/pt/blog',
+  },
+  en: {
+    greeting: 'You\'re already with us! 🙌',
+    message: 'The address <strong>{{email}}</strong> is already subscribed to <strong>Re-Evolution</strong> updates. No changes were made.',
+    note: 'You\'ll keep receiving our articles, tips, and news as soon as we publish them.',
+    cta: 'Read the Blog →',
+    ctaUrl: 'https://re-evolution.pt/en/blog',
+  },
+  es: {
+    greeting: '¡Ya estás con nosotros! 🙌',
+    message: 'La dirección <strong>{{email}}</strong> ya está suscrita a las novedades de <strong>Re-Evolution</strong>. No se realizó ningún cambio.',
+    note: 'Seguirás recibiendo nuestros artículos, consejos y novedades en cuanto los publiquemos.',
+    cta: 'Leer el Blog →',
+    ctaUrl: 'https://re-evolution.pt/es/blog',
+  },
+}
+
+export function buildBlogAlreadySubscribedEmail(params: {
+  email: string
+  language?: string
+  unsubscribeUrl?: string
+}): string {
+  const { email, language = 'en', unsubscribeUrl } = params
+  const lang = clientLang(language)
+  const copy = ALREADY_SUBSCRIBED_COPY[lang]
+
+  const body = `
+      <tr><td style="padding:36px 40px 28px;">
+        <p style="margin:0 0 6px;font-size:22px;font-weight:700;color:#011b54;">${copy.greeting}</p>
+        <p style="margin:0 0 20px;font-size:15px;color:#4a5568;line-height:1.7;">${copy.message.replace('{{email}}', email)}</p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+          <tr>
+            <td style="background:#f0f4ff;border-left:4px solid #011b54;border-radius:0 8px 8px 0;padding:14px 20px;font-size:14px;color:#4a5568;line-height:1.6;">
+              ${copy.note}
+            </td>
+          </tr>
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr><td align="center">
+            <a href="${copy.ctaUrl}" style="display:inline-block;background:#ffc700;color:#011b54;font-size:14px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:12px;">
+              ${copy.cta}
+            </a>
+          </td></tr>
+        </table>
+      </td></tr>`
+
+  return emailWrapper(body, unsubscribeUrl)
+}
+
+// ─── Template: Email para PEDIDOS de PDF do Blog ──────────────────────────────
+
+const PDF_REQUEST_COPY: Record<Lang, {
+  greeting: string
+  intro: (title: string) => string
+  articleLabel: string
+  whatNext: string
+  steps: [string, string]
+  cta: string
+  ctaUrl: string
+}> = {
+  pt: {
+    greeting: 'Pedido recebido! 📄',
+    intro: (title) => `Recebemos o teu pedido do artigo <strong>"${title}"</strong> em PDF. Enviaremos para este endereço de email <strong>em breve</strong>.`,
+    articleLabel: 'Artigo pedido',
+    whatNext: 'O que acontece a seguir',
+    steps: [
+      'A nossa equipa prepara e envia o PDF para o teu email (normalmente dentro de 24 horas).',
+      'Enquanto isso, podes ler outros artigos do nosso Blog.',
+    ],
+    cta: 'Ver mais artigos →',
+    ctaUrl: 'https://re-evolution.pt/pt/blog',
+  },
+  en: {
+    greeting: 'Request received! 📄',
+    intro: (title) => `We received your request for the article <strong>"${title}"</strong> in PDF format. We\'ll send it to this email address <strong>shortly</strong>.`,
+    articleLabel: 'Requested article',
+    whatNext: 'What happens next',
+    steps: [
+      'Our team prepares and sends the PDF to your email (usually within 24 hours).',
+      'In the meantime, you can read more articles on our Blog.',
+    ],
+    cta: 'Read more articles →',
+    ctaUrl: 'https://re-evolution.pt/en/blog',
+  },
+  es: {
+    greeting: '¡Solicitud recibida! 📄',
+    intro: (title) => `Hemos recibido tu solicitud del artículo <strong>"${title}"</strong> en PDF. Te lo enviaremos a este correo electrónico <strong>en breve</strong>.`,
+    articleLabel: 'Artículo solicitado',
+    whatNext: 'Qué ocurre a continuación',
+    steps: [
+      'Nuestro equipo prepara y envía el PDF a tu correo (normalmente en 24 horas).',
+      'Mientras tanto, puedes leer más artículos en nuestro Blog.',
+    ],
+    cta: 'Leer más artículos →',
+    ctaUrl: 'https://re-evolution.pt/es/blog',
+  },
+}
+
+export function buildBlogPdfRequestEmail(params: {
+  email: string
+  language?: string
+  articleTitle: string
+  unsubscribeUrl?: string
+}): string {
+  const { language = 'en', articleTitle, unsubscribeUrl } = params
+  const lang = clientLang(language)
+  const copy = PDF_REQUEST_COPY[lang]
+
+  const body = `
+      <tr><td style="padding:36px 40px 28px;">
+        <p style="margin:0 0 6px;font-size:22px;font-weight:700;color:#011b54;">${copy.greeting}</p>
+        <p style="margin:0 0 24px;font-size:15px;color:#4a5568;line-height:1.7;">${copy.intro(articleTitle)}</p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8faff;border-radius:10px;border:1px solid #dde4f5;margin-bottom:28px;">
+          <tr><td style="padding:16px 24px;">
+            <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;">${copy.articleLabel}</p>
+            <p style="margin:0;font-size:15px;font-weight:700;color:#011b54;">${articleTitle}</p>
+          </td></tr>
+        </table>
+
+        <p style="margin:0 0 14px;font-size:14px;font-weight:700;color:#011b54;text-transform:uppercase;letter-spacing:0.8px;">${copy.whatNext}</p>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+          ${copy.steps.map((step, i) => `
+          <tr>
+            <td style="vertical-align:top;padding:0 14px 14px 0;width:32px;">
+              <div style="width:28px;height:28px;background:#ffc700;border-radius:50%;text-align:center;line-height:28px;font-size:13px;font-weight:700;color:#011b54;">${i + 1}</div>
+            </td>
+            <td style="padding-bottom:14px;font-size:14px;color:#4a5568;line-height:1.6;vertical-align:top;padding-top:4px;">${step}</td>
+          </tr>`).join('')}
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr><td align="center">
+            <a href="${copy.ctaUrl}" style="display:inline-block;background:#ffc700;color:#011b54;font-size:14px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:12px;">
+              ${copy.cta}
+            </a>
+          </td></tr>
+        </table>
+      </td></tr>`
+
+  return emailWrapper(body, unsubscribeUrl)
 }
 
 // ─── Template: Email INTERNO para a equipa Re-Evolution ──────────────────────
@@ -330,6 +581,172 @@ export function buildInternalDiagnosticoEmail(data: {
               ${dataRow('Telefone', data.phone)}
               ${dataRow('Tipo de Negócio', data.business_type)}
               ${dataRow('Problema / Necessidade', data.main_problem)}
+            </table>
+          </td></tr>
+        </table>
+      </td></tr>`
+
+  return emailWrapper(body)
+}
+
+// ─── Template: Confirmação de AGENDAMENTO para o cliente ─────────────────────
+
+// ── Helpers de calendário ─────────────────────────────────────────────────────
+
+/** Formata ISO UTC para "YYYYMMDDTHHmmssZ" (formato iCal/Google Calendar) */
+function toCalDate(iso: string): string {
+  return iso.replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+}
+
+/** Constrói URL para adicionar evento ao Google Calendar */
+function googleCalendarUrl(title: string, start: string, end: string, description: string): string {
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: title,
+    dates: `${toCalDate(start)}/${toCalDate(end)}`,
+    details: description,
+  })
+  return `https://calendar.google.com/calendar/render?${params.toString()}`
+}
+
+/** URL para o endpoint ICS (iCal / Outlook / Apple Calendar) */
+function icsUrl(title: string, start: string, end: string, description: string): string {
+  const base = 'https://re-evolution.pt/api/agenda/ics'
+  const params = new URLSearchParams({ title, start, end, desc: description })
+  return `${base}?${params.toString()}`
+}
+
+// ── Copy de agendamento ───────────────────────────────────────────────────────
+
+const BOOKING_CLIENT_COPY: Record<Lang, {
+  greeting: (name: string) => string
+  intro: (label: string) => string
+  reminder: string
+  addToCalLabel: string
+  addToOutlookLabel: string
+  cta: string
+}> = {
+  pt: {
+    greeting: (n) => `Olá, ${n}! 📅`,
+    intro: (label) => `A sua reunião com a <strong>Re-Evolution</strong> está confirmada para <strong>${label}</strong>. Iremos ligar-lhe à hora marcada.`,
+    reminder: 'Caso precise de reagendar, contacte-nos pelo email abaixo.',
+    addToCalLabel: 'Adicionar ao Google Calendar',
+    addToOutlookLabel: 'iCal / Outlook / Apple Calendar',
+    cta: 'Visitar o nosso site →',
+  },
+  en: {
+    greeting: (n) => `Hi, ${n}! 📅`,
+    intro: (label) => `Your meeting with <strong>Re-Evolution</strong> is confirmed for <strong>${label}</strong>. We will call you at the scheduled time.`,
+    reminder: 'If you need to reschedule, please contact us at the email below.',
+    addToCalLabel: 'Add to Google Calendar',
+    addToOutlookLabel: 'iCal / Outlook / Apple Calendar',
+    cta: 'Visit our website →',
+  },
+  es: {
+    greeting: (n) => `¡Hola, ${n}! 📅`,
+    intro: (label) => `Su reunión con <strong>Re-Evolution</strong> está confirmada para <strong>${label}</strong>. Le llamaremos a la hora acordada.`,
+    reminder: 'Si necesita reagendar, contáctenos en el email de abajo.',
+    addToCalLabel: 'Añadir a Google Calendar',
+    addToOutlookLabel: 'iCal / Outlook / Apple Calendar',
+    cta: 'Visitar nuestro sitio →',
+  },
+}
+
+export function buildBookingConfirmationEmail(params: {
+  name: string
+  slotLabel: string  // "Sex, 4 Abr às 09:00"
+  slotStart: string  // ISO UTC — para os links de calendário
+  slotEnd: string    // ISO UTC
+  language?: string
+}): string {
+  const { name, slotLabel, slotStart, slotEnd, language = 'pt' } = params
+  const lang = clientLang(language)
+  const copy = BOOKING_CLIENT_COPY[lang]
+  const firstName = name.split(' ')[0] ?? name
+
+  const eventTitle = 'Diagnóstico Re-Evolution'
+  const eventDesc = `Reunião confirmada para ${slotLabel}. A equipa Re-Evolution irá ligar-lhe à hora marcada.`
+  const gCalLink = googleCalendarUrl(eventTitle, slotStart, slotEnd, eventDesc)
+  const icsLink = icsUrl(eventTitle, slotStart, slotEnd, eventDesc)
+
+  const body = `
+      <tr><td style="padding:36px 40px 28px;">
+        <p style="margin:0 0 6px;font-size:22px;font-weight:700;color:#011b54;">${copy.greeting(firstName)}</p>
+        <p style="margin:0 0 28px;font-size:15px;color:#4a5568;line-height:1.7;">${copy.intro(slotLabel)}</p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8faff;border-radius:10px;border:1px solid #dde4f5;margin-bottom:24px;">
+          <tr><td style="padding:20px 24px;">
+            <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;">Reunião marcada</p>
+            <p style="margin:0;font-size:17px;font-weight:700;color:#011b54;">🗓 ${slotLabel}</p>
+          </td></tr>
+        </table>
+
+        <!-- Botões de calendário -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+          <tr>
+            <td style="padding-right:8px;" width="50%">
+              <a href="${gCalLink}" target="_blank"
+                style="display:block;background:#ffffff;border:2px solid #4285f4;border-radius:10px;padding:11px 12px;text-align:center;font-size:13px;font-weight:700;color:#4285f4;text-decoration:none;">
+                📅 ${copy.addToCalLabel}
+              </a>
+            </td>
+            <td style="padding-left:8px;" width="50%">
+              <a href="${icsLink}" target="_blank"
+                style="display:block;background:#ffffff;border:2px solid #6b7280;border-radius:10px;padding:11px 12px;text-align:center;font-size:13px;font-weight:700;color:#374151;text-decoration:none;">
+                📅 ${copy.addToOutlookLabel}
+              </a>
+            </td>
+          </tr>
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+          <tr>
+            <td style="background:#f0f4ff;border-left:4px solid #011b54;border-radius:0 8px 8px 0;padding:14px 20px;font-size:14px;color:#4a5568;line-height:1.6;">
+              ${copy.reminder}
+            </td>
+          </tr>
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr><td align="center">
+            <a href="https://re-evolution.pt" style="display:inline-block;background:#ffc700;color:#011b54;font-size:14px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:12px;">
+              ${copy.cta}
+            </a>
+          </td></tr>
+        </table>
+      </td></tr>`
+
+  return emailWrapper(body)
+}
+
+// ─── Template: Email INTERNO para agendamento ─────────────────────────────────
+
+export function buildInternalBookingEmail(data: {
+  name: string
+  email: string
+  phone: string
+  business_type: string
+  slot_label: string
+  slot_start: string
+  timestamp: string
+}): string {
+  const body = `
+      <tr>
+        <td style="background:#e8f5e9;border-left:4px solid #4caf50;padding:14px 20px 14px 24px;">
+          <p style="margin:0;font-size:13px;font-weight:700;color:#2e7d32;">📅 Novo Agendamento — via site</p>
+          <p style="margin:4px 0 0;font-size:12px;color:#388e3c;">${data.timestamp}</p>
+        </td>
+      </tr>
+      <tr><td style="padding:32px 40px 32px;">
+        <p style="margin:0 0 16px;font-size:13px;font-weight:700;color:#011b54;letter-spacing:0.8px;text-transform:uppercase;">Dados do Agendamento</p>
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8faff;border-radius:10px;border:1px solid #dde4f5;">
+          <tr><td style="padding:20px 24px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              ${dataRow('Reunião', `🗓 ${data.slot_label}`)}
+              ${dataRow('Nome', data.name)}
+              ${dataRow('Email', data.email)}
+              ${dataRow('Telefone', data.phone)}
+              ${dataRow('Tipo de Negócio', data.business_type)}
             </table>
           </td></tr>
         </table>

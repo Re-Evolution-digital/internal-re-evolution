@@ -98,7 +98,37 @@ async function getAccessToken(): Promise<string | null> {
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
-export type SheetName = 'Subscritores' | 'PDF Requests'
+export type SheetName = 'Subscritores' | 'PDF Requests' | 'Cancelados' | 'Agendamentos'
+
+/**
+ * Checks if an email already exists in column A of the given sheet.
+ * Returns false if credentials are missing or the request fails.
+ */
+export async function isEmailInSheet(
+  sheet: SheetName,
+  email: string
+): Promise<boolean> {
+  const spreadsheetId = process.env.GOOGLE_SHEETS_ID
+  if (!spreadsheetId) return false
+
+  const token = await getAccessToken()
+  if (!token) return false
+
+  const range = encodeURIComponent(`${sheet}!A:A`)
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}`
+
+  try {
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    if (!res.ok) return false
+    const data = await res.json() as { values?: string[][] }
+    const emails = (data.values ?? []).flat().map((v) => v.toLowerCase().trim())
+    return emails.includes(email.toLowerCase().trim())
+  } catch {
+    return false
+  }
+}
 
 /**
  * Appends a row to the specified sheet tab.

@@ -508,6 +508,7 @@
       "placeholder": "O teu email",
       "button": "Subscrever",
       "success": "Subscrito! Vemo-nos na próxima publicação.",
+      "already": "Este email já está subscrito. Enviámos-te um lembrete.",
       "error": "Algo correu mal. Tenta novamente.",
       "privacy": "Sem spam. Apenas conteúdo útil. Cancela quando quiseres."
     },
@@ -516,14 +517,36 @@
       "subtitle": "Insere o teu email e enviamos-te o artigo completo para leres com calma.",
       "placeholder": "O teu email",
       "button": "Enviar PDF",
-      "success": "Pedido registado! Enviamos o PDF em breve.",
+      "success": "Pedido registado! Enviaremos o PDF em breve.",
       "error": "Algo correu mal. Tenta novamente."
     }
   },
   "diagnostic": {
     "title": "Pronto para transformar o seu negócio?",
-    "subtitle": "O diagnóstico é gratuito, sem compromisso e demora 2 minutos.",
+    "subtitle": "Diagnóstico gratuito · Sem compromisso · Resposta em 24h",
     "yellowStripe": "Diagnóstico Gratuito · Sem Compromisso",
+    "optionCalendar": {
+      "badge": "Agendar Reunião",
+      "description": "Escolha dia e hora — ligamos nós"
+    },
+    "optionContact": {
+      "badge": "Contacto Rápido",
+      "description": "Deixe os dados — respondemos em breve"
+    },
+    "calendar": {
+      "loading": "A verificar disponibilidade...",
+      "error": "Não foi possível carregar os horários. Por favor utilize o formulário de contacto.",
+      "noAvailability": "Sem disponibilidade nos próximos dias. Por favor utilize o formulário de contacto.",
+      "noSlots": "Sem disponibilidade neste dia.",
+      "selectDate": "Escolha uma data",
+      "selectTime": "Escolha um horário",
+      "book": "Confirmar agendamento",
+      "booking": "A agendar...",
+      "selectSlotHint": "Selecione um horário acima",
+      "selectSlotError": "Selecione um horário antes de confirmar.",
+      "success": "Reunião marcada!",
+      "successSub": "Enviámos uma confirmação para o seu email. Ligaremos à hora marcada."
+    },
     "form": {
       "name": "Nome completo",
       "namePlaceholder": "O seu nome",
@@ -537,7 +560,7 @@
       "mainProblemPlaceholder": "Descreva brevemente o que quer melhorar no seu negócio...",
       "gdpr": "Concordo com a",
       "gdprLink": "Política de Privacidade",
-      "submit": "Quero o meu diagnóstico gratuito",
+      "submit": "Quero ser contactado",
       "success": "Obrigado! Entraremos em contacto brevemente.",
       "successSub": "Verifique o seu email para confirmação.",
       "serverError": "Erro ao enviar. Por favor tente novamente.",

@@ -508,6 +508,7 @@
       "placeholder": "Tu email",
       "button": "Suscribirse",
       "success": "¡Suscrito! Nos vemos en el próximo artículo.",
+      "already": "Este email ya está suscrito. Te hemos enviado un recordatorio.",
       "error": "Algo salió mal. Inténtalo de nuevo.",
       "privacy": "Sin spam. Solo contenido útil. Cancela cuando quieras."
     },
@@ -522,8 +523,30 @@
   },
   "diagnostic": {
     "title": "¿Listo para transformar su negocio?",
-    "subtitle": "El diagnóstico es gratuito, sin compromiso y tarda 2 minutos.",
+    "subtitle": "Diagnóstico gratuito · Sin compromiso · Respuesta en 24h",
     "yellowStripe": "Diagnóstico Gratuito · Sin Compromiso",
+    "optionCalendar": {
+      "badge": "Agendar Reunión",
+      "description": "Elija día y hora — le llamamos nosotros"
+    },
+    "optionContact": {
+      "badge": "Contacto Rápido",
+      "description": "Deje sus datos — le respondemos pronto"
+    },
+    "calendar": {
+      "loading": "Verificando disponibilidad...",
+      "error": "No se pudieron cargar los horarios. Por favor utilice el formulario de contacto.",
+      "noAvailability": "Sin disponibilidad en los próximos días. Por favor utilice el formulario de contacto.",
+      "noSlots": "Sin disponibilidad este día.",
+      "selectDate": "Elija una fecha",
+      "selectTime": "Elija un horario",
+      "book": "Confirmar reserva",
+      "booking": "Reservando...",
+      "selectSlotHint": "Seleccione un horario arriba",
+      "selectSlotError": "Seleccione un horario antes de confirmar.",
+      "success": "¡Reunión agendada!",
+      "successSub": "Le hemos enviado una confirmación por email. Le llamaremos a la hora acordada."
+    },
     "form": {
       "name": "Nombre completo",
       "namePlaceholder": "Su nombre",
@@ -537,7 +560,7 @@
       "mainProblemPlaceholder": "Describa brevemente lo que quiere mejorar en su negocio...",
       "gdpr": "Acepto la",
       "gdprLink": "Política de Privacidad",
-      "submit": "Quiero mi diagnóstico gratuito",
+      "submit": "Contactarme",
       "success": "¡Gracias! Nos pondremos en contacto pronto.",
       "successSub": "Revise su email para confirmación.",
       "serverError": "Error al enviar. Por favor inténtelo de nuevo.",
