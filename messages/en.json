@@ -538,6 +538,7 @@
       "error": "Could not load available slots. Please use the contact form.",
       "noAvailability": "No availability in the coming days. Please use the contact form.",
       "noSlots": "No availability on this day.",
+      "slotBusy": "Time slot already booked",
       "selectDate": "Choose a date",
       "selectTime": "Choose a time",
       "book": "Confirm booking",

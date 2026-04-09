@@ -187,9 +187,10 @@ function isWorkingDay(dateStr: string): boolean {
 // ── Geração de slots ──────────────────────────────────────────────────────────
 
 export interface TimeSlot {
-  time: string      // "09:00" — hora em Lisboa
-  isoStart: string  // ISO 8601 UTC
-  isoEnd: string    // ISO 8601 UTC
+  time: string       // "09:00" — hora em Lisboa
+  isoStart: string   // ISO 8601 UTC
+  isoEnd: string     // ISO 8601 UTC
+  available: boolean // false = slot ocupado no calendário
 }
 
 export interface DaySlots {
@@ -213,6 +214,7 @@ function generateAllSlots(dateStr: string): TimeSlot[] {
         time: label,
         isoStart: slotStart.toISOString(),
         isoEnd: slotEnd.toISOString(),
+        available: true, // redefinido em getAvailableSlots após consulta free/busy
       })
     }
   }
@@ -296,13 +298,11 @@ export async function getAvailableSlots(days = 14): Promise<DaySlots[]> {
   const result: DaySlots[] = []
   for (const dateStr of workingDays) {
     const allSlots = generateAllSlots(dateStr)
-    const available = allSlots.filter(
-      (s) =>
-        new Date(s.isoStart).getTime() > now && // não passou
-        !slotOverlapsBusy(s, busy)              // não está ocupado
-    )
-    if (available.length > 0) {
-      result.push({ date: dateStr, slots: available })
+    const slotsForDay = allSlots
+      .filter((s) => new Date(s.isoStart).getTime() > now) // remove slots já passados
+      .map((s) => ({ ...s, available: !slotOverlapsBusy(s, busy) })) // marca ocupados
+    if (slotsForDay.length > 0) {
+      result.push({ date: dateStr, slots: slotsForDay })
     }
   }
 

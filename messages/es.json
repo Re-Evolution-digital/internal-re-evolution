@@ -538,6 +538,7 @@
       "error": "No se pudieron cargar los horarios. Por favor utilice el formulario de contacto.",
       "noAvailability": "Sin disponibilidad en los próximos días. Por favor utilice el formulario de contacto.",
       "noSlots": "Sin disponibilidad este día.",
+      "slotBusy": "Horario ya reservado",
       "selectDate": "Elija una fecha",
       "selectTime": "Elija un horario",
       "book": "Confirmar reserva",

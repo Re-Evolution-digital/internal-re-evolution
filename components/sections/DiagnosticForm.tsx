@@ -19,6 +19,7 @@ interface TimeSlot {
   time: string
   isoStart: string
   isoEnd: string
+  available: boolean
 }
 interface DaySlots {
   date: string
@@ -194,6 +195,7 @@ export default function DiagnosticForm() {
 
   // ── Slots for selected date ───────────────────────────────────────────────
   const currentDaySlots = slotsData?.find((d) => d.date === selectedDate)?.slots ?? []
+  const hasAnyAvailable = slotsData?.some((d) => d.slots.some((s) => s.available)) ?? false
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
@@ -364,14 +366,14 @@ export default function DiagnosticForm() {
                     )}
 
                     {/* No slots at all */}
-                    {!slotsLoading && !slotsError && slotsData && slotsData.length === 0 && (
+                    {!slotsLoading && !slotsError && slotsData && (slotsData.length === 0 || !hasAnyAvailable) && (
                       <div className="text-center py-6 text-white/60 text-sm">
                         {tCal('noAvailability')}
                       </div>
                     )}
 
                     {/* Date + time pickers */}
-                    {!slotsLoading && !slotsError && slotsData && slotsData.length > 0 && (
+                    {!slotsLoading && !slotsError && slotsData && slotsData.length > 0 && hasAnyAvailable && (
                       <>
                         {/* Date row */}
                         <div>
@@ -410,9 +412,13 @@ export default function DiagnosticForm() {
                                   <button
                                     key={slot.isoStart}
                                     type="button"
-                                    onClick={() => setSelectedSlot(slot)}
+                                    disabled={!slot.available}
+                                    onClick={() => slot.available && setSelectedSlot(slot)}
+                                    title={!slot.available ? tCal('slotBusy') : undefined}
                                     className={`py-2 rounded-xl text-xs font-bold transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow ${
-                                      selectedSlot?.isoStart === slot.isoStart
+                                      !slot.available
+                                        ? 'bg-white/5 text-white/25 cursor-not-allowed line-through'
+                                        : selectedSlot?.isoStart === slot.isoStart
                                         ? 'bg-brand-yellow text-brand-dark ring-2 ring-brand-yellow'
                                         : 'bg-white/10 text-white/80 hover:bg-white/20'
                                     }`}

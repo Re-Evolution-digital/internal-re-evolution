@@ -9,8 +9,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
 import { anchorClick } from '@/lib/scroll'
 import { clientData } from '@/data/client-info'
-import { GalaxyBackground } from '@/components/ui/GalaxyBackground'
-
 const locales = [
   { code: 'pt', label: 'PT', flag: '/images/flags/pt.svg' },
   { code: 'en', label: 'EN', flag: '/images/flags/gb.svg' },
@@ -55,21 +53,33 @@ export default function Header() {
   ]
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        scrolled
-          ? 'bg-brand-dark/75 backdrop-blur-md shadow-lg'
-          : 'bg-gradient-to-b from-brand-dark/70 to-transparent backdrop-blur-sm'
-      }`}
-    >
-      {/* overflow-hidden apenas no canvas — não afeta dropdowns */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <GalaxyBackground
-          zoneRatio={1}
-          starCount={200}
-          className={`transition-opacity duration-700 ${scrolled ? 'opacity-100' : 'opacity-0'}`}
-        />
-      </div>
+    <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none">
+      <div
+        className={`pointer-events-auto transition-all duration-500 relative overflow-hidden ${
+          scrolled
+            ? 'mx-3 sm:mx-5 lg:mx-8 mt-3 rounded-2xl bg-brand-dark/90 backdrop-blur-md shadow-2xl border border-white/10'
+            : 'bg-gradient-to-b from-brand-dark/70 to-transparent backdrop-blur-sm'
+        }`}
+      >
+        {/* Iridescent shimmer — pure CSS animation, zero JS cost */}
+        {scrolled && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none rounded-2xl overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              className="absolute inset-0"
+              animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+              style={{
+                background: 'linear-gradient(110deg, transparent 5%, rgba(25,80,210,0.45) 25%, rgba(80,170,255,0.38) 50%, rgba(210,168,30,0.35) 72%, transparent 92%)',
+                backgroundSize: '260% 100%',
+              }}
+            />
+          </motion.div>
+        )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
@@ -228,6 +238,7 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </header>
   )
 }

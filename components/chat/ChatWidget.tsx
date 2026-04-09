@@ -20,9 +20,17 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [closed, setClosed] = useState(false)
+  const [greetingVisible, setGreetingVisible] = useState(true)
+  const [hovered, setHovered] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const leadNotifiedRef = useRef(false)
+
+  // Greeting: visible for 10 s on load, then only on hover
+  useEffect(() => {
+    const id = setTimeout(() => setGreetingVisible(false), 10000)
+    return () => clearTimeout(id)
+  }, [])
 
   // Keyboard visibility
   useEffect(() => {
@@ -111,17 +119,24 @@ export default function ChatWidget() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               className="flex flex-col items-end"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
             >
-              {/* Greeting bubble — acima do icon, aresta reta a meio do icon */}
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mb-2 mr-8 bg-white text-brand-dark text-sm font-semibold px-4 py-2.5 rounded-2xl rounded-br-none shadow-lg max-w-[140px] sm:max-w-[180px] leading-snug border border-gray-100"
-              >
-                {t('greeting')}<br />
-                <span className="font-normal text-gray-600 text-xs">{t('greetingSub')}</span>
-              </motion.div>
+              {/* Greeting bubble — visible 10 s on load, then on hover only */}
+              <AnimatePresence>
+                {(greetingVisible || hovered) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="mb-2 mr-8 bg-white text-brand-dark text-sm font-semibold px-4 py-2.5 rounded-2xl rounded-br-none shadow-lg max-w-[140px] sm:max-w-[180px] leading-snug border border-gray-100"
+                  >
+                    {t('greeting')}<br />
+                    <span className="font-normal text-gray-600 text-xs">{t('greetingSub')}</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* GIF button */}
               <button
