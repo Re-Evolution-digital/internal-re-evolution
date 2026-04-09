@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 // ── Screen contents ────────────────────────────────────────────────────────
 // Three dramatic screens showing automation in action.
@@ -200,7 +200,7 @@ const LABELS  = ['Telegram Bot', 'Reevo Chat', 'WhatsApp Business']
 
 // ── Phone frame wrapper ────────────────────────────────────────────────────
 function PhoneFrame({ Screen, label, posIndex, onClick }: {
-  Screen: () => JSX.Element
+  Screen: () => React.ReactElement
   label: string
   posIndex: number
   onClick: () => void
