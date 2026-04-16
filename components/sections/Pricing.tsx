@@ -102,9 +102,7 @@ export default function Pricing() {
               className={`relative rounded-3xl p-7 border-2 transition-all flex flex-col ${
                 i === 0
                   ? 'border-brand-yellow bg-brand-dark text-white'
-                  : i === 1
-                  ? 'border-gray-100 bg-white hover:border-brand-dark'
-                  : 'border-gray-200 bg-gray-50'
+                  : 'border-gray-100 bg-white hover:border-brand-dark'
               }`}
             >
               {/* "Em construção" overlay */}
@@ -130,7 +128,7 @@ export default function Pricing() {
                   ? 'bg-brand-yellow text-brand-dark'
                   : i === 1
                   ? 'bg-brand-dark text-white'
-                  : 'bg-gray-300 text-gray-600'
+                  : 'bg-brand-yellow text-brand-dark'
               }`}>
                 {pkg.badge}
               </span>
@@ -143,7 +141,7 @@ export default function Pricing() {
               <div className="mb-6">
                 <div className="flex items-end gap-2 flex-wrap">
                   <span className={`text-4xl font-black ${
-                    i === 0 ? 'text-brand-yellow' : i === 1 ? 'text-brand-dark' : 'text-gray-400'
+                    i === 0 ? 'text-brand-yellow' : 'text-brand-dark'
                   }`}>
                     {pkg.price}
                   </span>
@@ -166,14 +164,14 @@ export default function Pricing() {
                   <li key={fi} className="flex items-start gap-2.5">
                     <svg
                       className={`w-5 h-5 shrink-0 mt-0.5 ${
-                        i === 0 ? 'text-brand-yellow' : i === 1 ? 'text-brand-dark' : 'text-gray-400'
+                        i === 0 ? 'text-brand-yellow' : 'text-brand-dark'
                       }`}
                       fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"
                     >
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                     <span className={`text-sm ${
-                      i === 0 ? 'text-white/85' : i === 2 ? 'text-gray-500' : 'text-gray-700'
+                      i === 0 ? 'text-white/85' : 'text-gray-700'
                     }`}>{feature}</span>
                   </li>
                 ))}

@@ -14,7 +14,7 @@
   "hero": {
     "badge": "⚡ Delivery in 1 to 3 weeks",
     "title": "Your business deserves to be online. We handle everything.",
-    "subtitle": "We build your website, automate your repetitive tasks and get your business showing up on Google — without you needing to know anything about technology.",
+    "subtitle": "We build your website, manage your social media, automate your repetitive tasks and get your business showing up on Google — without you needing to know anything about technology.",
     "ctaPrimary": "Get my free diagnosis",
     "ctaSecondary": "See how it works",
     "yellowStripe": "Digital Transformation · Local Business · Re-Evolution",
@@ -78,6 +78,16 @@
           "Lead qualification",
           "Multilingual",
           "Integrated in your site"
+        ]
+      },
+      {
+        "title": "Organic Marketing",
+        "description": "Active presence on social media, without any effort on your part. AI-created content published automatically on Facebook, Instagram and more.",
+        "features": [
+          "Facebook + Instagram included",
+          "AI editorial calendar",
+          "GBP — base setup included",
+          "LinkedIn available as add-on"
         ]
       }
     ]
@@ -161,7 +171,7 @@
           "Delivery in 1–3 weeks",
           "1 month support included"
         ],
-        "footnote": "* Domain included in year 1 · ** Hosting included in year 1",
+        "footnote": "* Domain included in year 1 · ** Hosting + professional email included in year 1",
         "cta": "I want this package"
       },
       {
@@ -180,25 +190,27 @@
           "Monthly reports",
           "Premium automations available"
         ],
-        "footnote": "* Domain included in year 1 · ** Hosting included in year 1",
+        "footnote": "* Domain included in year 1 · ** Hosting + professional email included in year 1",
         "cta": "Talk to the team"
       },
       {
         "id": "marketing",
         "name": "Organic Marketing",
-        "badge": "Coming soon",
-        "price": "Coming soon",
-        "priceSuffix": "prices to be announced",
+        "badge": "Social Media",
+        "price": "€100",
+        "priceSuffix": "/month",
         "features": [
-          "Management of 2 social networks",
-          "AI-powered content calendar",
-          "Organic content production",
+          "Facebook + Instagram — typically 2 to 3 posts/week per network",
+          "Google Business Profile — base setup + 1 post/month",
+          "Personalised marketing plan and editorial calendar",
+          "Organic content production with AI",
           "Automatic scheduled publishing",
           "Tailored to your business and sector",
+          "LinkedIn available as add-on",
           "Optional paid campaigns (client pays Ads)"
         ],
-        "cta": "Find out more soon",
-        "comingSoon": true
+        "footnote": "* LinkedIn available as add-on — +€50/month · Posting frequency adapted to each business",
+        "cta": "Get this service"
       }
     ],
     "comparison": {
@@ -341,7 +353,19 @@
               "label": "Social networks managed",
               "essencial": "—",
               "managed": "—",
-              "marketing": "2 included"
+              "marketing": "Facebook + Instagram"
+            },
+            {
+              "label": "Google Business Profile (base setup + post)",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "Included + 1/month"
+            },
+            {
+              "label": "Posts FB + Instagram (per network)",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "2–3/week"
             },
             {
               "label": "AI content calendar",
@@ -368,7 +392,7 @@
               "marketing": "+€30–50/month"
             },
             {
-              "label": "Additional social network",
+              "label": "LinkedIn (add-on)",
               "essencial": "—",
               "managed": "—",
               "marketing": "+€50/month"
@@ -385,7 +409,7 @@
               "marketing": "—"
             },
             {
-              "label": "Hosting",
+              "label": "Hosting + professional email",
               "essencial": "Included year 1**",
               "managed": "Included year 1**",
               "marketing": "—"
@@ -395,7 +419,7 @@
       ],
       "footnotes": [
         "* Domain renewal: €10–20/year in subsequent years.",
-        "** Hosting included in year 1; €50/year thereafter.",
+        "** Hosting + professional email included in year 1; €50/year thereafter.",
         "All prices include VAT."
       ]
     }
@@ -612,6 +636,14 @@
       {
         "question": "Does the chatbot speak Portuguese?",
         "answer": "Yes, and it automatically detects the visitor's language, responding in Portuguese, English or Spanish as needed."
+      },
+      {
+        "question": "What is included in the Organic Marketing service?",
+        "answer": "The Organic Marketing package includes management of Facebook and Instagram with typically 2 to 3 posts per network per week, a personalised marketing plan and AI editorial calendar, and Google Business Profile base setup with 1 post/month. LinkedIn is available as an add-on. Paid campaigns are optional — the client pays the Ads directly to the platform."
+      },
+      {
+        "question": "Can I subscribe to Organic Marketing without having a website?",
+        "answer": "Yes, Organic Marketing is an independent service. You can subscribe even if you already have a website built by another company or have no website at all."
       }
     ]
   },
@@ -624,7 +656,8 @@
           "Digital Presence",
           "Automations",
           "AI Chatbot",
-          "Local SEO"
+          "Local SEO",
+          "Organic Marketing"
         ]
       },
       "company": {

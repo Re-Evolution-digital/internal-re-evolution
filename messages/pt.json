@@ -14,7 +14,7 @@
   "hero": {
     "badge": "⚡ Entrega em 1 a 3 semanas",
     "title": "O seu negócio merece estar no digital. Nós tratamos de tudo.",
-    "subtitle": "Criamos o seu site, automatizamos as suas tarefas repetitivas e colocamos o seu negócio a aparecer no Google — sem que precise de saber tecnologia.",
+    "subtitle": "Criamos o seu site, gerimos as suas redes sociais, automatizamos as suas tarefas repetitivas e colocamos o seu negócio a aparecer no Google — sem que precise de saber tecnologia.",
     "ctaPrimary": "Quero o meu diagnóstico gratuito",
     "ctaSecondary": "Ver como funciona",
     "yellowStripe": "Transformação Digital · Negócios Locais · Re-Evolution",
@@ -78,6 +78,16 @@
           "Qualificação de leads",
           "Multilingue",
           "Integrado no seu site"
+        ]
+      },
+      {
+        "title": "Marketing Orgânico",
+        "description": "Presença ativa nas redes sociais, sem esforço da sua parte. Conteúdo criado com IA e publicado automaticamente no Facebook, Instagram e mais.",
+        "features": [
+          "Facebook + Instagram incluídos",
+          "Calendário editorial com IA",
+          "GBP — configuração base incluída",
+          "LinkedIn disponível como add-on"
         ]
       }
     ]
@@ -161,7 +171,7 @@
           "Entrega em 1–3 semanas",
           "1 mês de suporte incluído"
         ],
-        "footnote": "* Domínio incluído no 1.º ano · ** Hosting incluído no 1.º ano",
+        "footnote": "* Domínio incluído no 1.º ano · ** Hosting + email profissional incluídos no 1.º ano",
         "cta": "Quero este pacote"
       },
       {
@@ -180,25 +190,27 @@
           "Relatórios mensais",
           "Automações premium disponíveis"
         ],
-        "footnote": "* Domínio incluído no 1.º ano · ** Hosting incluído no 1.º ano",
+        "footnote": "* Domínio incluído no 1.º ano · ** Hosting + email profissional incluídos no 1.º ano",
         "cta": "Falar com a equipa"
       },
       {
         "id": "marketing",
         "name": "Marketing Orgânico",
-        "badge": "Em breve",
-        "price": "Em breve",
-        "priceSuffix": "valores a anunciar",
+        "badge": "Redes Sociais",
+        "price": "€100",
+        "priceSuffix": "/mês",
         "features": [
-          "Gestão de 2 redes sociais",
-          "Calendário de conteúdos com IA",
-          "Produção de conteúdo orgânico",
+          "Facebook + Instagram — tipicamente 2 a 3 publicações/semana por rede",
+          "Google Business Profile — configuração base + 1 pub/mês",
+          "Plano de marketing e calendário editorial personalizados",
+          "Produção de conteúdo orgânico com IA",
           "Publicações agendadas automaticamente",
           "Adaptado ao seu negócio e setor",
-          "Campanhas pagas opcionais (Ads do cliente)"
+          "LinkedIn disponível como add-on",
+          "Campanhas pagas opcionais (cliente paga os Ads)"
         ],
-        "cta": "Saber mais em breve",
-        "comingSoon": true
+        "footnote": "* LinkedIn disponível como add-on — +50€/mês · Frequência de publicação adaptada ao negócio",
+        "cta": "Quero este serviço"
       }
     ],
     "comparison": {
@@ -341,7 +353,19 @@
               "label": "Redes sociais geridas",
               "essencial": "—",
               "managed": "—",
-              "marketing": "2 incluídas"
+              "marketing": "Facebook + Instagram"
+            },
+            {
+              "label": "Google Business Profile (config. base + pub.)",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "Incluído + 1/mês"
+            },
+            {
+              "label": "Publicações FB + Instagram (por rede)",
+              "essencial": "—",
+              "managed": "—",
+              "marketing": "2–3/semana"
             },
             {
               "label": "Calendário de conteúdos com IA",
@@ -368,7 +392,7 @@
               "marketing": "+30–50€/mês"
             },
             {
-              "label": "Rede social adicional",
+              "label": "LinkedIn (add-on)",
               "essencial": "—",
               "managed": "—",
               "marketing": "+50€/mês"
@@ -385,7 +409,7 @@
               "marketing": "—"
             },
             {
-              "label": "Hosting",
+              "label": "Hosting + email profissional",
               "essencial": "Incluído 1.º ano**",
               "managed": "Incluído 1.º ano**",
               "marketing": "—"
@@ -395,7 +419,7 @@
       ],
       "footnotes": [
         "* Renovação do domínio: 10€–20€/ano nos anos seguintes.",
-        "** Hosting incluído no 1.º ano; 50€/ano nos anos seguintes.",
+        "** Hosting + email profissional incluídos no 1.º ano; 50€/ano nos anos seguintes.",
         "Todos os valores incluem IVA."
       ]
     }
@@ -612,6 +636,14 @@
       {
         "question": "O chatbot fala português?",
         "answer": "Sim, e deteta automaticamente o idioma do visitante, respondendo em português, inglês ou espanhol conforme necessário."
+      },
+      {
+        "question": "O que está incluído no serviço de Marketing Orgânico?",
+        "answer": "O pacote de Marketing Orgânico inclui a gestão de Facebook e Instagram com tipicamente 2 a 3 publicações por rede social por semana, um plano de marketing e calendário editorial personalizados com IA, e configuração base do Google Business Profile com 1 publicação pontual/mês. O LinkedIn está disponível como add-on. Campanhas pagas são opcionais — o cliente paga os Ads diretamente à plataforma."
+      },
+      {
+        "question": "Posso contratar só o Marketing Orgânico sem ter um site?",
+        "answer": "Sim, o Marketing Orgânico é um serviço independente. Pode contratá-lo mesmo que já tenha um site feito por outra empresa ou não tenha site de todo."
       }
     ]
   },
@@ -624,7 +656,8 @@
           "Presença Digital",
           "Automações",
           "Chatbot IA",
-          "SEO Local"
+          "SEO Local",
+          "Marketing Orgânico"
         ]
       },
       "company": {
