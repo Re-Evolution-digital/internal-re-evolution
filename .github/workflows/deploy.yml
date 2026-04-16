@@ -52,3 +52,4 @@ jobs:
           echo "${{ secrets.GOOGLE_SHEETS_ID }}"              | npx wrangler secret put GOOGLE_SHEETS_ID
           echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}"  | npx wrangler secret put GOOGLE_SERVICE_ACCOUNT_EMAIL
           echo "${{ secrets.GOOGLE_PRIVATE_KEY }}"            | npx wrangler secret put GOOGLE_PRIVATE_KEY
+          echo "${{ secrets.GOOGLE_CALENDAR_ID }}"           | npx wrangler secret put GOOGLE_CALENDAR_ID
