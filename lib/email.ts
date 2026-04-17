@@ -625,6 +625,9 @@ const BOOKING_CLIENT_COPY: Record<Lang, {
   addToCalLabel: string
   addToOutlookLabel: string
   cta: string
+  meetingLabel: string
+  eventDesc: (label: string) => string
+  subject: (firstName: string, label: string) => string
 }> = {
   pt: {
     greeting: (n) => `Olá, ${n}! 📅`,
@@ -633,6 +636,9 @@ const BOOKING_CLIENT_COPY: Record<Lang, {
     addToCalLabel: 'Adicionar ao Google Calendar',
     addToOutlookLabel: 'iCal / Outlook / Apple Calendar',
     cta: 'Visitar o nosso site →',
+    meetingLabel: 'Reunião marcada',
+    eventDesc: (label) => `Reunião confirmada para ${label}. A equipa Re-Evolution irá ligar-lhe à hora marcada.`,
+    subject: (firstName, label) => `${firstName}, a sua reunião está confirmada — ${label}`,
   },
   en: {
     greeting: (n) => `Hi, ${n}! 📅`,
@@ -641,6 +647,9 @@ const BOOKING_CLIENT_COPY: Record<Lang, {
     addToCalLabel: 'Add to Google Calendar',
     addToOutlookLabel: 'iCal / Outlook / Apple Calendar',
     cta: 'Visit our website →',
+    meetingLabel: 'Meeting confirmed',
+    eventDesc: (label) => `Meeting confirmed for ${label}. The Re-Evolution team will call you at the scheduled time.`,
+    subject: (firstName, label) => `${firstName}, your meeting is confirmed — ${label}`,
   },
   es: {
     greeting: (n) => `¡Hola, ${n}! 📅`,
@@ -649,6 +658,9 @@ const BOOKING_CLIENT_COPY: Record<Lang, {
     addToCalLabel: 'Añadir a Google Calendar',
     addToOutlookLabel: 'iCal / Outlook / Apple Calendar',
     cta: 'Visitar nuestro sitio →',
+    meetingLabel: 'Reunión confirmada',
+    eventDesc: (label) => `Reunión confirmada para ${label}. El equipo Re-Evolution le llamará a la hora acordada.`,
+    subject: (firstName, label) => `${firstName}, su reunión está confirmada — ${label}`,
   },
 }
 
@@ -665,7 +677,7 @@ export function buildBookingConfirmationEmail(params: {
   const firstName = name.split(' ')[0] ?? name
 
   const eventTitle = 'Diagnóstico Re-Evolution'
-  const eventDesc = `Reunião confirmada para ${slotLabel}. A equipa Re-Evolution irá ligar-lhe à hora marcada.`
+  const eventDesc = copy.eventDesc(slotLabel)
   const gCalLink = googleCalendarUrl(eventTitle, slotStart, slotEnd, eventDesc)
   const icsLink = icsUrl(eventTitle, slotStart, slotEnd, eventDesc)
 
@@ -676,7 +688,7 @@ export function buildBookingConfirmationEmail(params: {
 
         <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8faff;border-radius:10px;border:1px solid #dde4f5;margin-bottom:24px;">
           <tr><td style="padding:20px 24px;">
-            <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;">Reunião marcada</p>
+            <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;">${copy.meetingLabel}</p>
             <p style="margin:0;font-size:17px;font-weight:700;color:#011b54;">🗓 ${slotLabel}</p>
           </td></tr>
         </table>
@@ -717,6 +729,13 @@ export function buildBookingConfirmationEmail(params: {
       </td></tr>`
 
   return emailWrapper(body)
+}
+
+export function buildBookingEmailSubject(params: { name: string; slotLabel: string; language?: string }): string {
+  const { name, slotLabel, language = 'pt' } = params
+  const lang = clientLang(language)
+  const firstName = name.split(' ')[0] ?? name
+  return BOOKING_CLIENT_COPY[lang].subject(firstName, slotLabel)
 }
 
 // ─── Template: Email INTERNO para agendamento ─────────────────────────────────

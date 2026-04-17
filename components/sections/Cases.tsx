@@ -31,7 +31,7 @@ function BrowserWindow({ label, labelStyle, chrome, children }: {
         </span>
       </div>
       {/* Content */}
-      <div className="relative flex-1" style={{ height: '360px' }}>
+      <div className="relative" style={{ height: '360px' }}>
         {children}
       </div>
     </div>

@@ -148,7 +148,59 @@
       "✉️ Automatic follow-up to unconverted leads"
     ],
     "automationsListNote": "There are many more possibilities. Your use case defines what we automate — tell us your challenge.",
-    "cta": "I want this for my business"
+    "cta": "I want this for my business",
+    "flows": {
+      "chatbot": {
+        "milestones": ["Lead captured", "Qualified", "Agent alerted", "Active lead"],
+        "journeyStart": "Website visit",
+        "journeyEnd": "Lead converted",
+        "steps": [
+          { "t": "node", "node": { "icon": "🌐", "label": "Website visit" } },
+          { "t": "node", "node": { "icon": "🤖", "label": "Chatbot qualifies" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "📧", "label": "Email to agent" }, { "icon": "📱", "label": "Telegram notification" }],
+            [{ "icon": "📊", "label": "Lead in CRM" }]
+          ]}
+        ]
+      },
+      "scheduling": {
+        "milestones": ["Request made", "Confirmed", "Reminder sent"],
+        "journeyStart": "Booking request",
+        "journeyEnd": "Appointment secured",
+        "steps": [
+          { "t": "node", "node": { "icon": "📋", "label": "Form on website" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "📅", "label": "Booking confirmed" }, { "icon": "🔔", "label": "Reminder 24h before" }],
+            [{ "icon": "📆", "label": "Sync calendar", "sub": "Google or Outlook" }]
+          ]}
+        ]
+      },
+      "crm": {
+        "milestones": ["Lead received", "Registered", "Team notified"],
+        "journeyStart": "New contact",
+        "journeyEnd": "Lead organised",
+        "steps": [
+          { "t": "node", "node": { "icon": "📝", "label": "Lead in form" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "📊", "label": "Google Sheets" }, { "icon": "💬", "label": "Telegram notification" }],
+            [{ "icon": "🗂️", "label": "CRM updated", "sub": "when API available" }]
+          ]}
+        ]
+      },
+      "reviews": {
+        "milestones": ["Review received", "Analysed", "Reply generated", "Published"],
+        "journeyStart": "Review received",
+        "journeyEnd": "Reputation managed",
+        "steps": [
+          { "t": "node", "node": { "icon": "⭐", "label": "New review online" } },
+          { "t": "node", "node": { "icon": "🤖", "label": "AI analyses sentiment" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "✍️", "label": "Personalised reply" }, { "icon": "✅", "label": "Published on platform" }],
+            [{ "icon": "🔔", "label": "Internal alert", "sub": "if negative review" }]
+          ]}
+        ]
+      }
+    }
   },
   "pricing": {
     "title": "Clear pricing, no surprises",
@@ -656,7 +708,6 @@
           "Digital Presence",
           "Automations",
           "AI Chatbot",
-          "Local SEO",
           "Organic Marketing"
         ]
       },

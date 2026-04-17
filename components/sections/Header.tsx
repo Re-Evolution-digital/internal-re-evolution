@@ -206,7 +206,18 @@ export default function Header() {
                   <a
                     key={link.href}
                     href={link.href}
-                    onClick={(e) => { if (anchorId) anchorClick(anchorId, e); setMenuOpen(false) }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setMenuOpen(false)
+                      if (anchorId) {
+                        const el = document.getElementById(anchorId)
+                        if (el) {
+                          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150)
+                        } else {
+                          window.location.href = link.href
+                        }
+                      }
+                    }}
                     className="block py-2.5 text-white/80 hover:text-brand-yellow text-base font-medium transition-colors"
                   >
                     {link.label}

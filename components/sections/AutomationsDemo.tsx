@@ -15,91 +15,14 @@ type FStep =
   | { t: 'node'; node: FNode }
   | { t: 'fork'; branches: FNode[][] }
 
-const FLOWS: Record<FlowKey, { color: string; steps: FStep[]; milestones: string[]; journeyStart: string; journeyEnd: string }> = {
-  chatbot: {
-    color: '#4f46e5',
-    milestones: ['Lead captada', 'Qualificada', 'Agente alertado', 'Lead ativa'],
-    journeyStart: 'Visita ao site',
-    journeyEnd: 'Lead convertida',
-    steps: [
-      { t: 'node', node: { icon: '🌐', label: 'Visita ao site' } },
-      { t: 'node', node: { icon: '🤖', label: 'Chatbot qualifica' } },
-      {
-        t: 'fork', branches: [
-          [
-            { icon: '📧', label: 'Mail ao agente' },
-            { icon: '📱', label: 'Notificação Telegram' },
-          ],
-          [
-            { icon: '📊', label: 'Lead no CRM' },
-          ],
-        ],
-      },
-    ],
-  },
-  scheduling: {
-    color: '#0ea5e9',
-    milestones: ['Pedido feito', 'Confirmado', 'Lembrete enviado'],
-    journeyStart: 'Pedido de marcação',
-    journeyEnd: 'Consulta garantida',
-    steps: [
-      { t: 'node', node: { icon: '📋', label: 'Formulário no site' } },
-      {
-        t: 'fork', branches: [
-          [
-            { icon: '📅', label: 'Marcação confirmada' },
-            { icon: '🔔', label: 'Lembrete 24h antes' },
-          ],
-          [
-            { icon: '📆', label: 'Sincroniza calendário', sub: 'Google ou Outlook' },
-          ],
-        ],
-      },
-    ],
-  },
-  crm: {
-    color: '#10b981',
-    milestones: ['Lead recebida', 'Registada', 'Equipa notificada'],
-    journeyStart: 'Novo contacto',
-    journeyEnd: 'Lead organizada',
-    steps: [
-      { t: 'node', node: { icon: '📝', label: 'Lead no formulário' } },
-      {
-        t: 'fork', branches: [
-          [
-            { icon: '📊', label: 'Google Sheets' },
-            { icon: '💬', label: 'Notificação Telegram' },
-          ],
-          [
-            { icon: '🗂️', label: 'CRM atualizado', sub: 'quando API disponível' },
-          ],
-        ],
-      },
-    ],
-  },
-  reviews: {
-    color: '#f59e0b',
-    // 4 milestones to match 4 flow columns (2 seq + 2 fork)
-    milestones: ['Crítica recebida', 'Analisada', 'Resposta gerada', 'Publicada'],
-    journeyStart: 'Crítica recebida',
-    journeyEnd: 'Reputação gerida',
-    steps: [
-      { t: 'node', node: { icon: '⭐', label: 'Nova crítica online' } },
-      { t: 'node', node: { icon: '🤖', label: 'IA analisa sentimento' } },
-      {
-        t: 'fork', branches: [
-          [
-            { icon: '✍️', label: 'Resposta personalizada' },
-            { icon: '✅', label: 'Publicada na plataforma' },
-          ],
-          [
-            { icon: '🔔', label: 'Alerta interno', sub: 'se crítica negativa' },
-          ],
-        ],
-      },
-    ],
-  },
+const FLOW_COLORS: Record<FlowKey, string> = {
+  chatbot: '#4f46e5',
+  scheduling: '#0ea5e9',
+  crm: '#10b981',
+  reviews: '#f59e0b',
 }
+
+type FlowT = { milestones: string[]; journeyStart: string; journeyEnd: string; steps: FStep[] }
 
 function getLocale(path: string) { return path.split('/')[1] ?? 'pt' }
 
@@ -431,17 +354,17 @@ export default function AutomationsDemo() {
   const tabs = t.raw('tabs') as string[]
   const businessExamples = t.raw('businessExamples') as string[]
   const automationsList = t.raw('automationsList') as string[]
-  const flow = FLOWS[active]
+  const flowsT = t.raw('flows') as Record<FlowKey, FlowT>
+  const flow = { color: FLOW_COLORS[active], ...flowsT[active] }
   const activeIndex = flowKeys.indexOf(active)
 
   return (
     <section id="automacoes" className="relative py-20 bg-gray-50" data-section="automations" aria-labelledby="auto-title">
       <div className="absolute top-0 left-0 right-0 z-10" aria-hidden="true">
         <div
-          className="bg-brand-yellow pl-24 pr-24 py-3 flex items-center justify-end gap-3"
-          style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
+          className="bg-brand-yellow pl-12 pr-12 sm:pl-24 sm:pr-24 py-1.5 sm:py-3 flex items-center justify-end gap-3 [clip-path:polygon(40px_0,100%_0,calc(100%_-_40px)_100%,0_100%)] sm:[clip-path:polygon(80px_0,100%_0,calc(100%_-_80px)_100%,0_100%)]"
         >
-          <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">{t('yellowStripe')}</span>
+          <span className="text-brand-dark font-bold text-xs sm:text-sm tracking-wide sm:tracking-widest uppercase">{t('yellowStripe')}</span>
           <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
         </div>
       </div>

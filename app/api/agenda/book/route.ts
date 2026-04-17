@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { rateLimit } from '@/lib/rate-limit'
 import { createCalendarEvent, formatSlotLabel } from '@/lib/google-calendar'
-import { sendEmail, buildBookingConfirmationEmail, buildInternalBookingEmail, formatPTDate } from '@/lib/email'
+import { sendEmail, buildBookingConfirmationEmail, buildBookingEmailSubject, buildInternalBookingEmail, formatPTDate } from '@/lib/email'
 import { sendTelegram, telegramBookingLead } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/google-sheets'
 
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     sendEmail({
       to: email,
       bcc: reevoEmail,
-      subject: `${firstName}, a sua reunião está confirmada — ${slotLabel}`,
+      subject: buildBookingEmailSubject({ name, slotLabel, language }),
       html: buildBookingConfirmationEmail({ name, slotLabel, slotStart: slot_start, slotEnd: slot_end, language }),
     }),
 

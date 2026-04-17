@@ -148,7 +148,59 @@
       "✉️ Follow-up automático a leads no convertidas"
     ],
     "automationsListNote": "Hay muchas más posibilidades. Su caso de uso define lo que automatizamos — cuéntenos su reto.",
-    "cta": "Quiero esto para mi negocio"
+    "cta": "Quiero esto para mi negocio",
+    "flows": {
+      "chatbot": {
+        "milestones": ["Lead captada", "Cualificada", "Agente alertado", "Lead activa"],
+        "journeyStart": "Visita al sitio",
+        "journeyEnd": "Lead convertida",
+        "steps": [
+          { "t": "node", "node": { "icon": "🌐", "label": "Visita al sitio" } },
+          { "t": "node", "node": { "icon": "🤖", "label": "Chatbot cualifica" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "📧", "label": "Mail al agente" }, { "icon": "📱", "label": "Notificación Telegram" }],
+            [{ "icon": "📊", "label": "Lead en CRM" }]
+          ]}
+        ]
+      },
+      "scheduling": {
+        "milestones": ["Solicitud hecha", "Confirmado", "Recordatorio enviado"],
+        "journeyStart": "Solicitud de cita",
+        "journeyEnd": "Consulta garantizada",
+        "steps": [
+          { "t": "node", "node": { "icon": "📋", "label": "Formulario en el sitio" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "📅", "label": "Cita confirmada" }, { "icon": "🔔", "label": "Recordatorio 24h antes" }],
+            [{ "icon": "📆", "label": "Sincroniza calendario", "sub": "Google o Outlook" }]
+          ]}
+        ]
+      },
+      "crm": {
+        "milestones": ["Lead recibida", "Registrada", "Equipo notificado"],
+        "journeyStart": "Nuevo contacto",
+        "journeyEnd": "Lead organizada",
+        "steps": [
+          { "t": "node", "node": { "icon": "📝", "label": "Lead en formulario" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "📊", "label": "Google Sheets" }, { "icon": "💬", "label": "Notificación Telegram" }],
+            [{ "icon": "🗂️", "label": "CRM actualizado", "sub": "cuando API disponible" }]
+          ]}
+        ]
+      },
+      "reviews": {
+        "milestones": ["Reseña recibida", "Analizada", "Respuesta generada", "Publicada"],
+        "journeyStart": "Reseña recibida",
+        "journeyEnd": "Reputación gestionada",
+        "steps": [
+          { "t": "node", "node": { "icon": "⭐", "label": "Nueva reseña online" } },
+          { "t": "node", "node": { "icon": "🤖", "label": "IA analiza sentimiento" } },
+          { "t": "fork", "branches": [
+            [{ "icon": "✍️", "label": "Respuesta personalizada" }, { "icon": "✅", "label": "Publicada en la plataforma" }],
+            [{ "icon": "🔔", "label": "Alerta interna", "sub": "si reseña negativa" }]
+          ]}
+        ]
+      }
+    }
   },
   "pricing": {
     "title": "Precios claros, sin sorpresas",
@@ -656,7 +708,6 @@
           "Presencia Digital",
           "Automatizaciones",
           "Chatbot IA",
-          "SEO Local",
           "Marketing Orgánico"
         ]
       },
