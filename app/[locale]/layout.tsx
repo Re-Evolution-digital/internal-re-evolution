@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 import CookieBanner from '@/components/ui/CookieBanner'
@@ -60,8 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     icons: {
       icon: [
+        { url: '/images/logo/logo_bandeira.jpg', type: 'image/jpeg' },
         { url: '/images/logo/logo.svg', type: 'image/svg+xml' },
-        { url: '/images/logo/logo.png', type: 'image/png' },
       ],
       apple: [{ url: '/images/logo/logo.png' }],
       shortcut: '/images/logo/logo.png',
@@ -108,6 +109,13 @@ export default async function LocaleLayout({ children, params }: Props) {
           <ChatWidget />
           <WhatsAppButton />
         </NextIntlClientProvider>
+        <Script
+          id="metricool-tracker"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"8be7ce991b52e5d3acf8c852ad077543"})});`,
+          }}
+        />
       </body>
     </html>
   )
