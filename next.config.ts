@@ -14,11 +14,11 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://tracker.metricool.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https:",
-      "connect-src 'self' https://api.groq.com https://api.telegram.org https://hook.eu1.make.com https://www.google-analytics.com",
+      "connect-src 'self' https://api.groq.com https://api.telegram.org https://hook.eu1.make.com https://www.google-analytics.com https://tracker.metricool.com",
       "frame-src 'self' https://www.google.com https://www.arcadasdofado.com https://arcadasdofado.com",
       "object-src 'none'",
       "upgrade-insecure-requests",
