@@ -67,6 +67,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       apple: [{ url: '/images/logo/logo.png' }],
       shortcut: '/images/logo/logo.png',
     },
+    other: {
+      'p:domain_verify': 'd652ef4ea41129f434b26b8f37d83489',
+    },
     robots: {
       index: true,
       follow: true,
