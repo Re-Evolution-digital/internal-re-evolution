@@ -747,7 +747,8 @@
     },
     "modal": {
       "title": "Cookie Preferences",
-      "save": "Save preferences",
+      "save": "Accept preferences",
+      "acceptAll": "Accept all cookies",
       "cancel": "Cancel",
       "categories": {
         "necessary": {

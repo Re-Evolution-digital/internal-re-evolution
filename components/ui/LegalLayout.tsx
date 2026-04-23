@@ -9,12 +9,12 @@ type Props = {
   locale?: string
 }
 
+const closeLabels: Record<string, string> = { pt: 'Fechar', en: 'Close', es: 'Cerrar' }
+
 function BackButton({ locale }: { locale: string }) {
   function handleBack() {
-    // Opened in a new tab → close it; fallback to home if browser blocks window.close()
     if (window.history.length <= 1) {
       window.close()
-      // If close was blocked (e.g. not opened via script), navigate home
       setTimeout(() => { window.location.href = `/${locale}` }, 200)
     } else {
       window.history.back()
@@ -29,7 +29,7 @@ function BackButton({ locale }: { locale: string }) {
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
       </svg>
-      Fechar
+      {closeLabels[locale] ?? 'Close'}
     </button>
   )
 }

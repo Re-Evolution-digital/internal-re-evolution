@@ -168,18 +168,24 @@ export default function CookieBanner() {
                   </div>
                 ))}
               </div>
-              <div className="flex gap-3 mt-6">
+              <div className="flex flex-col sm:flex-row gap-2 mt-6">
                 <button
                   onClick={() => setShowModal(false)}
-                  className="flex-1 py-2 border border-gray-300 rounded-xl text-sm hover:border-brand-dark transition-colors"
+                  className="flex-1 py-2.5 border border-gray-300 rounded-xl text-sm hover:border-brand-dark transition-colors"
                 >
                   {t('modal.cancel')}
                 </button>
                 <button
                   onClick={savePreferences}
-                  className="flex-1 py-2 bg-brand-yellow text-brand-dark font-bold rounded-xl text-sm hover:brightness-105 transition-all"
+                  className="flex-1 py-2.5 border-2 border-brand-dark text-brand-dark font-semibold rounded-xl text-sm hover:bg-brand-dark hover:text-white transition-all"
                 >
                   {t('modal.save')}
+                </button>
+                <button
+                  onClick={acceptAll}
+                  className="flex-1 py-2.5 bg-brand-yellow text-brand-dark font-bold rounded-xl text-sm hover:brightness-105 transition-all"
+                >
+                  {t('modal.acceptAll')}
                 </button>
               </div>
             </motion.div>

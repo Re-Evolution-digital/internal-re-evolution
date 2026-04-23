@@ -55,7 +55,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none">
       <div
-        className={`pointer-events-auto transition-all duration-500 relative overflow-hidden ${
+        className={`pointer-events-auto transition-all duration-500 relative ${
           scrolled
             ? 'mx-3 sm:mx-5 lg:mx-8 mt-3 rounded-2xl bg-brand-dark/90 backdrop-blur-md shadow-2xl border border-white/10'
             : 'bg-gradient-to-b from-brand-dark/70 to-transparent backdrop-blur-sm'
