@@ -14,10 +14,10 @@ export const clientData = {
     googleMaps: "https://www.google.com/maps/place/Re-Evolution,+Digital+Services/@38.7277866,-9.2444714",
   },
   social: {
-    linkedin: "https://linkedin.com/company/re-evolution-pt",   // confirmar URL real
-    instagram: "https://instagram.com/reevolution.pt",          // confirmar URL real
-    facebook: "https://facebook.com/reevolution.pt",            // confirmar URL real
-    youtube: "https://youtube.com/@reevolution",                // confirmar URL real
+    linkedin: "https://linkedin.com/company/re-evolution-pt",
+    instagram: "https://instagram.com/reevolution.pt",
+    facebook: "https://facebook.com/reevolution.pt",
+    youtube: "https://www.youtube.com/@re-evolution_pt",
   },
   brand: {
     colorPrimary: "#ffc700",
