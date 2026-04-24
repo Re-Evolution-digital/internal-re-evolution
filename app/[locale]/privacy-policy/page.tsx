@@ -15,10 +15,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: titles[locale] ?? titles.pt,
     alternates: {
-      canonical: `https://re-evolution.pt/${locale}/privacy-policy`,
+      canonical: locale === 'pt'
+        ? 'https://re-evolution.pt/privacy-policy'
+        : `https://re-evolution.pt/${locale}/privacy-policy`,
       languages: {
-        'x-default': '/pt/privacy-policy',
-        pt: '/pt/privacy-policy',
+        'x-default': '/privacy-policy',
+        pt: '/privacy-policy',
         en: '/en/privacy-policy',
         es: '/es/privacy-policy',
       },

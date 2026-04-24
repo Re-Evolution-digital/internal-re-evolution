@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t('description'),
     metadataBase: new URL('https://re-evolution.pt'),
     alternates: {
-      canonical: `/${locale}`,
+      canonical: locale === 'pt' ? '/' : `/${locale}`,
       languages: {
-        'x-default': '/pt',
-        'pt': '/pt',
+        'x-default': '/',
+        'pt': '/',
         'en': '/en',
         'es': '/es',
       },
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: `https://re-evolution.pt/${locale}`,
+      url: locale === 'pt' ? 'https://re-evolution.pt/' : `https://re-evolution.pt/${locale}`,
       siteName: 'Re-Evolution, Serviços Digitais',
       images: [
         {

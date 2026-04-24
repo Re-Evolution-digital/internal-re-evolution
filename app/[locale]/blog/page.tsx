@@ -21,7 +21,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const baseUrl = `https://re-evolution.pt/${locale}/blog`
+  const blogUrl = locale === 'pt'
+    ? 'https://re-evolution.pt/blog'
+    : `https://re-evolution.pt/${locale}/blog`
 
   return {
     title: 'Blog | Re-Evolution — Dicas de Presença Digital para PMEs',
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: 'Blog da Re-Evolution',
       description:
         'Artigos práticos sobre SEO local, Google Business Profile, automações e presença digital para pequenas e médias empresas em Portugal.',
-      url: baseUrl,
+      url: blogUrl,
       images: [
         {
           url: '/images/blog/blog-hero.jpg',
@@ -42,7 +44,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     alternates: {
-      canonical: baseUrl,
+      canonical: blogUrl,
+      languages: {
+        'x-default': '/blog',
+        'pt': '/blog',
+        'en': '/en/blog',
+        'es': '/es/blog',
+      },
     },
   }
 }
@@ -51,7 +59,7 @@ const blogSchema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: 'Blog Re-Evolution',
-  url: 'https://re-evolution.pt/pt/blog',
+  url: 'https://re-evolution.pt/blog',
   publisher: {
     '@type': 'Organization',
     name: 'Re-Evolution',

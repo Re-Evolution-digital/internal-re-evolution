@@ -36,7 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {}
   }
 
-  const url = `https://re-evolution.pt/${locale}/blog/${post.slug}`
+  const url = locale === 'pt'
+    ? `https://re-evolution.pt/blog/${post.slug}`
+    : `https://re-evolution.pt/${locale}/blog/${post.slug}`
 
   return {
     title: `${post.title} | Blog Re-Evolution`,

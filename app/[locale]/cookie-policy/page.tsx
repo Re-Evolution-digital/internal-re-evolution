@@ -15,10 +15,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: titles[locale] ?? titles.pt,
     alternates: {
-      canonical: `https://re-evolution.pt/${locale}/cookie-policy`,
+      canonical: locale === 'pt'
+        ? 'https://re-evolution.pt/cookie-policy'
+        : `https://re-evolution.pt/${locale}/cookie-policy`,
       languages: {
-        'x-default': '/pt/cookie-policy',
-        pt: '/pt/cookie-policy',
+        'x-default': '/cookie-policy',
+        pt: '/cookie-policy',
         en: '/en/cookie-policy',
         es: '/es/cookie-policy',
       },
