@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
@@ -15,16 +15,13 @@ const locales = [
   { code: 'es', label: 'ES', flag: '/images/flags/es.svg' },
 ]
 
-function getLocaleFromPath(path: string): string {
-  return path.split('/')[1] ?? 'pt'
-}
-
 export default function Header() {
   const t = useTranslations('nav')
   const tA11y = useTranslations('accessibility')
   const pathname = usePathname()
   const router = useRouter()
-  const locale = getLocaleFromPath(pathname)
+  const locale = useLocale()
+  const localePrefix = locale === 'pt' ? '' : `/${locale}`
 
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -38,18 +35,22 @@ export default function Header() {
 
   function switchLocale(newLocale: string) {
     const from = locale
-    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/'
+    const firstSegment = pathname.split('/')[1]
+    const route = ['pt', 'en', 'es'].includes(firstSegment)
+      ? pathname.slice(firstSegment.length + 1) || '/'
+      : pathname
+    const newPath = newLocale === 'pt' ? route : `/${newLocale}${route === '/' ? '' : route}`
     trackEvent(GA_EVENTS.LANGUAGE_SWITCH, { from, to: newLocale })
-    router.push(`/${newLocale}${pathWithoutLocale}`)
+    router.push(newPath || '/')
     setLangOpen(false)
   }
 
   const navLinks = [
-    { href: `/${locale}/#servicos`, label: t('services') },
-    { href: `/${locale}/#como-funciona`, label: t('howItWorks') },
-    { href: `/${locale}/#precos`, label: t('pricing') },
-    { href: `/${locale}/#casos`, label: t('cases') },
-    { href: `/${locale}/#blog`, label: t('blog') },
+    { href: `${localePrefix}/#servicos`, label: t('services') },
+    { href: `${localePrefix}/#como-funciona`, label: t('howItWorks') },
+    { href: `${localePrefix}/#precos`, label: t('pricing') },
+    { href: `${localePrefix}/#casos`, label: t('cases') },
+    { href: `${localePrefix}/#blog`, label: t('blog') },
   ]
 
   return (
@@ -83,7 +84,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <Link href={`/${locale}`} className="flex items-center gap-2 shrink-0">
+          <Link href={localePrefix || '/'} className="flex items-center gap-2 shrink-0">
             <Image
               src={clientData.brand.logoSvg}
               alt={clientData.business.name}
@@ -153,7 +154,7 @@ export default function Header() {
 
             {/* CTA */}
             <a
-              href={`/${locale}/#diagnostico`}
+              href={`${localePrefix}/#diagnostico`}
               onClick={(e) => { anchorClick('diagnostico', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'header_cta', section: 'header', language: locale }) }}
               className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2.5 rounded-xl hover:brightness-105 transition-all"
             >
@@ -238,7 +239,7 @@ export default function Header() {
                   ))}
                 </div>
                 <a
-                  href={`/${locale}/#diagnostico`}
+                  href={`${localePrefix}/#diagnostico`}
                   onClick={(e) => { anchorClick('diagnostico', e); setMenuOpen(false) }}
                   className="bg-brand-yellow text-brand-dark text-sm font-bold px-4 py-2 rounded-xl"
                 >
