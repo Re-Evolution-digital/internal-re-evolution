@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from '@/i18n/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { trackEvent, GA_EVENTS } from '@/lib/analytics'
 import { anchorClick } from '@/lib/scroll'
@@ -34,14 +34,8 @@ export default function Header() {
   }, [])
 
   function switchLocale(newLocale: string) {
-    const from = locale
-    const firstSegment = pathname.split('/')[1]
-    const route = ['pt', 'en', 'es'].includes(firstSegment)
-      ? pathname.slice(firstSegment.length + 1) || '/'
-      : pathname
-    const newPath = newLocale === 'pt' ? route : `/${newLocale}${route === '/' ? '' : route}`
-    trackEvent(GA_EVENTS.LANGUAGE_SWITCH, { from, to: newLocale })
-    router.push(newPath || '/')
+    trackEvent(GA_EVENTS.LANGUAGE_SWITCH, { from: locale, to: newLocale })
+    router.push(pathname, { locale: newLocale })
     setLangOpen(false)
   }
 
