@@ -8,6 +8,7 @@ import HowItWorks from '@/components/sections/HowItWorks'
 import AutomationsDemo from '@/components/sections/AutomationsDemo'
 import Pricing from '@/components/sections/Pricing'
 import Cases from '@/components/sections/Cases'
+import Team from '@/components/sections/Team'
 import Blog from '@/components/sections/Blog'
 import DiagnosticForm from '@/components/sections/DiagnosticForm'
 import FAQ from '@/components/sections/FAQ'
@@ -33,6 +34,7 @@ export default async function HomePage({ params }: Props) {
         <AutomationsDemo />
         <Pricing />
         <Cases />
+        <Team />
         <Blog />
         <DiagnosticForm />
         <FAQ />

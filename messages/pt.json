@@ -788,5 +788,14 @@
     "openChat": "Abrir chat",
     "closeChat": "Fechar chat",
     "whatsapp": "Contactar via WhatsApp"
+  },
+  "team": {
+    "yellowStripe": "Re-Evolution · A Nossa Equipa · Transformação Digital",
+    "label": "Uma nota do fundador",
+    "title": "Feito por quem esteve do outro lado",
+    "quote": "Durante anos trabalhei em procurement e gestão de contratos em grandes empresas. Depois tentei construir o meu próprio negócio — e bati em todos os muros que uma PME bate: sites que não convertem, automações que demoram uma eternidade a configurar, visibilidade zero. Aprendi à custa própria. Criei a Re-Evolution para resolver isso nos outros.",
+    "name": "Carlos Carvalho Vale",
+    "role": "Fundador, Re-Evolution",
+    "tagline": "Empresas locais que merecem presença digital séria — sem depender de jargão técnico."
   }
 }
