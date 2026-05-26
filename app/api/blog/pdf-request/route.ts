@@ -1,8 +1,9 @@
 import { z } from 'zod'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { rateLimit } from '@/lib/rate-limit'
 import { appendToSheet } from '@/lib/google-sheets'
 import { sendTelegram, telegramBlogPdfRequest } from '@/lib/telegram'
-import { formatPTDate, sendEmail, buildBlogPdfRequestEmail } from '@/lib/email'
+import { formatPTDate, sendEmail, buildBlogPdfRequestEmail, buildBlogPdfDeliveryEmail } from '@/lib/email'
 import { generateUnsubscribeUrl } from '@/lib/unsubscribe'
 
 const schema = z.object({
@@ -15,6 +16,20 @@ const schema = z.object({
 
 function getIP(req: Request): string {
   return req.headers.get('cf-connecting-ip') ?? req.headers.get('x-forwarded-for') ?? 'unknown'
+}
+
+/** Verifica via binding R2 se o PDF existe. Devolve o URL público ou null. */
+async function resolvePdfUrl(slug: string): Promise<string | null> {
+  try {
+    const { env } = getCloudflareContext<CloudflareEnv>()
+    const obj = await env.PDF_BUCKET.head(`${slug}.pdf`)
+    if (!obj) return null
+    const base = process.env.R2_PDF_PUBLIC_URL ?? 'https://pdfs.re-evolution.pt'
+    return `${base}/${slug}.pdf`
+  } catch {
+    // Sem contexto Cloudflare (dev local com next dev) — cai no email "em breve"
+    return null
+  }
 }
 
 export async function POST(req: Request) {
@@ -50,18 +65,36 @@ export async function POST(req: Request) {
   // Telegram
   await sendTelegram(telegramBlogPdfRequest({ email, language, articleTitle, articleSlug, timestamp }))
 
-  // Email de confirmação ao utilizador
+  // Verifica se o PDF já está disponível em /public/blog/pdfs/[slug].pdf
+  const pdfUrl = await resolvePdfUrl(articleSlug)
   const unsubscribeUrl = await generateUnsubscribeUrl(email, language)
-  const subjectMap: Record<string, string> = {
-    pt: `PDF solicitado — ${articleTitle}`,
-    en: `PDF requested — ${articleTitle}`,
-    es: `PDF solicitado — ${articleTitle}`,
+
+  if (pdfUrl) {
+    // PDF disponível — entrega imediata com anexo
+    const subjectMap: Record<string, string> = {
+      pt: `O teu PDF — ${articleTitle}`,
+      en: `Your PDF — ${articleTitle}`,
+      es: `Tu PDF — ${articleTitle}`,
+    }
+    await sendEmail({
+      to: email,
+      subject: subjectMap[language] ?? subjectMap.pt,
+      html: buildBlogPdfDeliveryEmail({ language, articleTitle, pdfUrl, unsubscribeUrl }),
+      attachments: [{ filename: `${articleSlug}.pdf`, path: pdfUrl }],
+    })
+  } else {
+    // PDF ainda não disponível — confirmação "em breve"
+    const subjectMap: Record<string, string> = {
+      pt: `PDF solicitado — ${articleTitle}`,
+      en: `PDF requested — ${articleTitle}`,
+      es: `PDF solicitado — ${articleTitle}`,
+    }
+    await sendEmail({
+      to: email,
+      subject: subjectMap[language] ?? subjectMap.en,
+      html: buildBlogPdfRequestEmail({ email, language, articleTitle, unsubscribeUrl }),
+    })
   }
-  await sendEmail({
-    to: email,
-    subject: subjectMap[language] ?? subjectMap.en,
-    html: buildBlogPdfRequestEmail({ email, language, articleTitle, unsubscribeUrl }),
-  })
 
   return Response.json({ ok: true })
 }

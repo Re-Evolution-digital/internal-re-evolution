@@ -215,7 +215,7 @@
         "priceSuffix": "pago único",
         "features": [
           "Sitio web profesional (hasta 10 secciones)",
-          "Traducciones hasta 5 idiomas",
+          "Traducciones hasta 3 idiomas",
           "SEO optimizado + Google Business Profile",
           "Mobile-first · Accesos rápidos (WhatsApp, Llamada, Maps)",
           "Hasta 2 formularios de captación de clientes",
@@ -235,6 +235,7 @@
         "priceSuffix": "setup + mensualidad",
         "features": [
           "Todo el Sitio Web Esencial",
+          "Traducciones hasta 5 idiomas",
           "Hasta 20 secciones (más bajo consulta)",
           "1 automatización estándar incluida (2.500 op/mes)",
           "Reunión mensual de análisis",
@@ -282,7 +283,7 @@
             },
             {
               "label": "Traducciones",
-              "essencial": "Hasta 5 idiomas",
+              "essencial": "Hasta 3 idiomas",
               "managed": "Hasta 5 idiomas",
               "marketing": "—"
             },

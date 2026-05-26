@@ -215,7 +215,7 @@
         "priceSuffix": "one-time payment",
         "features": [
           "Professional website (up to 10 sections)",
-          "Translations in up to 5 languages",
+          "Translations in up to 3 languages",
           "Optimised SEO + Google Business Profile",
           "Mobile-first · Quick shortcuts (WhatsApp, Call, Maps)",
           "Up to 2 client capture forms",
@@ -235,6 +235,7 @@
         "priceSuffix": "setup + monthly fee",
         "features": [
           "Everything in Essential Website",
+          "Translations in up to 5 languages",
           "Up to 20 sections (more on request)",
           "1 standard automation included (2,500 ops/month)",
           "Monthly analysis meeting",
@@ -282,7 +283,7 @@
             },
             {
               "label": "Translations",
-              "essencial": "Up to 5 languages",
+              "essencial": "Up to 3 languages",
               "managed": "Up to 5 languages",
               "marketing": "—"
             },

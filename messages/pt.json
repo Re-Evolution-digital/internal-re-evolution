@@ -215,7 +215,7 @@
         "priceSuffix": "pagamento único",
         "features": [
           "Página web profissional (até 10 secções)",
-          "Traduções até 5 línguas",
+          "Traduções até 3 línguas",
           "SEO otimizado + Google Business Profile",
           "Mobile-first · Atalhos rápidos (WhatsApp, Chamada, Maps)",
           "Até 2 formulários de captação de clientes",
@@ -235,6 +235,7 @@
         "priceSuffix": "setup + mensalidade",
         "features": [
           "Tudo do Website Essencial",
+          "Traduções até 5 línguas",
           "Até 20 secções (mais sob consulta)",
           "1 automação standard incluída (2.500 op/mês)",
           "Reunião mensal de análise",
@@ -282,7 +283,7 @@
             },
             {
               "label": "Traduções",
-              "essencial": "Até 5 línguas",
+              "essencial": "Até 3 línguas",
               "managed": "Até 5 línguas",
               "marketing": "—"
             },

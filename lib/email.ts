@@ -15,14 +15,20 @@ import { LOGO_DATA_URI as LOGO_URL } from './logo-b64.generated'
 
 // ─── Envio via Resend ─────────────────────────────────────────────────────────
 
+interface SendEmailAttachment {
+  filename: string
+  path: string  // URL público — o Resend descarrega diretamente, zero CPU no Worker
+}
+
 interface SendEmailParams {
   to: string
   subject: string
   html: string
   bcc?: string
+  attachments?: SendEmailAttachment[]
 }
 
-export async function sendEmail({ to, subject, html, bcc }: SendEmailParams): Promise<void> {
+export async function sendEmail({ to, subject, html, bcc, attachments }: SendEmailParams): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.RESEND_FROM_EMAIL ?? 'noreply@re-evolution.pt'
   if (!apiKey || apiKey === 'placeholder') {
@@ -32,6 +38,7 @@ export async function sendEmail({ to, subject, html, bcc }: SendEmailParams): Pr
 
   const body: Record<string, unknown> = { from, to, subject, html }
   if (bcc) body.bcc = bcc
+  if (attachments?.length) body.attachments = attachments
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -472,6 +479,92 @@ export function buildBlogPdfRequestEmail(params: {
             </td>
             <td style="padding-bottom:14px;font-size:14px;color:#4a5568;line-height:1.6;vertical-align:top;padding-top:4px;">${step}</td>
           </tr>`).join('')}
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr><td align="center">
+            <a href="${copy.ctaUrl}" style="display:inline-block;background:#ffc700;color:#011b54;font-size:14px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:12px;">
+              ${copy.cta}
+            </a>
+          </td></tr>
+        </table>
+      </td></tr>`
+
+  return emailWrapper(body, unsubscribeUrl)
+}
+
+// ─── Template: Email de ENTREGA do PDF do Blog ───────────────────────────────
+
+const PDF_DELIVERY_COPY: Record<Lang, {
+  greeting: string
+  intro: (title: string) => string
+  articleLabel: string
+  attachmentNote: string
+  cta: string
+  ctaUrl: string
+}> = {
+  pt: {
+    greeting: 'O teu PDF chegou! 📎',
+    intro: (title) => `Aqui está o artigo <strong>"${title}"</strong> em PDF, pronto a guardar ou partilhar.`,
+    articleLabel: 'Artigo',
+    attachmentNote: 'O ficheiro PDF está em anexo a este email.',
+    cta: 'Ver mais artigos →',
+    ctaUrl: 'https://re-evolution.pt/pt/blog',
+  },
+  en: {
+    greeting: 'Your PDF is here! 📎',
+    intro: (title) => `Here is the article <strong>"${title}"</strong> in PDF format, ready to save or share.`,
+    articleLabel: 'Article',
+    attachmentNote: 'The PDF file is attached to this email.',
+    cta: 'Read more articles →',
+    ctaUrl: 'https://re-evolution.pt/en/blog',
+  },
+  es: {
+    greeting: '¡Tu PDF ha llegado! 📎',
+    intro: (title) => `Aquí tienes el artículo <strong>"${title}"</strong> en PDF, listo para guardar o compartir.`,
+    articleLabel: 'Artículo',
+    attachmentNote: 'El archivo PDF está adjunto a este correo.',
+    cta: 'Leer más artículos →',
+    ctaUrl: 'https://re-evolution.pt/es/blog',
+  },
+}
+
+export function buildBlogPdfDeliveryEmail(params: {
+  language?: string
+  articleTitle: string
+  pdfUrl: string
+  unsubscribeUrl?: string
+}): string {
+  const { language = 'pt', articleTitle, pdfUrl, unsubscribeUrl } = params
+  const lang = clientLang(language)
+  const copy = PDF_DELIVERY_COPY[lang]
+
+  const body = `
+      <tr><td style="padding:36px 40px 28px;">
+        <p style="margin:0 0 6px;font-size:22px;font-weight:700;color:#011b54;">${copy.greeting}</p>
+        <p style="margin:0 0 24px;font-size:15px;color:#4a5568;line-height:1.7;">${copy.intro(articleTitle)}</p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8faff;border-radius:10px;border:1px solid #dde4f5;margin-bottom:24px;">
+          <tr><td style="padding:16px 24px;">
+            <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;">${copy.articleLabel}</p>
+            <p style="margin:0;font-size:15px;font-weight:700;color:#011b54;">${articleTitle}</p>
+          </td></tr>
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+          <tr>
+            <td style="background:#fff8e1;border-left:4px solid #ffc700;border-radius:0 8px 8px 0;padding:14px 20px;font-size:14px;color:#4a5568;line-height:1.6;">
+              📎 ${copy.attachmentNote}
+            </td>
+          </tr>
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+          <tr><td align="center">
+            <a href="${pdfUrl}" style="display:inline-block;background:#011b54;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:12px;">
+              ⬇ Descarregar PDF
+            </a>
+          </td></tr>
         </table>
 
         <table width="100%" cellpadding="0" cellspacing="0">
