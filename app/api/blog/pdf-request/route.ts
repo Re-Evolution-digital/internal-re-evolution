@@ -21,7 +21,7 @@ function getIP(req: Request): string {
 /** Verifica via binding R2 se o PDF existe. Devolve o URL público ou null. */
 async function resolvePdfUrl(slug: string): Promise<string | null> {
   try {
-    const { env } = getCloudflareContext<CloudflareEnv>()
+    const { env } = await getCloudflareContext<CloudflareEnv>()
     const obj = await env.PDF_BUCKET.head(`${slug}.pdf`)
     if (!obj) return null
     const base = process.env.R2_PDF_PUBLIC_URL ?? 'https://pdfs.re-evolution.pt'
