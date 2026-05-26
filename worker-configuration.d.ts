@@ -2,4 +2,5 @@
 interface CloudflareEnv {
   ASSETS: Fetcher
   PDF_BUCKET: R2Bucket
+  [key: string]: unknown
 }
