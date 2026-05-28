@@ -11,10 +11,10 @@ export default function Team() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="equipa" className="relative py-20 bg-white overflow-hidden" data-section="team" aria-labelledby="team-title">
+    <section id="equipa" className="relative bg-white overflow-hidden" data-section="team" aria-labelledby="team-title">
 
-      {/* Top yellow stripe */}
-      <div className="absolute top-0 left-0 right-0 z-10" aria-hidden="true">
+      {/* Faixa amarela de topo — em fluxo normal, primeiro filho */}
+      <div className="relative z-10" aria-hidden="true">
         <div
           className="bg-brand-yellow pl-24 pr-24 py-3 flex items-center gap-3"
           style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
@@ -26,25 +26,12 @@ export default function Team() {
         </div>
       </div>
 
-      {/* Bottom yellow stripe */}
-      <div className="absolute bottom-0 left-0 right-0 z-10" aria-hidden="true">
-        <div
-          className="bg-brand-yellow pl-24 pr-24 py-3 flex items-center gap-3"
-          style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
-          <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
-            {t('yellowStripe')}
-          </span>
-        </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12 mt-6 sm:mt-0"
+          className="text-center mb-12"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-yellow/10 px-3 py-1 rounded-full">
             {t('label')}
@@ -98,6 +85,19 @@ export default function Team() {
           </div>
         </motion.div>
 
+      </div>
+
+      {/* Faixa amarela de fundo — em fluxo normal, último filho */}
+      <div className="relative z-10" aria-hidden="true">
+        <div
+          className="bg-brand-yellow pl-24 pr-24 py-3 flex items-center gap-3"
+          style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
+          <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
+            {t('yellowStripe')}
+          </span>
+        </div>
       </div>
     </section>
   )

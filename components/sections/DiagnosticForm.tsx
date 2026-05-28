@@ -201,7 +201,7 @@ export default function DiagnosticForm() {
   return (
     <section
       id="diagnostico"
-      className="relative py-20 overflow-hidden"
+      className="relative overflow-hidden"
       data-section="diagnostic"
       aria-labelledby="diagnostic-title"
     >
@@ -228,7 +228,7 @@ export default function DiagnosticForm() {
       </svg>
 
       {/* Yellow stripe */}
-      <div className="absolute top-0 left-0 right-0 z-20" aria-hidden="true">
+      <div className="relative z-20" aria-hidden="true">
         <div
           className="bg-brand-yellow pl-24 pr-24 py-3 flex items-center gap-3"
           style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
@@ -240,7 +240,7 @@ export default function DiagnosticForm() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

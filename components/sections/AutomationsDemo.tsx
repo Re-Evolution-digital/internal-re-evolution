@@ -359,8 +359,8 @@ export default function AutomationsDemo() {
   const activeIndex = flowKeys.indexOf(active)
 
   return (
-    <section id="automacoes" className="relative py-20 bg-gray-50" data-section="automations" aria-labelledby="auto-title">
-      <div className="absolute top-0 left-0 right-0 z-10" aria-hidden="true">
+    <section id="automacoes" className="relative bg-gray-50" data-section="automations" aria-labelledby="auto-title">
+      <div className="relative z-10" aria-hidden="true">
         <div
           className="bg-brand-yellow pl-12 pr-12 sm:pl-24 sm:pr-24 py-1.5 sm:py-3 flex items-center justify-end gap-3 [clip-path:polygon(40px_0,100%_0,calc(100%_-_40px)_100%,0_100%)] sm:[clip-path:polygon(80px_0,100%_0,calc(100%_-_80px)_100%,0_100%)]"
         >
@@ -369,7 +369,7 @@ export default function AutomationsDemo() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

@@ -19,7 +19,8 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden bg-white"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-white"
+      style={{ minHeight: '100svh' }}
       data-section="hero"
       aria-label="Secção principal"
     >
@@ -54,90 +55,91 @@ export default function Hero() {
         }}
       />
 
-      {/* Conteúdo */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-28 md:pt-32">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+      {/* Conteúdo — flex-1 centra verticalmente no espaço acima da faixa */}
+      <div className="relative z-10 flex-1 flex items-center w-full">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-28 md:pt-32">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
 
-          {/* Esquerda: texto */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 bg-brand-dark/65 text-brand-yellow text-sm font-semibold px-4 py-1.5 rounded-full mb-6 shadow-md backdrop-blur-sm"
-            >
-              {t('badge')}
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-brand-dark leading-tight mb-6 [text-shadow:0_0_18px_rgba(255,255,255,1),0_0_36px_rgba(255,255,255,0.75),0_2px_4px_rgba(255,255,255,0.9)]"
-            >
-              {t('title')}
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-lg sm:text-xl text-brand-dark/75 leading-relaxed mb-8 max-w-xl [text-shadow:0_0_14px_rgba(255,255,255,1),0_0_28px_rgba(255,255,255,0.7)]"
-            >
-              {t('subtitle')}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <a
-                href={`/${locale}/#diagnostico`}
-                onClick={(e) => { anchorClick('diagnostico', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_primary', section: 'hero', language: locale }) }}
-                className="inline-flex items-center justify-center bg-brand-yellow text-brand-dark font-bold text-base px-8 py-4 rounded-2xl hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-brand-yellow/25"
+            {/* Esquerda: texto */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="inline-flex items-center gap-2 bg-brand-dark/65 text-brand-yellow text-sm font-semibold px-4 py-1.5 rounded-full mb-6 shadow-md backdrop-blur-sm"
               >
-                {t('ctaPrimary')}
-              </a>
-              <a
-                href={`/${locale}/#como-funciona`}
-                onClick={(e) => { anchorClick('como-funciona', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_secondary', section: 'hero', language: locale }) }}
-                className="inline-flex items-center justify-center border-2 border-brand-dark/40 text-brand-dark font-semibold text-base px-8 py-4 rounded-2xl hover:border-brand-dark/70 hover:bg-brand-dark/8 active:scale-95 transition-all"
+                {t('badge')}
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-brand-dark leading-tight mb-6 [text-shadow:0_0_18px_rgba(255,255,255,1),0_0_36px_rgba(255,255,255,0.75),0_2px_4px_rgba(255,255,255,0.9)]"
               >
-                {t('ctaSecondary')}
-              </a>
+                {t('title')}
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-lg sm:text-xl text-brand-dark/75 leading-relaxed mb-8 max-w-xl [text-shadow:0_0_14px_rgba(255,255,255,1),0_0_28px_rgba(255,255,255,0.7)]"
+              >
+                {t('subtitle')}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-3"
+              >
+                <a
+                  href={`/${locale}/#diagnostico`}
+                  onClick={(e) => { anchorClick('diagnostico', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_primary', section: 'hero', language: locale }) }}
+                  className="inline-flex items-center justify-center bg-brand-yellow text-brand-dark font-bold text-base px-8 py-4 rounded-2xl hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-brand-yellow/25"
+                >
+                  {t('ctaPrimary')}
+                </a>
+                <a
+                  href={`/${locale}/#como-funciona`}
+                  onClick={(e) => { anchorClick('como-funciona', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_secondary', section: 'hero', language: locale }) }}
+                  className="inline-flex items-center justify-center border-2 border-brand-dark/40 text-brand-dark font-semibold text-base px-8 py-4 rounded-2xl hover:border-brand-dark/70 hover:bg-brand-dark/8 active:scale-95 transition-all"
+                >
+                  {t('ctaSecondary')}
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Direita: baralho de 3 telemóveis — desktop apenas */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
+              className="hidden lg:flex lg:justify-center lg:items-center"
+              aria-hidden="true"
+            >
+              <HeroPhoneDeck />
             </motion.div>
           </div>
-
-          {/* Direita: baralho de 3 telemóveis — desktop apenas */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
-            className="hidden lg:flex lg:justify-center lg:items-center"
-            aria-hidden="true"
-          >
-            <HeroPhoneDeck />
-          </motion.div>
         </div>
       </div>
 
-      {/* Faixa amarela diagonal — assinatura da marca (slide 1 & 16) */}
-      <div className="absolute bottom-0 left-0 right-0 z-20" aria-hidden="true">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="bg-brand-yellow pl-24 pr-24 py-3.5 flex items-center gap-3"
-          style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
-          <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
-            {t('yellowStripe')}
-          </span>
-        </motion.div>
-      </div>
+      {/* Faixa amarela diagonal — em fluxo normal, empurra os CTAs para cima automaticamente */}
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        className="relative z-20 w-full bg-brand-yellow pl-24 pr-24 py-3.5 flex items-center gap-3 shrink-0"
+        style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
+        aria-hidden="true"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-brand-dark/40 shrink-0" />
+        <span className="text-brand-dark font-bold text-sm tracking-widest uppercase">
+          {t('yellowStripe')}
+        </span>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div

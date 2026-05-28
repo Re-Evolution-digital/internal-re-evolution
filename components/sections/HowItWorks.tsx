@@ -12,7 +12,7 @@ export default function HowItWorks() {
   const steps = t.raw('steps') as Array<{ emoji: string; title: string; description: string }>
 
   return (
-    <section id="como-funciona" className="relative py-20 bg-brand-dark overflow-hidden" data-section="how-it-works" aria-labelledby="how-title">
+    <section id="como-funciona" className="relative bg-brand-dark overflow-hidden" data-section="how-it-works" aria-labelledby="how-title">
       {/* Dot clusters */}
       <svg className="absolute top-6 right-6 opacity-[0.18] pointer-events-none" width="88" height="88" viewBox="0 0 88 88" fill="none" aria-hidden="true">
         {[4,26,48,70].flatMap(x => [4,26,48,70].map(y => (
@@ -25,7 +25,7 @@ export default function HowItWorks() {
         )))}
       </svg>
       {/* Faixa amarela diagonal no topo */}
-      <div className="absolute top-0 left-0 right-0 z-10" aria-hidden="true">
+      <div className="relative z-10" aria-hidden="true">
         <div
           className="bg-brand-yellow pl-24 pr-24 py-3 flex items-center gap-3"
           style={{ clipPath: 'polygon(80px 0, 100% 0, calc(100% - 80px) 100%, 0 100%)' }}
@@ -37,11 +37,11 @@ export default function HowItWorks() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-14 mt-6 sm:mt-0"
+          className="text-center mb-14"
         >
           <h2 id="how-title" className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-2">
             {t('title')}

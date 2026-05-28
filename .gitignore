@@ -43,5 +43,3 @@ next-env.d.ts
 # PDFs dos artigos — servidos via Cloudflare R2, não pertencem ao repositório
 /public/blog/pdfs/*.pdf
 
-# Auto-gerado em build-time (ver scripts/generate-logo-b64.js)
-/lib/logo-b64.generated.ts
