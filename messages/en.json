@@ -13,10 +13,11 @@
   },
   "hero": {
     "badge": "⚡ Delivery in 1 to 3 weeks",
-    "title": "Your business deserves to be online. We handle everything.",
-    "subtitle": "We build your website, manage your social media, automate your repetitive tasks and get your business showing up on Google — without you needing to know anything about technology.",
+    "title": "Your customers search on Google. Does your business show up?",
+    "subtitle": "We handle everything — website, social media and automations — so you can focus on your business. In plain language, no complexity, no tech knowledge required.",
     "ctaPrimary": "Get my free diagnosis",
     "ctaSecondary": "See how it works",
+    "socialProof": "We've already helped businesses like Arcadas do Fado (Almancil) build a real digital presence.",
     "yellowStripe": "Digital Transformation · Local Business · Re-Evolution",
     "phone": {
       "topBadge": "✅ Site in 2 weeks",

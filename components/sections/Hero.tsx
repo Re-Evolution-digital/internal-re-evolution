@@ -29,11 +29,20 @@ export default function Hero() {
 
       {/* Foto — full width, efeito quilha (keel) — azul escuro à esquerda, foto visível à direita */}
       <div className="absolute inset-0 pointer-events-none z-[1]" aria-hidden="true">
+        {/* Desktop/tablet background (≥ 500px) */}
         <Image
           src="/images/hero/hero-background.png"
           alt=""
           fill
-          className="object-cover object-[50%_50%]"
+          className="hidden min-[500px]:block object-cover object-[50%_50%]"
+          priority
+        />
+        {/* Mobile background (< 500px) */}
+        <Image
+          src="/images/hero/hero-background-mobile.png"
+          alt=""
+          fill
+          className="block min-[500px]:hidden object-cover object-center"
           priority
         />
         {/* Gradient quilha: zona escura larga na base, estreita no topo (slide 1) */}
@@ -102,14 +111,17 @@ export default function Hero() {
                 >
                   {t('ctaPrimary')}
                 </a>
-                <a
-                  href={`/${locale}/#como-funciona`}
-                  onClick={(e) => { anchorClick('como-funciona', e); trackEvent(GA_EVENTS.CTA_CLICK, { cta_name: 'hero_secondary', section: 'hero', language: locale }) }}
-                  className="inline-flex items-center justify-center border-2 border-brand-dark/40 text-brand-dark font-semibold text-base px-8 py-4 rounded-2xl hover:border-brand-dark/70 hover:bg-brand-dark/8 active:scale-95 transition-all"
-                >
-                  {t('ctaSecondary')}
-                </a>
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="mt-4 text-sm text-brand-dark/60 [text-shadow:0_0_10px_rgba(255,255,255,0.9)]"
+              >
+                {t('socialProof')}
+              </motion.p>
+
             </div>
 
             {/* Direita: baralho de 3 telemóveis — desktop apenas */}
